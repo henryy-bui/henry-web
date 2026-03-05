@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "prismjs/themes/prism-tomorrow.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://henry.dev"),
+  metadataBase: new URL("https://habui.click"),
   title: {
     default: "Henry — Software Engineer",
     template: "%s | Henry",
