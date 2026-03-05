@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { Github, Twitter, Linkedin, Terminal } from "lucide-react";
+import { Terminal } from "lucide-react";
+import Github from "./icons/Github";
+import Linkedin from "./icons/Linkedin";
+import Facebook from "./icons/Facebook";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -45,12 +48,12 @@ export default function Footer() {
               GitHub
             </a>
             <a
-              href="https://twitter.com"
+              href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.link}
             >
-              Twitter
+              Facebook
             </a>
             <a
               href="https://linkedin.com"
@@ -77,13 +80,13 @@ export default function Footer() {
             <Github size={18} />
           </a>
           <a
-            href="https://twitter.com"
+            href="https://facebook.com"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialBtn}
-            aria-label="Twitter"
+            aria-label="Facebook"
           >
-            <Twitter size={18} />
+            <Facebook size={18} />
           </a>
           <a
             href="https://linkedin.com"

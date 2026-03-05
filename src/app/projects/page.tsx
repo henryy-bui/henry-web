@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
+import { ExternalLink, ArrowUpRight } from "lucide-react";
+import Github from "@/components/icons/Github";
 import { projects } from "@/data/projects";
 import styles from "./page.module.css";
 

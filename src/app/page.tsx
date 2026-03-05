@@ -1,14 +1,14 @@
 import Link from "next/link";
 import {
   ArrowRight,
-  Github,
-  Twitter,
-  Linkedin,
   ExternalLink,
   Zap,
   MonitorPlay,
   Layers,
 } from "lucide-react";
+import Github from "@/components/icons/Github";
+import Linkedin from "@/components/icons/Linkedin";
+import Facebook from "@/components/icons/Facebook";
 import { getAllPosts } from "@/lib/blog";
 import { projects } from "@/data/projects";
 import styles from "./page.module.css";
@@ -96,7 +96,7 @@ export default async function HomePage() {
           </div>
           <div className={styles.heroSocial + " animate-fade-in-up delay-5"}>
             <a
-              href="https://github.com"
+              href="https://github.com/henryy-bui"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -104,15 +104,15 @@ export default async function HomePage() {
               <Github size={20} />
             </a>
             <a
-              href="https://twitter.com"
+              href="https://www.facebook.com/iamhabv/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Twitter"
+              aria-label="Facebook"
             >
-              <Twitter size={20} />
+              <Facebook size={20} />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/henryy-bui/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
