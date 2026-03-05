@@ -1,0 +1,252 @@
+.header {
+  margin-bottom: 64px;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  line-height: 1.65;
+}
+
+/* Featured */
+.featuredSection {
+  margin-bottom: 64px;
+}
+
+.sectionLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.featuredGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+  gap: 16px;
+}
+
+.featuredCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition:
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.featuredCard:hover {
+  border-color: var(--text-muted);
+  transform: translateY(-2px);
+}
+
+.wide {
+  grid-column: 1 / -1;
+  background: linear-gradient(
+    135deg,
+    var(--bg-card) 0%,
+    rgba(99, 102, 241, 0.05) 100%
+  );
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.wide:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.year {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.status {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 100px;
+}
+
+.active {
+  color: var(--accent-green);
+  background: rgba(34, 211, 165, 0.1);
+}
+
+.wip {
+  color: var(--accent-amber);
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.archived {
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+}
+
+.cardActions {
+  display: flex;
+  gap: 8px;
+}
+
+.cardAction {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition:
+    color var(--transition),
+    border-color var(--transition),
+    background var(--transition);
+}
+
+.cardAction:hover {
+  color: var(--accent-hover);
+  border-color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.cardTitle {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.cardDesc {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.techList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.techBadge {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* Others */
+.otherGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.otherCard {
+  padding: 20px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition:
+    border-color var(--transition),
+    background var(--transition);
+}
+
+.otherCard:hover {
+  border-color: var(--text-muted);
+  background: var(--bg-card-hover);
+}
+
+.otherHeader {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.otherTitle {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.otherActions a {
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+
+.otherActions a:hover {
+  color: var(--accent-hover);
+}
+
+.otherDesc {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.otherFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.statusSmall {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 100px;
+}
+
+@media (max-width: 900px) {
+  .featuredGrid,
+  .otherGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .wide {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .featuredGrid,
+  .otherGrid {
+    grid-template-columns: 1fr;
+  }
+}
