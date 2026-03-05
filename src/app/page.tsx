@@ -50,8 +50,25 @@ export default async function HomePage() {
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
   const recentPosts = posts.slice(0, 3);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Henry",
+    url: "https://habui.click/",
+    jobTitle: "Software Engineer",
+    sameAs: [
+      "https://github.com",
+      "https://twitter.com",
+      "https://linkedin.com",
+    ],
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero */}
       <section className={styles.hero}>
         <div className="container">

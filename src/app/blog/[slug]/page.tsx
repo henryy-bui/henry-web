@@ -42,8 +42,28 @@ export default async function BlogPostPage({ params }: Props) {
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    datePublished: new Date(post.date).toISOString(),
+    dateModified: new Date(post.date).toISOString(),
+    description: post.description,
+    author: [
+      {
+        "@type": "Person",
+        name: "Henry",
+        url: "https://habui.click/",
+      },
+    ],
+  };
+
   return (
     <article className="section">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="container">
         <Link href="/blog" className={styles.back}>
           <ArrowLeft size={16} /> Back to blog
