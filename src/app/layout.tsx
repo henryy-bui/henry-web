@@ -6,8 +6,8 @@ import "prismjs/themes/prism-tomorrow.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Alex Chen — Software Engineer",
-    template: "%s | Alex Chen",
+    default: "Henry — Software Engineer",
+    template: "%s | Henry",
   },
   description:
     "Software Engineer specializing in TypeScript, React, and distributed systems. Read my blog and explore my open-source projects.",
@@ -19,11 +19,11 @@ export const metadata: Metadata = {
     "portfolio",
     "blog",
   ],
-  authors: [{ name: "Alex Chen" }],
+  authors: [{ name: "Henry" }],
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Alex Chen",
+    siteName: "Henry",
   },
 };
 

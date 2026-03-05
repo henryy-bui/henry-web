@@ -1,0 +1,47 @@
+.codeWrapper {
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.codeWrapper pre {
+  margin: 0 !important;
+}
+
+.copyButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+  opacity: 0;
+  z-index: 10;
+}
+
+.codeWrapper:hover .copyButton {
+  opacity: 1;
+}
+
+.copyButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.copyButton.copied {
+  color: var(--accent-green);
+  background: rgba(34, 211, 165, 0.1);
+  border-color: rgba(34, 211, 165, 0.2);
+  opacity: 1;
+}
+
+.copyButton svg {
+  display: block;
+}

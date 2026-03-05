@@ -11,7 +11,7 @@ export default function Footer() {
         <div className={styles.brand}>
           <Link href="/" className={styles.logo}>
             <Terminal size={16} />
-            <span>alex.dev</span>
+            <span>henry.dev</span>
           </Link>
           <p className={styles.tagline}>
             Building reliable systems and sharing what I learn.
@@ -60,7 +60,7 @@ export default function Footer() {
             >
               LinkedIn
             </a>
-            <a href="mailto:alex@example.com" className={styles.link}>
+            <a href="mailto:henry@example.com" className={styles.link}>
               Email
             </a>
           </div>
@@ -98,8 +98,7 @@ export default function Footer() {
       </div>
 
       <div className={styles.bottom}>
-        <span>© {year} Alex Chen. All rights reserved.</span>
-        <span className={styles.built}>Built with Next.js & ☕</span>
+        <span>© {year} Henry. All rights reserved.</span>
       </div>
     </footer>
   );

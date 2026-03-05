@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Clock, Tag, Calendar } from "lucide-react";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import BlogContent from "@/components/BlogContent";
 import styles from "./page.module.css";
 
 interface Props {
@@ -73,10 +74,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <hr className={styles.divider} />
 
-        <div
-          className={`prose ${styles.content}`}
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        <BlogContent html={post.content} />
 
         <hr className={styles.divider} />
 
