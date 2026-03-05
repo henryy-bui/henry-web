@@ -13,15 +13,15 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "distributed-cache",
-    title: "DistCache",
+    slug: "motion-spectre",
+    title: "Motion Spectre",
     description:
-      "A high-performance distributed caching layer with consistent hashing and automatic failover.",
+      "A high-performance animation library for React targeting 120fps fluid transitions.",
     longDescription:
-      "Built a distributed caching system from scratch supporting 150k+ req/s using consistent hashing with virtual nodes, LRU eviction, and Raft consensus for leader election. Achieved sub-millisecond p99 latency.",
-    tech: ["Go", "gRPC", "Raft", "LRU", "Docker"],
+      "Built an imperative animation orchestrator for React from scratch utilizing Web Animations API and requestAnimationFrame. Achieved zero layout thrashing and sub-millisecond JS execution per frame.",
+    tech: ["TypeScript", "React", "WAAPI", "Framer Motion"],
     github: "https://github.com",
-    demo: undefined,
+    demo: "https://example.com",
     featured: true,
     year: 2024,
     status: "active",
@@ -41,13 +41,13 @@ export const projects: Project[] = [
     status: "active",
   },
   {
-    slug: "ml-pipeline",
-    title: "DataFlux",
+    slug: "canvas-flow",
+    title: "CanvasFlow",
     description:
-      "A visual no-code ML pipeline builder with real-time execution and reproducible experiments.",
+      "A fully web-based infinite canvas tool for spatial reasoning and diagramming.",
     longDescription:
-      "Drag-and-drop ML pipeline builder with automatic data versioning via DVC, reproducible experiment tracking with MLflow, and real-time node execution feedback.",
-    tech: ["Python", "FastAPI", "React", "DVC", "MLflow"],
+      "Engineered an infinite canvas utilizing WebGL and custom render loops for extreme performance. Features smooth zooming, hardware-accelerated panning, and interactive DOM overlays.",
+    tech: ["TypeScript", "WebGL", "React", "Zustand"],
     github: "https://github.com",
     demo: "https://example.com",
     featured: true,
@@ -81,13 +81,12 @@ export const projects: Project[] = [
     status: "archived",
   },
   {
-    slug: "query-builder",
-    title: "FluentQuery",
-    description:
-      "SQL query builder with type inference and migration tracking for TypeScript.",
+    slug: "zero-runtime-css",
+    title: "StyleExtract",
+    description: "A zero-runtime CSS-in-JS extractor built natively for Vite.",
     longDescription:
-      "A TypeScript-first SQL query builder that infers column types from your schema and provides type-safe queries without any ORM overhead.",
-    tech: ["TypeScript", "PostgreSQL", "SQLite"],
+      "A Vite plugin that statically analyzes CSS-in-JS syntax during the build step and extracts it into optimized, atomic CSS files. Reduces client-side JS bundle by completely removing the styling runtime.",
+    tech: ["TypeScript", "Vite", "AST", "PostCSS"],
     github: "https://github.com",
     featured: false,
     year: 2022,

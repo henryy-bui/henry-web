@@ -5,9 +5,9 @@ import {
   Twitter,
   Linkedin,
   ExternalLink,
-  Code2,
-  Server,
   Zap,
+  MonitorPlay,
+  Layers,
 } from "lucide-react";
 import { getAllPosts } from "@/lib/blog";
 import { projects } from "@/data/projects";
@@ -15,33 +15,33 @@ import styles from "./page.module.css";
 
 const TECH_STACK = [
   { name: "TypeScript", icon: "⬡", color: "#3178c6" },
-  { name: "Go", icon: "⬡", color: "#00add8" },
   { name: "React", icon: "⬡", color: "#61dafb" },
   { name: "Next.js", icon: "⬡", color: "#ffffff" },
-  { name: "PostgreSQL", icon: "⬡", color: "#336791" },
-  { name: "Rust", icon: "⬡", color: "#ce412b" },
-  { name: "Kafka", icon: "⬡", color: "#231f20" },
-  { name: "Docker", icon: "⬡", color: "#2496ed" },
+  { name: "Tailwind CSS", icon: "⬡", color: "#38bdf8" },
+  { name: "Framer Motion", icon: "⬡", color: "#e11d48" },
+  { name: "Zustand", icon: "⬡", color: "#fbd38d" },
+  { name: "Node.js", icon: "⬡", color: "#339933" },
+  { name: "Figma", icon: "⬡", color: "#f24e1e" },
 ];
 
 const FOCUS_AREAS = [
   {
-    icon: Server,
-    title: "Distributed Systems",
+    icon: MonitorPlay,
+    title: "Interactive Experiences",
     description:
-      "Designing reliable, scalable backends with a focus on consistency and fault tolerance.",
+      "Crafting fluid animations, micro-interactions, and engaging user interfaces that feel alive.",
   },
   {
-    icon: Code2,
-    title: "Developer Experience",
+    icon: Layers,
+    title: "Design Systems",
     description:
-      "Building tools, libraries, and APIs that make engineers more productive.",
+      "Building scalable, accessible, and highly reusable component libraries for growing teams.",
   },
   {
     icon: Zap,
-    title: "Performance Engineering",
+    title: "Web Performance",
     description:
-      "Profiling, benchmarking, and optimizing systems at the millisecond level.",
+      "Optimizing Core Web Vitals, minimizing bundle sizes, and ensuring 60fps rendering.",
   },
 ];
 
@@ -77,14 +77,14 @@ export default async function HomePage() {
             Available for senior roles
           </div>
           <h1 className={styles.heroTitle + " animate-fade-in-up delay-2"}>
-            I build reliable
+            I build crafted
             <br />
-            <span className={styles.heroGradient}>distributed systems</span>
+            <span className={styles.heroGradient}>user interfaces</span>
           </h1>
           <p className={styles.heroSubtitle + " animate-fade-in-up delay-3"}>
-            Software Engineer with 8+ years of experience shipping production
-            systems at Stripe, Vercel, and Cloudflare. I write about systems,
-            TypeScript, and engineering culture.
+            Frontend Engineer specializing in React, Next.js, and complex web
+            applications. I bridge the gap between design and solid engineering
+            to create polished, high-performance web experiences.
           </p>
           <div className={styles.heroActions + " animate-fade-in-up delay-4"}>
             <Link href="/projects" className={styles.btnPrimary}>

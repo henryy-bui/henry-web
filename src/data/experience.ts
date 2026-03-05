@@ -23,14 +23,14 @@ export const experiences: Experience[] = [
     endYear: null,
     location: "San Francisco, CA (Remote)",
     description:
-      "Building core infrastructure for Stripe's payments platform. Focus on reliability, distributed systems, and developer experience.",
+      "Leading frontend architecture for Stripe's Dashboard platform. Focusing on design systems, component reusability, and client-side performance.",
     achievements: [
-      "Led redesign of the idempotency subsystem, reducing duplicate payment incidents by 94%",
-      "Built a gRPC-based internal routing layer serving 500k+ requests per minute",
-      "Mentored 4 junior engineers, running bi-weekly technical deep dives",
-      "Contributed to open-source Stripe API client libraries (Go, TypeScript)",
+      "Architected the migration of legacy dashboard screens to a modern React App Router architecture",
+      "Led the core UI team in building 'Sail', Stripe's internal highly-accessible component library",
+      "Improved TTI (Time to Interactive) by 35% through bundle splitting and aggressive code-fetching optimizations",
+      "Mentored 4 junior frontend engineers, running bi-weekly React architecture deep dives",
     ],
-    tech: ["Go", "gRPC", "PostgreSQL", "Kafka", "TypeScript", "React"],
+    tech: ["TypeScript", "React", "Next.js", "Framer Motion", "Tailwind CSS"],
     current: true,
   },
   {
@@ -42,14 +42,14 @@ export const experiences: Experience[] = [
     endYear: 2023,
     location: "Remote",
     description:
-      "Worked on the Next.js framework core team and developer platform tooling.",
+      "Worked on the Next.js framework core team focusing on the frontend developer experience and rendering engines.",
     achievements: [
-      "Implemented RSC (React Server Components) streaming infrastructure in Next.js",
-      "Reduced cold boot times by 40% through Edge Runtime optimizations",
-      "Built the real-time build log streaming feature used by 1M+ developers",
-      "Shipped 15+ minor and 3 major Next.js releases",
+      "Implemented early prototypes for React Server Components (RSC) streaming in Next.js",
+      "Built the real-time, highly-interactive build log streaming dashboard used by 1M+ developers",
+      "Optimized client-side router transitions, reducing layout shift during client-side navigation",
+      "Shipped 15+ minor and 3 major Next.js framework releases",
     ],
-    tech: ["TypeScript", "React", "Next.js", "Rust", "Node.js", "Redis"],
+    tech: ["TypeScript", "React", "Next.js", "SWC", "Node.js"],
   },
   {
     id: "cloudflare",
@@ -60,13 +60,13 @@ export const experiences: Experience[] = [
     endYear: 2021,
     location: "Austin, TX",
     description:
-      "Developed Workers platform features and contributed to edge network tooling.",
+      "Developed the Cloudflare dashboard ui and contributed to the edge-rendering ecosystem.",
     achievements: [
-      "Built the Durable Objects consistency model prototype (shipped in 2022)",
-      "Improved Workers KV read latency by 25% through cache coalescing",
-      "Developed automated load testing framework for edge functions",
+      "Built the highly interactive traffic analytics dashboard utilizing WebGL for rendering 10k+ data points",
+      "Created the internal React framework used for all Cloudflare dashboard micro-frontends",
+      "Improved component library tree-shaking, dropping base bundle size by 25%",
     ],
-    tech: ["Rust", "TypeScript", "V8", "C++", "Python"],
+    tech: ["TypeScript", "React", "Redux", "WebGL", "CSS-in-JS"],
   },
   {
     id: "thoughtworks",
@@ -77,12 +77,12 @@ export const experiences: Experience[] = [
     endYear: 2019,
     location: "Chicago, IL",
     description:
-      "Delivered full-stack consulting projects across fintech and healthcare clients.",
+      "Delivered full-stack and frontend-heavy client projects across fintech and healthcare.",
     achievements: [
-      "Led a team of 5 to rebuild a legacy fintech platform serving 200k users",
-      "Introduced CI/CD pipelines reducing deployment time from 2 days to 45 minutes",
-      "Ran internal workshops on TDD and agile practices",
+      "Led UI development for a healthcare portal, migrating legacy jQuery to a modern React SPA",
+      "Implemented comprehensive end-to-end testing with Cypress, increasing UI test coverage to 90%",
+      "Ran internal workshops on modern CSS architectures and accessibility standards",
     ],
-    tech: ["Java", "Spring Boot", "React", "PostgreSQL", "AWS", "Terraform"],
+    tech: ["JavaScript", "React", "Sass", "Cypress", "Webpack"],
   },
 ];
