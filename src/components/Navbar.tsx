@@ -37,7 +37,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <a href="mailto:henry@example.com" className={styles.cta}>
+        <a href="mailto:buiha.dev@gmail.com" className={styles.cta}>
           Contact
         </a>
 
@@ -62,7 +62,7 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
-          <a href="mailto:henry@example.com" className={styles.mobileCta}>
+          <a href="mailto:buiha.dev@gmail.com" className={styles.mobileCta}>
             Contact
           </a>
         </div>

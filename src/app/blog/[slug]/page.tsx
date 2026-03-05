@@ -27,6 +27,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.description,
       type: "article",
       publishedTime: post.date,
+      authors: ["Henry"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
     },
   };
 }

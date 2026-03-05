@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "My career timeline — from ThoughtWorks to Cloudflare, Vercel, and Stripe.",
+    "My professional journey and technical expertise. Explore my career timeline and key achievements in distributed systems and developer tooling.",
 };
 
 export default function ExperiencePage() {
