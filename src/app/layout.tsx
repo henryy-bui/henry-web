@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "prismjs/themes/prism-tomorrow.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://habui.click"),
+  metadataBase: new URL("https://habui.click/"),
   title: {
     default: "Henry — Software Engineer",
     template: "%s | Henry",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://habui.click",
+    url: "https://habui.click/",
     siteName: "Henry",
     title: "Henry — Software Engineer",
     description:
