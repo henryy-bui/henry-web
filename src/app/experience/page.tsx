@@ -5,7 +5,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "Experience",
   description:
-    "My professional journey and technical expertise. Explore my career timeline and key achievements in distributed systems and developer tooling.",
+    "My professional journey and technical expertise. Explore my career timeline and key achievements in front-end engineering and UI/UX architecture.",
 };
 
 export default function ExperiencePage() {
@@ -15,8 +15,8 @@ export default function ExperiencePage() {
         <div className={styles.header}>
           <h1 className={styles.title}>Experience</h1>
           <p className={styles.subtitle}>
-            8+ years building distributed systems and developer tooling at
-            high-growth companies.
+            4+ years building high-performance, scalable web applications with a
+            focus on React and modern front-end architectures.
           </p>
         </div>
 
@@ -75,20 +75,20 @@ export default function ExperiencePage() {
         {/* Summary stats */}
         <div className={styles.stats}>
           <div className={styles.stat}>
-            <span className={styles.statValue}>8+</span>
+            <span className={styles.statValue}>4+</span>
             <span className={styles.statLabel}>Years experience</span>
           </div>
           <div className={styles.stat}>
-            <span className={styles.statValue}>4</span>
-            <span className={styles.statLabel}>Companies</span>
+            <span className={styles.statValue}>2</span>
+            <span className={styles.statLabel}>Major Companies</span>
           </div>
           <div className={styles.stat}>
-            <span className={styles.statValue}>∞</span>
-            <span className={styles.statLabel}>Lines of code</span>
+            <span className={styles.statValue}>10+</span>
+            <span className={styles.statLabel}>Projects Delivered</span>
           </div>
           <div className={styles.stat}>
-            <span className={styles.statValue}>15+</span>
-            <span className={styles.statLabel}>Open source contributions</span>
+            <span className={styles.statValue}>85%</span>
+            <span className={styles.statLabel}>Code Coverage</span>
           </div>
         </div>
       </div>
