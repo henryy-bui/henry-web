@@ -14,6 +14,8 @@ export interface BlogPost {
   slug: string;
   title: string;
   date: string;
+  formattedDate: string;
+  formattedDateShort: string;
   description: string;
   tags: string[];
   readingTime: number;
@@ -44,10 +46,25 @@ export async function getAllPosts(): Promise<BlogPostMeta[]> {
     const raw = fs.readFileSync(filePath, "utf-8");
     const { data, content } = matter(raw);
 
+    const dateStr = data.date as string;
+    const dateObj = new Date(dateStr);
+
     return {
       slug,
       title: data.title as string,
-      date: data.date as string,
+      date: dateStr,
+      formattedDate: dateObj.toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+        timeZone: "UTC",
+      }),
+      formattedDateShort: dateObj.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        timeZone: "UTC",
+      }),
       description: data.description as string,
       tags: (data.tags as string[]) || [],
       readingTime: estimateReadingTime(content),
@@ -82,10 +99,25 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     .use(rehypeStringify)
     .process(content);
 
+  const dateStr = data.date as string;
+  const dateObj = new Date(dateStr);
+
   return {
     slug,
     title: data.title as string,
-    date: data.date as string,
+    date: dateStr,
+    formattedDate: dateObj.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "UTC",
+    }),
+    formattedDateShort: dateObj.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "UTC",
+    }),
     description: data.description as string,
     tags: (data.tags as string[]) || [],
     readingTime: estimateReadingTime(content),

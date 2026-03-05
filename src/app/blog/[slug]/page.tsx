@@ -73,11 +73,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className={styles.postMeta}>
             <span className={styles.metaItem}>
               <Calendar size={13} />
-              {new Date(post.date).toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
+              {post.formattedDate}
             </span>
             <span className={styles.metaItem}>
               <Clock size={13} />

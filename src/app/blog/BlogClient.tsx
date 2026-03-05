@@ -81,13 +81,7 @@ export default function BlogClient({ posts, allTags }: BlogClientProps) {
               className={styles.postCard}
             >
               <div className={styles.cardMeta}>
-                <time className={styles.date}>
-                  {new Date(post.date).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </time>
+                <time className={styles.date}>{post.formattedDate}</time>
                 <span className={styles.readingTime}>
                   <Clock size={12} />
                   {post.readingTime} min

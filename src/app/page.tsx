@@ -236,13 +236,7 @@ export default async function HomePage() {
                   className={styles.postItem}
                 >
                   <div className={styles.postMeta}>
-                    <time>
-                      {new Date(post.date).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
-                    </time>
+                    <time>{post.formattedDateShort}</time>
                     <span>{post.readingTime} min read</span>
                   </div>
                   <h3 className={styles.postTitle}>{post.title}</h3>
