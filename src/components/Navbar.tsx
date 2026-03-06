@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X, Terminal } from "lucide-react";
 import {
   getLocaleDisplayName,
@@ -45,7 +45,9 @@ export default function Navbar({ locale, dictionary }: NavbarProps) {
   ];
 
   const pathname = usePathname();
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
+  const isSwitchingLocaleRef = useRef(false);
   const nextLocale = getOtherLocale(locale);
   const switchPath = toSwitchedLocalePath(pathname, nextLocale);
   const currentLocaleLabel = getLocaleDisplayName(locale, locale);
@@ -54,6 +56,48 @@ export default function Navbar({ locale, dictionary }: NavbarProps) {
   const isActive = (href: string) =>
     pathname === href ||
     (href !== `/${locale}/` && pathname.startsWith(`${href}/`));
+
+  useEffect(() => {
+    router.prefetch(switchPath);
+  }, [router, switchPath]);
+
+  useEffect(() => {
+    // Route changed: clear fallback class and unlock switch control.
+    document.documentElement.classList.remove("locale-switching");
+    isSwitchingLocaleRef.current = false;
+  }, [pathname]);
+
+  const navigateWithLocaleAnimation = () => {
+    if (isSwitchingLocaleRef.current) return;
+
+    isSwitchingLocaleRef.current = true;
+    setMenuOpen(false);
+
+    const html = document.documentElement;
+    const docWithTransition = document as Document & {
+      startViewTransition?: (updateCallback: () => void) => {
+        finished: Promise<void>;
+      };
+    };
+
+    router.prefetch(switchPath);
+
+    if (docWithTransition.startViewTransition) {
+      const transition = docWithTransition.startViewTransition(() => {
+        router.push(switchPath);
+      });
+
+      transition.finished.finally(() => {
+        isSwitchingLocaleRef.current = false;
+      });
+      return;
+    }
+
+    html.classList.add("locale-switching");
+    window.setTimeout(() => {
+      router.push(switchPath);
+    }, 120);
+  };
 
   return (
     <header className={styles.header}>
@@ -82,6 +126,10 @@ export default function Navbar({ locale, dictionary }: NavbarProps) {
           className={`${styles.navLink} ${styles.localeSwitch}`}
           aria-label={dictionary.nav.languageSwitchLabel}
           title={`${dictionary.nav.languageSwitchLabel}: ${nextLocaleLabel}`}
+          onClick={(event) => {
+            event.preventDefault();
+            navigateWithLocaleAnimation();
+          }}
         >
           <span className={styles.currentLocale}>{currentLocaleLabel}</span>
           <span className={styles.switchArrow}>/</span>
@@ -118,7 +166,10 @@ export default function Navbar({ locale, dictionary }: NavbarProps) {
           <Link
             href={switchPath}
             className={`${styles.mobileLink} ${styles.mobileLocaleSwitch}`}
-            onClick={() => setMenuOpen(false)}
+            onClick={(event) => {
+              event.preventDefault();
+              navigateWithLocaleAnimation();
+            }}
             aria-label={dictionary.nav.languageSwitchLabel}
           >
             {currentLocaleLabel} / {nextLocaleLabel}
