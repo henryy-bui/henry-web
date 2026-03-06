@@ -17,6 +17,49 @@ function normalizeTag(tag: string): string {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
+function detectCategoryFromSlug(slug?: string): BlogCategory | null {
+  if (!slug) {
+    return null;
+  }
+
+  const normalized = normalizeTag(slug.replace(/-/g, " "));
+
+  const includesAny = (keywords: string[]) =>
+    keywords.some((keyword) => normalized.includes(keyword));
+
+  if (
+    includesAny([
+      "distributed",
+      "cache",
+      "caching",
+      "raft",
+      "system",
+      "he thong",
+    ])
+  ) {
+    return "systems";
+  }
+
+  if (includesAny(["react", "rsc", "next", "frontend", "ui", "performance"])) {
+    return "frontend";
+  }
+
+  if (
+    includesAny([
+      "typescript",
+      "type-level",
+      "type level",
+      "meta-programming",
+      "programming",
+      "kieu",
+    ])
+  ) {
+    return "typescript";
+  }
+
+  return null;
+}
+
 function detectCategory(tags: string[]): BlogCategory {
   const normalizedTags = tags.map(normalizeTag);
 
@@ -69,8 +112,12 @@ function detectCategory(tags: string[]): BlogCategory {
   return "general";
 }
 
-export function getBlogTheme(tags: string[], locale: Locale): BlogTheme {
-  const category = detectCategory(tags);
+export function getBlogTheme(
+  tags: string[],
+  locale: Locale,
+  slug?: string
+): BlogTheme {
+  const category = detectCategoryFromSlug(slug) ?? detectCategory(tags);
 
   const themeByCategory: Record<
     BlogCategory,

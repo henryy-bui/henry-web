@@ -22,17 +22,46 @@ function trimTitle(title: string, max = 90) {
   return `${title.slice(0, max - 1)}...`;
 }
 
+function splitTitleIntoLines(title: string): string[] {
+  const words = title.trim().split(/\s+/);
+  if (words.length <= 4) {
+    return [title];
+  }
+
+  const midpoint = Math.ceil(words.length / 2);
+  const line1 = words.slice(0, midpoint).join(" ");
+  const line2 = words.slice(midpoint).join(" ");
+
+  if (line1.length > 44 && words.length >= 6) {
+    const rebalancePoint = Math.max(3, Math.floor(words.length * 0.45));
+    return [
+      words.slice(0, rebalancePoint).join(" "),
+      words.slice(rebalancePoint).join(" "),
+    ];
+  }
+
+  return [line1, line2];
+}
+
+function getTitleFontSize(titleLength: number): number {
+  if (titleLength <= 45) return 62;
+  if (titleLength <= 70) return 56;
+  return 50;
+}
+
 export default async function Image({ params }: Props) {
   const { locale, slug } = await params;
   const typedLocale: Locale = isLocale(locale) ? locale : "en";
   const post = await getPostBySlug(typedLocale, slug);
 
   const title = post ? trimTitle(post.title, 92) : "Blog Post";
+  const titleLines = splitTitleIntoLines(title);
+  const titleFontSize = getTitleFontSize(title.length);
   const description =
     post?.description ??
     "Engineering notes on systems and frontend architecture.";
   const tags = post?.tags?.slice(0, 3) ?? [];
-  const theme = getBlogTheme(tags, typedLocale);
+  const theme = getBlogTheme(tags, typedLocale, slug);
   const accent = theme.accent;
   const localeLabel = typedLocale === "vi" ? "Bài Viết" : "Article";
 
@@ -102,14 +131,21 @@ export default async function Image({ params }: Props) {
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
           <div
             style={{
-              fontSize: 56,
+              display: "flex",
+              flexDirection: "column",
+              gap: 6,
+              fontSize: titleFontSize,
               fontWeight: 700,
               lineHeight: 1.12,
               letterSpacing: "-0.03em",
               maxWidth: "95%",
             }}
           >
-            {title}
+            {titleLines.map((line, index) => (
+              <div key={`${index}-${line}`} style={{ display: "flex" }}>
+                {line}
+              </div>
+            ))}
           </div>
           <div
             style={{

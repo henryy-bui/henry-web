@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const post = await getPostBySlug(typedLocale, slug);
   if (!post) return {};
-  const theme = getBlogTheme(post.tags, typedLocale);
+  const theme = getBlogTheme(post.tags, typedLocale, slug);
 
   const availablePosts = await Promise.all(
     locales.map(async (candidateLocale) => ({
