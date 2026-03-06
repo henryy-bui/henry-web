@@ -5,6 +5,11 @@ import "prismjs/themes/prism-tomorrow.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://habui.click/"),
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/apple-icon.svg", type: "image/svg+xml" }],
+    shortcut: ["/icon.svg"],
+  },
   title: {
     default: "Henry — Software Engineer",
     template: "%s | Henry",
