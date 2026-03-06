@@ -4,25 +4,56 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X, Terminal } from "lucide-react";
+import { getOtherLocale, isLocale, type Locale } from "@/i18n/config";
+import type { SiteDictionary } from "@/i18n/dictionary";
 import styles from "./Navbar.module.css";
 
-const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/blog", label: "Blog" },
-  { href: "/projects", label: "Projects" },
-  { href: "/experience", label: "Experience" },
-];
+type NavbarProps = {
+  locale: Locale;
+  dictionary: SiteDictionary;
+};
 
-export default function Navbar() {
+function withLocale(locale: Locale, path: string) {
+  return `/${locale}${path}`;
+}
+
+function toSwitchedLocalePath(pathname: string, nextLocale: Locale) {
+  const segments = pathname.split("/").filter(Boolean);
+
+  if (segments.length > 0 && isLocale(segments[0])) {
+    segments[0] = nextLocale;
+    return `/${segments.join("/")}`;
+  }
+
+  return `/${nextLocale}${pathname}`;
+}
+
+export default function Navbar({ locale, dictionary }: NavbarProps) {
+  const NAV_LINKS = [
+    { href: withLocale(locale, "/"), label: dictionary.nav.home },
+    { href: withLocale(locale, "/blog"), label: dictionary.nav.blog },
+    { href: withLocale(locale, "/projects"), label: dictionary.nav.projects },
+    {
+      href: withLocale(locale, "/experience"),
+      label: dictionary.nav.experience,
+    },
+  ];
+
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const nextLocale = getOtherLocale(locale);
+  const switchPath = toSwitchedLocalePath(pathname, nextLocale);
+
+  const isActive = (href: string) =>
+    pathname === href ||
+    (href !== `/${locale}/` && pathname.startsWith(`${href}/`));
 
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <Link href="/" className={styles.logo}>
+        <Link href={withLocale(locale, "/")} className={styles.logo}>
           <Terminal size={18} />
-          <span>henry.dev</span>
+          <span>{dictionary.nav.logo}</span>
         </Link>
 
         <nav className={styles.nav}>
@@ -30,21 +61,31 @@ export default function Navbar() {
             <Link
               key={href}
               href={href}
-              className={`${styles.navLink} ${pathname === href ? styles.active : ""}`}
+              className={`${styles.navLink} ${
+                isActive(href) ? styles.active : ""
+              }`}
             >
               {label}
             </Link>
           ))}
         </nav>
 
+        <Link
+          href={switchPath}
+          className={styles.navLink}
+          aria-label={dictionary.nav.languageSwitchLabel}
+        >
+          {nextLocale.toUpperCase()}
+        </Link>
+
         <a href="mailto:buiha.dev@gmail.com" className={styles.cta}>
-          Contact
+          {dictionary.nav.contact}
         </a>
 
         <button
           className={styles.menuBtn}
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          aria-label={dictionary.nav.toggleMenu}
         >
           {menuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -56,14 +97,24 @@ export default function Navbar() {
             <Link
               key={href}
               href={href}
-              className={`${styles.mobileLink} ${pathname === href ? styles.active : ""}`}
+              className={`${styles.mobileLink} ${
+                isActive(href) ? styles.active : ""
+              }`}
               onClick={() => setMenuOpen(false)}
             >
               {label}
             </Link>
           ))}
+          <Link
+            href={switchPath}
+            className={styles.mobileLink}
+            onClick={() => setMenuOpen(false)}
+            aria-label={dictionary.nav.languageSwitchLabel}
+          >
+            {nextLocale.toUpperCase()}
+          </Link>
           <a href="mailto:buiha.dev@gmail.com" className={styles.mobileCta}>
-            Contact
+            {dictionary.nav.contact}
           </a>
         </div>
       )}

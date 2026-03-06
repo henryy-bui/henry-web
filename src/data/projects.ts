@@ -1,3 +1,5 @@
+import type { Locale } from "@/i18n/config";
+
 export interface Project {
   slug: string;
   title: string;
@@ -11,7 +13,7 @@ export interface Project {
   status: "active" | "wip" | "archived";
 }
 
-export const projects: Project[] = [
+const enProjects: Project[] = [
   {
     slug: "motion-spectre",
     title: "Motion Spectre",
@@ -93,3 +95,90 @@ export const projects: Project[] = [
     status: "archived",
   },
 ];
+
+const viProjects: Project[] = [
+  {
+    slug: "motion-spectre",
+    title: "Motion Spectre",
+    description:
+      "Thư viện animation hiệu năng cao cho React, hướng đến chuyển động mượt ở ngưỡng 120fps.",
+    longDescription:
+      "Tự xây bộ điều phối animation kiểu imperative cho React với Web Animations API và requestAnimationFrame. Mục tiêu là triệt tiêu layout thrashing và giữ thời gian JS mỗi frame dưới 1ms.",
+    tech: ["TypeScript", "React", "WAAPI", "Framer Motion"],
+    github: "https://github.com",
+    demo: "https://example.com",
+    featured: true,
+    year: 2024,
+    status: "active",
+  },
+  {
+    slug: "type-safe-router",
+    title: "tsRouter",
+    description:
+      "Thư viện định tuyến type-safe cho React với chi phí runtime gần như bằng 0.",
+    longDescription:
+      "Router type-level cho ứng dụng React. Route params, search params và navigation đều được kiểm tra kiểu đầy đủ mà không cần code generation. Hỗ trợ tree-shaking tốt và gần như không tăng overhead bundle.",
+    tech: ["TypeScript", "React", "Vite", "ESBuild"],
+    github: "https://github.com",
+    demo: "https://example.com",
+    featured: true,
+    year: 2024,
+    status: "active",
+  },
+  {
+    slug: "canvas-flow",
+    title: "CanvasFlow",
+    description:
+      "Công cụ infinite canvas chạy trên web phục vụ tư duy không gian và vẽ sơ đồ.",
+    longDescription:
+      "Xây dựng infinite canvas với WebGL và vòng lặp render tùy chỉnh để tối ưu hiệu năng. Hỗ trợ zoom mượt, pan tăng tốc phần cứng và lớp DOM overlay tương tác.",
+    tech: ["TypeScript", "WebGL", "React", "Zustand"],
+    github: "https://github.com",
+    demo: "https://example.com",
+    featured: true,
+    year: 2023,
+    status: "active",
+  },
+  {
+    slug: "cli-toolkit",
+    title: "devkit-cli",
+    description: "CLI toolkit đầy đủ cho quy trình phát triển web hiện đại.",
+    longDescription:
+      "CLI theo hướng opinionated để scaffold dự án, quản lý secrets, chạy hạ tầng local và chuẩn hóa workflow PR trong team.",
+    tech: ["Node.js", "TypeScript", "Commander.js", "Docker"],
+    github: "https://github.com",
+    featured: false,
+    year: 2023,
+    status: "active",
+  },
+  {
+    slug: "realtime-collab",
+    title: "Collab-Editor",
+    description:
+      "Trình soạn thảo cộng tác thời gian thực dựa trên CRDT và WebSockets.",
+    longDescription:
+      "Trình soạn thảo dựa trên CRDT, hỗ trợ cộng tác thời gian thực. Xử lý chỉnh sửa offline, tự hòa giải xung đột và đồng bộ con trỏ cho tối đa 50 người dùng đồng thời.",
+    tech: ["TypeScript", "CRDT", "WebSockets", "React", "Node.js"],
+    github: "https://github.com",
+    featured: false,
+    year: 2023,
+    status: "archived",
+  },
+  {
+    slug: "zero-runtime-css",
+    title: "StyleExtract",
+    description:
+      "Bộ trích xuất CSS-in-JS zero-runtime, xây dựng native cho Vite.",
+    longDescription:
+      "Plugin Vite phân tích tĩnh cú pháp CSS-in-JS khi build và trích xuất thành các file CSS atomic tối ưu. Nhờ loại bỏ hoàn toàn styling runtime, JS bundle phía client giảm đáng kể.",
+    tech: ["TypeScript", "Vite", "AST", "PostCSS"],
+    github: "https://github.com",
+    featured: false,
+    year: 2022,
+    status: "archived",
+  },
+];
+
+export function getProjects(locale: Locale): Project[] {
+  return locale === "vi" ? viProjects : enProjects;
+}

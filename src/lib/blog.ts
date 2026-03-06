@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypePrism from "rehype-prism-plus";
 import rehypeStringify from "rehype-stringify";
+import { defaultLocale, type Locale } from "@/i18n/config";
 
 const POSTS_DIR = path.join(process.cwd(), "src/content/blog");
 
@@ -33,38 +34,54 @@ function estimateReadingTime(text: string): number {
   return Math.ceil(words / wordsPerMinute);
 }
 
-export async function getAllPosts(): Promise<BlogPostMeta[]> {
-  if (!fs.existsSync(POSTS_DIR)) return [];
+function getPostsDirForLocale(locale: Locale): string {
+  return path.join(POSTS_DIR, locale);
+}
+
+function resolveLocaleDir(locale: Locale): string {
+  const localeDir = getPostsDirForLocale(locale);
+  if (fs.existsSync(localeDir)) return localeDir;
+
+  const defaultLocaleDir = getPostsDirForLocale(defaultLocale);
+  if (fs.existsSync(defaultLocaleDir)) return defaultLocaleDir;
+
+  return POSTS_DIR;
+}
+
+function formatDate(dateStr: string, locale: Locale, short = false): string {
+  const dateObj = new Date(dateStr);
+  const localeCode = locale === "vi" ? "vi-VN" : "en-US";
+
+  return dateObj.toLocaleDateString(localeCode, {
+    month: short ? "short" : "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+export async function getAllPosts(locale: Locale): Promise<BlogPostMeta[]> {
+  const localeDir = resolveLocaleDir(locale);
+  if (!fs.existsSync(localeDir)) return [];
 
   const files = fs
-    .readdirSync(POSTS_DIR)
+    .readdirSync(localeDir)
     .filter((f) => f.endsWith(".md") || f.endsWith(".mdx"));
 
   const posts = files.map((filename) => {
     const slug = filename.replace(/\.(md|mdx)$/, "");
-    const filePath = path.join(POSTS_DIR, filename);
+    const filePath = path.join(localeDir, filename);
     const raw = fs.readFileSync(filePath, "utf-8");
     const { data, content } = matter(raw);
 
     const dateStr = data.date as string;
-    const dateObj = new Date(dateStr);
 
     return {
       slug,
       title: data.title as string,
       date: dateStr,
-      formattedDate: dateObj.toLocaleDateString("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-        timeZone: "UTC",
-      }),
-      formattedDateShort: dateObj.toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-        timeZone: "UTC",
-      }),
+      formattedDate: formatDate(dateStr, locale),
+      formattedDateShort: formatDate(dateStr, locale, true),
       description: data.description as string,
       tags: (data.tags as string[]) || [],
       readingTime: estimateReadingTime(content),
@@ -77,14 +94,31 @@ export async function getAllPosts(): Promise<BlogPostMeta[]> {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
-export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  const filePath = path.join(POSTS_DIR, `${slug}.md`);
-  const mdxPath = path.join(POSTS_DIR, `${slug}.mdx`);
-  const resolvedPath = fs.existsSync(filePath)
-    ? filePath
-    : fs.existsSync(mdxPath)
-      ? mdxPath
-      : null;
+export async function getPostBySlug(
+  locale: Locale,
+  slug: string
+): Promise<BlogPost | null> {
+  const dirCandidates = [
+    resolveLocaleDir(locale),
+    resolveLocaleDir(defaultLocale),
+  ];
+
+  let resolvedPath: string | null = null;
+
+  for (const dir of dirCandidates) {
+    const filePath = path.join(dir, `${slug}.md`);
+    const mdxPath = path.join(dir, `${slug}.mdx`);
+
+    if (fs.existsSync(filePath)) {
+      resolvedPath = filePath;
+      break;
+    }
+
+    if (fs.existsSync(mdxPath)) {
+      resolvedPath = mdxPath;
+      break;
+    }
+  }
 
   if (!resolvedPath) return null;
 
@@ -100,24 +134,13 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
     .process(content);
 
   const dateStr = data.date as string;
-  const dateObj = new Date(dateStr);
 
   return {
     slug,
     title: data.title as string,
     date: dateStr,
-    formattedDate: dateObj.toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-      timeZone: "UTC",
-    }),
-    formattedDateShort: dateObj.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-      timeZone: "UTC",
-    }),
+    formattedDate: formatDate(dateStr, locale),
+    formattedDateShort: formatDate(dateStr, locale, true),
     description: data.description as string,
     tags: (data.tags as string[]) || [],
     readingTime: estimateReadingTime(content),

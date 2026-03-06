@@ -1,0 +1,137 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeft, Clock, Tag, Calendar } from "lucide-react";
+import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import BlogContent from "@/components/BlogContent";
+import { getDictionary } from "@/i18n/dictionary";
+import { isLocale, locales, type Locale } from "@/i18n/config";
+import styles from "../../../blog/[slug]/page.module.css";
+
+interface Props {
+  params: Promise<{ locale: string; slug: string }>;
+}
+
+export async function generateStaticParams() {
+  const result: Array<{ locale: Locale; slug: string }> = [];
+
+  for (const locale of locales) {
+    const posts = await getAllPosts(locale);
+    result.push(...posts.map((p) => ({ locale, slug: p.slug })));
+  }
+
+  return result;
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) return {};
+
+  const post = await getPostBySlug(locale as Locale, slug);
+  if (!post) return {};
+
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: "article",
+      publishedTime: post.date,
+      authors: ["Henry"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+    },
+  };
+}
+
+export default async function BlogPostPage({ params }: Props) {
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) notFound();
+
+  const typedLocale = locale as Locale;
+  const dict = getDictionary(typedLocale);
+  const post = await getPostBySlug(typedLocale, slug);
+  if (!post) notFound();
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    datePublished: new Date(post.date).toISOString(),
+    dateModified: new Date(post.date).toISOString(),
+    description: post.description,
+    author: [
+      {
+        "@type": "Person",
+        name: "Henry",
+        url: "https://habui.click/",
+      },
+    ],
+  };
+
+  return (
+    <article className="section">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div className="container">
+        <Link href={`/${typedLocale}/blog`} className={styles.back}>
+          <ArrowLeft size={16} /> {dict.blog.backToBlog}
+        </Link>
+
+        <header className={styles.header}>
+          <div className={styles.postMeta}>
+            <span className={styles.metaItem}>
+              <Calendar size={13} />
+              {post.formattedDate}
+            </span>
+            <span className={styles.metaItem}>
+              <Clock size={13} />
+              {post.readingTime} {dict.common.minRead}
+            </span>
+          </div>
+
+          <h1 className={styles.title}>{post.title}</h1>
+          <p className={styles.description}>{post.description}</p>
+
+          <div className={styles.tags}>
+            {post.tags.map((tag) => (
+              <span key={tag} className={styles.tag}>
+                <Tag size={11} />
+                {tag}
+              </span>
+            ))}
+          </div>
+        </header>
+
+        <hr className={styles.divider} />
+
+        <BlogContent html={post.content} copyLabel={dict.blog.copyCode} />
+
+        <hr className={styles.divider} />
+
+        <footer className={styles.footer}>
+          <p className={styles.footerText}>
+            {dict.blog.usefulText}{" "}
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {dict.blog.onTwitter}
+            </a>
+            .
+          </p>
+          <Link href={`/${typedLocale}/blog`} className={styles.backLink}>
+            <ArrowLeft size={14} /> {dict.blog.allArticles}
+          </Link>
+        </footer>
+      </div>
+    </article>
+  );
+}

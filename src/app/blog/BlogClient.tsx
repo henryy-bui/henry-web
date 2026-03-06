@@ -4,14 +4,23 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Search, Tag, Clock, ArrowRight } from "lucide-react";
 import type { BlogPostMeta } from "@/lib/blog";
+import type { Locale } from "@/i18n/config";
+import type { SiteDictionary } from "@/i18n/dictionary";
 import styles from "./BlogClient.module.css";
 
 interface BlogClientProps {
+  locale: Locale;
+  dictionary: SiteDictionary;
   posts: BlogPostMeta[];
   allTags: string[];
 }
 
-export default function BlogClient({ posts, allTags }: BlogClientProps) {
+export default function BlogClient({
+  locale,
+  dictionary,
+  posts,
+  allTags,
+}: BlogClientProps) {
   const [search, setSearch] = useState("");
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
@@ -33,11 +42,11 @@ export default function BlogClient({ posts, allTags }: BlogClientProps) {
           <Search size={16} className={styles.searchIcon} />
           <input
             type="search"
-            placeholder="Search articles..."
+            placeholder={dictionary.blog.searchPlaceholder}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className={styles.searchInput}
-            aria-label="Search articles"
+            aria-label={dictionary.blog.searchAria}
           />
         </div>
         <div className={styles.tags}>
@@ -45,12 +54,14 @@ export default function BlogClient({ posts, allTags }: BlogClientProps) {
             className={`${styles.tagBtn} ${!activeTag ? styles.tagActive : ""}`}
             onClick={() => setActiveTag(null)}
           >
-            All
+            {dictionary.blog.allTag}
           </button>
           {allTags.map((tag) => (
             <button
               key={tag}
-              className={`${styles.tagBtn} ${activeTag === tag ? styles.tagActive : ""}`}
+              className={`${styles.tagBtn} ${
+                activeTag === tag ? styles.tagActive : ""
+              }`}
               onClick={() => setActiveTag(activeTag === tag ? null : tag)}
             >
               {tag}
@@ -61,7 +72,7 @@ export default function BlogClient({ posts, allTags }: BlogClientProps) {
 
       {filtered.length === 0 ? (
         <div className={styles.empty}>
-          <p>No articles match your search.</p>
+          <p>{dictionary.blog.noMatch}</p>
           <button
             onClick={() => {
               setSearch("");
@@ -69,7 +80,7 @@ export default function BlogClient({ posts, allTags }: BlogClientProps) {
             }}
             className={styles.clearBtn}
           >
-            Clear filters
+            {dictionary.blog.clearFilters}
           </button>
         </div>
       ) : (
@@ -77,14 +88,14 @@ export default function BlogClient({ posts, allTags }: BlogClientProps) {
           {filtered.map((post) => (
             <Link
               key={post.slug}
-              href={`/blog/${post.slug}`}
+              href={`/${locale}/blog/${post.slug}`}
               className={styles.postCard}
             >
               <div className={styles.cardMeta}>
                 <time className={styles.date}>{post.formattedDate}</time>
                 <span className={styles.readingTime}>
                   <Clock size={12} />
-                  {post.readingTime} min
+                  {post.readingTime} {dictionary.common.minRead}
                 </span>
               </div>
               <h2 className={styles.postTitle}>{post.title}</h2>
@@ -99,7 +110,7 @@ export default function BlogClient({ posts, allTags }: BlogClientProps) {
                   ))}
                 </div>
                 <span className={styles.readMore}>
-                  Read <ArrowRight size={13} />
+                  {dictionary.blog.read} <ArrowRight size={13} />
                 </span>
               </div>
             </Link>

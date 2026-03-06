@@ -1,3 +1,5 @@
+import type { Locale } from "@/i18n/config";
+
 export interface Experience {
   id: string;
   company: string;
@@ -13,7 +15,7 @@ export interface Experience {
   current?: boolean;
 }
 
-export const experiences: Experience[] = [
+const enExperiences: Experience[] = [
   {
     id: "gem",
     company: "GEM Corporation",
@@ -70,3 +72,65 @@ export const experiences: Experience[] = [
     ],
   },
 ];
+
+const viExperiences: Experience[] = [
+  {
+    id: "gem",
+    company: "GEM Corporation",
+    role: "Middle Front-end Engineer",
+    period: "Tháng 12/2024 - Hiện tại",
+    startYear: 2024,
+    endYear: null,
+    location: "Hà Nội, Việt Nam",
+    description:
+      "Dẫn dắt và mentoring nhóm 4 lập trình viên, review code và tổ chức các buổi chia sẻ kỹ thuật để giữ chất lượng chung của team.",
+    achievements: [
+      "Thiết kế kiến trúc thư viện UI component tái sử dụng, chú trọng a11y, giúp giảm 30% thời gian phát triển tính năng mới",
+      "Tối ưu hiệu năng bằng code-splitting và lazy loading, giảm 40% kích thước bundle ban đầu",
+      "Phối hợp cùng team backend (NestJS) triển khai các tính năng liên quan đến FCM và Firebase",
+      "Xây dựng chiến lược kiểm thử theo Testing Trophy, đạt 85% độ phủ với Jest và React Testing Library",
+      "Trao đổi trực tiếp với khách hàng bằng tiếng Anh để chốt giải pháp và hướng triển khai",
+    ],
+    tech: [
+      "ReactJS",
+      "TypeScript",
+      "TanStack Query",
+      "Zod",
+      "NestJS",
+      "Firebase",
+      "Jest",
+      "React Testing Library",
+    ],
+    current: true,
+  },
+  {
+    id: "monstarlab",
+    company: "Monstarlab Vietnam",
+    role: "Front-end Engineer",
+    period: "Tháng 01/2021 - Tháng 12/2024",
+    startYear: 2021,
+    endYear: 2024,
+    location: "Hà Nội, Việt Nam",
+    description:
+      "Phối hợp cùng các nhóm đa chức năng để xây dựng giải pháp frontend cho ứng dụng web, tập trung vào tính dễ dùng, hiệu năng và khả năng mở rộng.",
+    achievements: [
+      "Xây dựng giao diện tương tác bằng React.js, tích hợp mượt với dịch vụ backend",
+      "Triển khai quản lý state với Redux Toolkit, nâng cao độ ổn định và khả năng bảo trì",
+      "Ứng dụng TypeScript để cải thiện chất lượng code và tăng năng suất phát triển",
+      "Xây dựng bộ test với Jest và React Testing Library để tăng độ tin cậy khi release",
+      "Tài liệu hóa component và workflow bằng Storybook, giúp tăng tốc hợp tác và tái sử dụng giữa các dự án",
+    ],
+    tech: [
+      "TypeScript",
+      "ReactJS",
+      "Redux Toolkit",
+      "Jest",
+      "React Testing Library",
+      "Storybook",
+    ],
+  },
+];
+
+export function getExperiences(locale: Locale): Experience[] {
+  return locale === "vi" ? viExperiences : enExperiences;
+}
