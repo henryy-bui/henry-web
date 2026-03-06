@@ -33,6 +33,10 @@ export async function generateMetadata({
       description: dict.metadata.ogDescription,
       keywords: ["software engineer", "react", "next.js", "typescript"],
       imagePath: `/${locale}/opengraph-image`,
+      imageAlt:
+        locale === "vi"
+          ? "Henry - Kỹ sư phần mềm, chuyên TypeScript, React và hệ thống phân tán"
+          : "Henry - Software Engineer specializing in TypeScript, React, and distributed systems",
     }),
     title: {
       default: dict.metadata.siteTitle,

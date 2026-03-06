@@ -7,6 +7,7 @@ import BlogContent from "@/components/BlogContent";
 import { getDictionary } from "@/i18n/dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { getLocalizedPath, getLocalizedUrl } from "@/i18n/seo";
+import { getBlogTheme } from "@/lib/blog-theme";
 import styles from "../../../blog/[slug]/page.module.css";
 
 interface Props {
@@ -32,6 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const post = await getPostBySlug(typedLocale, slug);
   if (!post) return {};
+  const theme = getBlogTheme(post.tags, typedLocale);
 
   const availablePosts = await Promise.all(
     locales.map(async (candidateLocale) => ({
@@ -64,6 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.title,
       description: post.description,
       type: "article",
+      section: theme.label,
       locale: typedLocale === "vi" ? "vi_VN" : "en_US",
       publishedTime: post.date,
       modifiedTime: post.date,
@@ -74,7 +77,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: getLocalizedUrl(typedLocale, `/blog/${slug}/opengraph-image`),
           width: 1200,
           height: 630,
-          alt: post.title,
+          alt:
+            typedLocale === "vi"
+              ? `Bài viết: ${post.title}`
+              : `Article: ${post.title}`,
         },
       ],
     },
@@ -82,7 +88,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [getLocalizedUrl(typedLocale, `/blog/${slug}/opengraph-image`)],
+      images: [
+        {
+          url: getLocalizedUrl(typedLocale, `/blog/${slug}/opengraph-image`),
+          alt:
+            typedLocale === "vi"
+              ? `Ảnh chia sẻ cho bài viết ${post.title}`
+              : `Social share image for article ${post.title}`,
+        },
+      ],
     },
   };
 }

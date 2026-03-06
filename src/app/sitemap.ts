@@ -24,8 +24,10 @@ function getPostPriority(date: string) {
   const ageInDays =
     (Date.now() - new Date(date).getTime()) / (1000 * 60 * 60 * 24);
 
-  if (ageInDays <= 30) return { changeFrequency: "weekly" as const, priority: 0.8 };
-  if (ageInDays <= 180) return { changeFrequency: "monthly" as const, priority: 0.68 };
+  if (ageInDays <= 30)
+    return { changeFrequency: "weekly" as const, priority: 0.8 };
+  if (ageInDays <= 180)
+    return { changeFrequency: "monthly" as const, priority: 0.68 };
   return { changeFrequency: "yearly" as const, priority: 0.54 };
 }
 

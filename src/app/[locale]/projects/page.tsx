@@ -29,6 +29,10 @@ export async function generateMetadata({
         ? ["du an phan mem", "ma nguon mo", "react"]
         : ["software projects", "open source", "react"],
     imagePath: `/${locale}/opengraph-image`,
+    imageAlt:
+      locale === "vi"
+        ? "Các dự án nổi bật của Henry, gồm sản phẩm mã nguồn mở và dự án production"
+        : "Featured projects by Henry, including open-source tools and production systems",
   });
 }
 

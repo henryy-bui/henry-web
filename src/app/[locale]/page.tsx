@@ -58,6 +58,10 @@ export async function generateMetadata({
             "engineering blog",
           ],
     imagePath: `/${typedLocale}/opengraph-image`,
+    imageAlt:
+      typedLocale === "vi"
+        ? "Henry - Kỹ sư phần mềm, trang cá nhân và blog kỹ thuật"
+        : "Henry - Software Engineer, portfolio and engineering blog",
   });
 }
 

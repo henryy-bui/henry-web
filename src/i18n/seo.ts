@@ -45,6 +45,7 @@ interface PageMetadataOptions {
   keywords?: string[];
   type?: "website" | "article";
   imagePath?: string;
+  imageAlt?: string;
 }
 
 function toAbsoluteUrl(urlOrPath: string): string {
@@ -64,6 +65,7 @@ export function buildLocalizedMetadata({
   keywords,
   type = "website",
   imagePath = "/og-image.png",
+  imageAlt = "Henry - Software Engineer Portfolio",
 }: PageMetadataOptions): Metadata {
   const localeAlternates = getLocaleAlternates(path);
   const imageUrl = toAbsoluteUrl(imagePath);
@@ -91,7 +93,7 @@ export function buildLocalizedMetadata({
           url: imageUrl,
           width: 1200,
           height: 630,
-          alt: "Henry - Software Engineer Portfolio",
+          alt: imageAlt,
         },
       ],
     },
@@ -100,7 +102,12 @@ export function buildLocalizedMetadata({
       title,
       description,
       creator: "@henry",
-      images: [imageUrl],
+      images: [
+        {
+          url: imageUrl,
+          alt: imageAlt,
+        },
+      ],
     },
   };
 }

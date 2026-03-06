@@ -28,6 +28,10 @@ export async function generateMetadata({
         ? ["blog cong nghe", "typescript", "thiet ke he thong"]
         : ["engineering blog", "typescript", "system design"],
     imagePath: `/${locale}/opengraph-image`,
+    imageAlt:
+      locale === "vi"
+        ? "Blog kỹ thuật của Henry về hệ thống, TypeScript và frontend"
+        : "Henry engineering blog on systems, TypeScript, and frontend architecture",
   });
 }
 
