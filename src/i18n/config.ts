@@ -19,8 +19,8 @@ export function getLocaleDisplayName(
   displayLocale: Locale = locale
 ): string {
   if (displayLocale === "vi") {
-    return locale === "en" ? "Tiếng Anh" : "Tiếng Việt";
+    return locale === "en" ? "🏴󠁧󠁢󠁥󠁮󠁧󠁿 EN" : "🇻🇳 VI";
   }
 
-  return locale === "en" ? "English" : "Vietnamese";
+  return locale === "en" ? "🏴󠁧󠁢󠁥󠁮󠁧󠁿 EN" : "🇻🇳 VI";
 }

@@ -26,7 +26,7 @@ export default async function Image({ params }: Props) {
   const softAccent = isVietnamese
     ? "rgba(52, 211, 153, 0.16)"
     : "rgba(167, 139, 250, 0.18)";
-  const localeLabel = isVietnamese ? "Tiếng Việt" : "English";
+  const localeLabel = isVietnamese ? "🇻🇳 VI" : "🏴󠁧󠁢󠁥󠁮󠁧󠁿 EN";
 
   return new ImageResponse(
     (
