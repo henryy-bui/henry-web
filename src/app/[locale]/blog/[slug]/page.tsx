@@ -6,6 +6,7 @@ import { getAllPosts, getPostBySlug } from "@/lib/blog";
 import BlogContent from "@/components/BlogContent";
 import { getDictionary } from "@/i18n/dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/config";
+import { getLocalizedPath, getLocalizedUrl } from "@/i18n/seo";
 import styles from "../../../blog/[slug]/page.module.css";
 
 interface Props {
@@ -27,23 +28,61 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   if (!isLocale(locale)) return {};
 
-  const post = await getPostBySlug(locale as Locale, slug);
+  const typedLocale = locale as Locale;
+
+  const post = await getPostBySlug(typedLocale, slug);
   if (!post) return {};
+
+  const availablePosts = await Promise.all(
+    locales.map(async (candidateLocale) => ({
+      locale: candidateLocale,
+      post: await getPostBySlug(candidateLocale, slug),
+    }))
+  );
+
+  const alternatesLanguages = Object.fromEntries(
+    availablePosts
+      .filter((entry) => Boolean(entry.post))
+      .map((entry) => [
+        entry.locale,
+        getLocalizedPath(entry.locale, `/blog/${slug}`),
+      ])
+  ) as Record<string, string>;
+
+  alternatesLanguages["x-default"] = getLocalizedPath("en", `/blog/${slug}`);
 
   return {
     title: post.title,
     description: post.description,
+    keywords: post.tags,
+    alternates: {
+      canonical: getLocalizedPath(typedLocale, `/blog/${slug}`),
+      languages: alternatesLanguages,
+    },
     openGraph: {
+      url: getLocalizedUrl(typedLocale, `/blog/${slug}`),
       title: post.title,
       description: post.description,
       type: "article",
+      locale: typedLocale === "vi" ? "vi_VN" : "en_US",
       publishedTime: post.date,
+      modifiedTime: post.date,
+      tags: post.tags,
       authors: ["Henry"],
+      images: [
+        {
+          url: getLocalizedUrl(typedLocale, `/blog/${slug}/opengraph-image`),
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
+      images: [getLocalizedUrl(typedLocale, `/blog/${slug}/opengraph-image`)],
     },
   };
 }
@@ -61,9 +100,12 @@ export default async function BlogPostPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
+    inLanguage: typedLocale,
+    mainEntityOfPage: getLocalizedUrl(typedLocale, `/blog/${slug}`),
     datePublished: new Date(post.date).toISOString(),
     dateModified: new Date(post.date).toISOString(),
     description: post.description,
+    keywords: post.tags.join(", "),
     author: [
       {
         "@type": "Person",
@@ -74,7 +116,9 @@ export default async function BlogPostPage({ params }: Props) {
   };
 
   return (
-    <article className="section">
+    <article
+      className={`section ${typedLocale === "vi" ? styles.localeVi : ""}`}
+    >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -111,7 +155,11 @@ export default async function BlogPostPage({ params }: Props) {
 
         <hr className={styles.divider} />
 
-        <BlogContent html={post.content} copyLabel={dict.blog.copyCode} />
+        <BlogContent
+          html={post.content}
+          copyLabel={dict.blog.copyCode}
+          copiedLabel={dict.blog.copiedCode}
+        />
 
         <hr className={styles.divider} />
 

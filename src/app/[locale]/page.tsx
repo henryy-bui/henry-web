@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   ArrowRight,
   ExternalLink,
@@ -13,6 +14,7 @@ import { getAllPosts } from "@/lib/blog";
 import { getProjects } from "@/data/projects";
 import { getDictionary } from "@/i18n/dictionary";
 import { isLocale, type Locale } from "@/i18n/config";
+import { buildLocalizedMetadata, getLocalizedUrl } from "@/i18n/seo";
 import { notFound } from "next/navigation";
 import styles from "../page.module.css";
 
@@ -31,6 +33,34 @@ interface PageProps {
   params: Promise<{ locale: string }>;
 }
 
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+
+  const typedLocale = locale as Locale;
+  const dict = getDictionary(typedLocale);
+
+  return buildLocalizedMetadata({
+    locale: typedLocale,
+    path: "/",
+    title: dict.metadata.siteTitle,
+    description: dict.metadata.siteDescription,
+    keywords:
+      typedLocale === "vi"
+        ? ["ky su phan mem", "react", "next.js", "typescript", "blog cong nghe"]
+        : [
+            "software engineer",
+            "react",
+            "next.js",
+            "typescript",
+            "engineering blog",
+          ],
+    imagePath: `/${typedLocale}/opengraph-image`,
+  });
+}
+
 export default async function HomePage({ params }: PageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
@@ -46,12 +76,13 @@ export default async function HomePage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Henry",
-    url: "https://habui.click/",
+    url: getLocalizedUrl(typedLocale, "/"),
+    inLanguage: typedLocale,
     jobTitle: dict.metadata.siteTitle,
     sameAs: [
-      "https://github.com",
-      "https://twitter.com",
-      "https://linkedin.com",
+      "https://github.com/henryy-bui",
+      "https://www.facebook.com/iamhabv/",
+      "https://www.linkedin.com/in/henryy-bui/",
     ],
   };
 

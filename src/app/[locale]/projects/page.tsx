@@ -5,6 +5,7 @@ import Github from "@/components/icons/Github";
 import { getProjects } from "@/data/projects";
 import { getDictionary } from "@/i18n/dictionary";
 import { isLocale, type Locale } from "@/i18n/config";
+import { buildLocalizedMetadata } from "@/i18n/seo";
 import styles from "../../projects/page.module.css";
 
 interface PageProps {
@@ -18,10 +19,17 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const dict = getDictionary(locale as Locale);
 
-  return {
+  return buildLocalizedMetadata({
+    locale: locale as Locale,
+    path: "/projects",
     title: dict.projects.metadataTitle,
     description: dict.projects.metadataDescription,
-  };
+    keywords:
+      locale === "vi"
+        ? ["du an phan mem", "ma nguon mo", "react"]
+        : ["software projects", "open source", "react"],
+    imagePath: `/${locale}/opengraph-image`,
+  });
 }
 
 export default async function ProjectsPage({ params }: PageProps) {

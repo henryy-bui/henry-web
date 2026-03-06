@@ -59,7 +59,7 @@ export default function Footer({ locale, dictionary }: FooterProps) {
               {dictionary.footer.connect}
             </span>
             <a
-              href="https://github.com"
+              href="https://github.com/henryy-bui"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.link}
@@ -67,7 +67,7 @@ export default function Footer({ locale, dictionary }: FooterProps) {
               GitHub
             </a>
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/iamhabv/"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.link}
@@ -75,7 +75,7 @@ export default function Footer({ locale, dictionary }: FooterProps) {
               Facebook
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/henryy-bui/"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.link}
@@ -90,7 +90,7 @@ export default function Footer({ locale, dictionary }: FooterProps) {
 
         <div className={styles.social}>
           <a
-            href="https://github.com"
+            href="https://github.com/henryy-bui"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialBtn}
@@ -99,7 +99,7 @@ export default function Footer({ locale, dictionary }: FooterProps) {
             <Github size={18} />
           </a>
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/iamhabv/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialBtn}
@@ -108,7 +108,7 @@ export default function Footer({ locale, dictionary }: FooterProps) {
             <Facebook size={18} />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/henryy-bui/"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialBtn}

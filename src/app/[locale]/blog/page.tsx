@@ -4,6 +4,7 @@ import { getAllPosts } from "@/lib/blog";
 import BlogClient from "../../blog/BlogClient";
 import { getDictionary } from "@/i18n/dictionary";
 import { isLocale, type Locale } from "@/i18n/config";
+import { buildLocalizedMetadata } from "@/i18n/seo";
 import styles from "../../blog/page.module.css";
 
 interface PageProps {
@@ -17,10 +18,17 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const dict = getDictionary(locale as Locale);
 
-  return {
+  return buildLocalizedMetadata({
+    locale: locale as Locale,
+    path: "/blog",
     title: dict.blog.metadataTitle,
     description: dict.blog.metadataDescription,
-  };
+    keywords:
+      locale === "vi"
+        ? ["blog cong nghe", "typescript", "thiet ke he thong"]
+        : ["engineering blog", "typescript", "system design"],
+    imagePath: `/${locale}/opengraph-image`,
+  });
 }
 
 export default async function BlogPage({ params }: PageProps) {
@@ -36,7 +44,11 @@ export default async function BlogPage({ params }: PageProps) {
   return (
     <div className="section">
       <div className="container">
-        <div className={styles.header}>
+        <div
+          className={`${styles.header} ${
+            typedLocale === "vi" ? styles.localeVi : ""
+          }`}
+        >
           <h1 className={styles.title}>{dict.blog.title}</h1>
           <p className={styles.subtitle}>{subtitle}</p>
         </div>

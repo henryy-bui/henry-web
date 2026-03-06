@@ -122,3 +122,16 @@
     align-items: flex-start;
   }
 }
+
+.localeVi .title {
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.localeVi .description {
+  line-height: 1.75;
+}
+
+.localeVi .postMeta {
+  font-size: 0.84rem;
+}

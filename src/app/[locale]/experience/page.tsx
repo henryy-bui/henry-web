@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getExperiences } from "@/data/experience";
 import { getDictionary } from "@/i18n/dictionary";
 import { isLocale, type Locale } from "@/i18n/config";
+import { buildLocalizedMetadata } from "@/i18n/seo";
 import styles from "../../experience/page.module.css";
 
 interface PageProps {
@@ -16,10 +17,17 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const dict = getDictionary(locale as Locale);
 
-  return {
+  return buildLocalizedMetadata({
+    locale: locale as Locale,
+    path: "/experience",
     title: dict.experience.metadataTitle,
     description: dict.experience.metadataDescription,
-  };
+    keywords:
+      locale === "vi"
+        ? ["kinh nghiem frontend", "react engineer", "ui ux"]
+        : ["frontend experience", "react engineer", "ui architecture"],
+    imagePath: `/${locale}/opengraph-image`,
+  });
 }
 
 export default async function ExperiencePage({ params }: PageProps) {

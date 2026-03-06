@@ -13,3 +13,14 @@ export function isLocale(value: string): value is Locale {
 export function getOtherLocale(locale: Locale): Locale {
   return locale === "en" ? "vi" : "en";
 }
+
+export function getLocaleDisplayName(
+  locale: Locale,
+  displayLocale: Locale = locale
+): string {
+  if (displayLocale === "vi") {
+    return locale === "en" ? "Tiếng Anh" : "Tiếng Việt";
+  }
+
+  return locale === "en" ? "English" : "Vietnamese";
+}

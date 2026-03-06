@@ -61,6 +61,7 @@ export type SiteDictionary = {
     onTwitter: string;
     allArticles: string;
     copyCode: string;
+    copiedCode: string;
   };
   projects: {
     metadataTitle: string;
@@ -172,6 +173,7 @@ const en: SiteDictionary = {
     onTwitter: "let me know on Twitter",
     allArticles: "All articles",
     copyCode: "Copy code",
+    copiedCode: "Copied",
   },
   projects: {
     metadataTitle: "Projects",
@@ -288,6 +290,7 @@ const vi: SiteDictionary = {
     onTwitter: "nhắn cho tôi trên Twitter",
     allArticles: "Tất cả bài viết",
     copyCode: "Sao chép mã",
+    copiedCode: "Đã sao chép",
   },
   projects: {
     metadataTitle: "Dự án",

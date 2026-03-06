@@ -4,7 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X, Terminal } from "lucide-react";
-import { getOtherLocale, isLocale, type Locale } from "@/i18n/config";
+import {
+  getLocaleDisplayName,
+  getOtherLocale,
+  isLocale,
+  type Locale,
+} from "@/i18n/config";
 import type { SiteDictionary } from "@/i18n/dictionary";
 import styles from "./Navbar.module.css";
 
@@ -43,6 +48,8 @@ export default function Navbar({ locale, dictionary }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const nextLocale = getOtherLocale(locale);
   const switchPath = toSwitchedLocalePath(pathname, nextLocale);
+  const currentLocaleLabel = getLocaleDisplayName(locale, locale);
+  const nextLocaleLabel = getLocaleDisplayName(nextLocale, locale);
 
   const isActive = (href: string) =>
     pathname === href ||
@@ -72,10 +79,13 @@ export default function Navbar({ locale, dictionary }: NavbarProps) {
 
         <Link
           href={switchPath}
-          className={styles.navLink}
+          className={`${styles.navLink} ${styles.localeSwitch}`}
           aria-label={dictionary.nav.languageSwitchLabel}
+          title={`${dictionary.nav.languageSwitchLabel}: ${nextLocaleLabel}`}
         >
-          {nextLocale.toUpperCase()}
+          <span className={styles.currentLocale}>{currentLocaleLabel}</span>
+          <span className={styles.switchArrow}>/</span>
+          <span>{nextLocaleLabel}</span>
         </Link>
 
         <a href="mailto:buiha.dev@gmail.com" className={styles.cta}>
@@ -107,11 +117,11 @@ export default function Navbar({ locale, dictionary }: NavbarProps) {
           ))}
           <Link
             href={switchPath}
-            className={styles.mobileLink}
+            className={`${styles.mobileLink} ${styles.mobileLocaleSwitch}`}
             onClick={() => setMenuOpen(false)}
             aria-label={dictionary.nav.languageSwitchLabel}
           >
-            {nextLocale.toUpperCase()}
+            {currentLocaleLabel} / {nextLocaleLabel}
           </Link>
           <a href="mailto:buiha.dev@gmail.com" className={styles.mobileCta}>
             {dictionary.nav.contact}

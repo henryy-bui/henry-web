@@ -34,6 +34,7 @@
 
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4), 0 8px 32px rgba(0, 0, 0, 0.3);
   --shadow-accent: 0 0 0 1px var(--accent), 0 0 30px var(--accent-glow);
+  --heading-tracking: -0.02em;
 }
 
 /* ===== RESET ===== */
@@ -52,8 +53,11 @@ html {
 body {
   font-family: var(--font-sans);
   background: var(--bg-primary);
-  background-image:
-    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
+  background-image: radial-gradient(
+      at 0% 0%,
+      rgba(99, 102, 241, 0.05) 0px,
+      transparent 50%
+    ),
     radial-gradient(at 100% 0%, rgba(34, 211, 165, 0.03) 0px, transparent 50%);
   background-attachment: fixed;
   color: var(--text-primary);
@@ -206,8 +210,16 @@ h5,
 h6 {
   line-height: 1.2;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--heading-tracking);
   text-wrap: balance;
+}
+
+.locale-vi {
+  --heading-tracking: -0.015em;
+}
+
+.locale-vi .prose {
+  line-height: 1.85;
 }
 
 /* ===== PROSE (Blog content) ===== */
