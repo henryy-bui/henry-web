@@ -126,8 +126,8 @@ const en: SiteDictionary = {
   },
   home: {
     badge: "Available for senior roles",
-    titleLine1: "I build crafted",
-    titleHighlight: "user interfaces",
+    titleLine1: "Hi everyone!",
+    titleHighlight: "I'm Henry, Front-end Engineer",
     subtitle:
       "Frontend Engineer specializing in React, Next.js, and complex web applications. I bridge the gap between design and solid engineering to create polished, high-performance web experiences.",
     ctaProjects: "View my work",
@@ -242,8 +242,8 @@ const vi: SiteDictionary = {
   },
   home: {
     badge: "Sẵn sàng cho vai trò Senior",
-    titleLine1: "Tôi xây dựng",
-    titleHighlight: "giao diện người dùng chất lượng",
+    titleLine1: "Xin chào mọi người!",
+    titleHighlight: "Mình là Henry, Kỹ sư Front-end",
     subtitle:
       "Frontend Engineer chuyên React, Next.js và các ứng dụng web phức tạp. Mình tập trung biến thiết kế thành sản phẩm chạy mượt, sạch và bền trong production.",
     ctaProjects: "Xem dự án",
