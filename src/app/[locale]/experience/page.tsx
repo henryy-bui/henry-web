@@ -66,19 +66,21 @@ export default async function ExperiencePage({ params }: PageProps) {
 
               <div className={styles.content}>
                 <div className={styles.contentHeader}>
+                  <div className={styles.period}>
+                    {exp.period}
+                    {exp.current && (
+                      <span className={styles.currentBadge}>
+                        {dict.experience.current}
+                      </span>
+                    )}
+                  </div>
                   <div>
-                    <div className={styles.period}>{exp.period}</div>
                     <h2 className={styles.role}>{exp.role}</h2>
                     <div className={styles.company}>
                       {exp.company}
                       <span className={styles.location}>{exp.location}</span>
                     </div>
                   </div>
-                  {exp.current && (
-                    <span className={styles.currentBadge}>
-                      {dict.experience.current}
-                    </span>
-                  )}
                 </div>
 
                 <p className={styles.description}>{exp.description}</p>

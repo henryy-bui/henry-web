@@ -72,17 +72,23 @@
 
 .contentHeader {
   display: flex;
+  flex-direction: column;
+  width: 100%;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 16px;
   margin-bottom: 14px;
 }
 
 .period {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   color: var(--text-muted);
   margin-bottom: 4px;
+  display: flex;
 }
 
 .role {
