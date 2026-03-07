@@ -89,7 +89,7 @@ export default async function Image({ params }: Props) {
             }}
           >
             <span>{"</>"}</span>
-            <span>henry.dev</span>
+            <span>habui.click</span>
           </div>
           <div
             style={{

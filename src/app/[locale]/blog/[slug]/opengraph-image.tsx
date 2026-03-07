@@ -199,7 +199,7 @@ export default async function Image({ params }: Props) {
               </div>
             ))}
           </div>
-          <div style={{ fontSize: 24, color: "#94a3b8" }}>henry.dev</div>
+          <div style={{ fontSize: 24, color: "#94a3b8" }}>habui.click</div>
         </div>
       </div>
     ),

@@ -101,7 +101,7 @@ const en: SiteDictionary = {
       "Software Engineer specializing in TypeScript, React, and distributed systems.",
   },
   nav: {
-    logo: "henry.dev",
+    logo: "habui.click",
     home: "Home",
     blog: "Blog",
     projects: "Projects",
@@ -220,7 +220,7 @@ const vi: SiteDictionary = {
       "Kỹ sư phần mềm chuyên về TypeScript, React và hệ thống phân tán.",
   },
   nav: {
-    logo: "henry.dev",
+    logo: "habui.click",
     home: "Trang chủ",
     blog: "Blog",
     projects: "Dự án",
