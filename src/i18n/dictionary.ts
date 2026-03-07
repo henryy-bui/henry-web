@@ -28,6 +28,7 @@ export type SiteDictionary = {
     minRead: string;
     code: string;
     demo: string;
+    scrollToTop: string;
     status: Record<"active" | "wip" | "archived", string>;
   };
   home: {
@@ -62,6 +63,8 @@ export type SiteDictionary = {
     allArticles: string;
     copyCode: string;
     copiedCode: string;
+    relatedArticles: string;
+    recentArticles: string;
   };
   projects: {
     metadataTitle: string;
@@ -118,6 +121,7 @@ const en: SiteDictionary = {
     minRead: "min read",
     code: "Code",
     demo: "Demo",
+    scrollToTop: "Scroll to top",
     status: {
       active: "Active",
       wip: "WIP",
@@ -174,6 +178,8 @@ const en: SiteDictionary = {
     allArticles: "All articles",
     copyCode: "Copy code",
     copiedCode: "Copied",
+    relatedArticles: "Related articles",
+    recentArticles: "Recent articles",
   },
   projects: {
     metadataTitle: "Projects",
@@ -234,6 +240,7 @@ const vi: SiteDictionary = {
     minRead: "phút đọc",
     code: "Mã nguồn",
     demo: "Demo",
+    scrollToTop: "Lên đầu trang",
     status: {
       active: "Đang hoạt động",
       wip: "Đang phát triển",
@@ -291,6 +298,8 @@ const vi: SiteDictionary = {
     allArticles: "Tất cả bài viết",
     copyCode: "Sao chép mã",
     copiedCode: "Đã sao chép",
+    relatedArticles: "Bài viết liên quan",
+    recentArticles: "Bài viết gần đây",
   },
   projects: {
     metadataTitle: "Dự án",

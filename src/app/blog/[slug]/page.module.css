@@ -78,6 +78,61 @@
   max-width: 800px;
 }
 
+.relatedSection {
+  max-width: 800px;
+  margin-top: 48px;
+}
+
+.relatedTitle {
+  font-size: 1.1rem;
+  font-weight: 650;
+  margin-bottom: 14px;
+  color: var(--text-primary);
+}
+
+.relatedList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.relatedCard {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color var(--transition), background var(--transition),
+    transform var(--transition);
+}
+
+.relatedCard:hover {
+  border-color: rgba(129, 140, 248, 0.45);
+  background: rgba(99, 102, 241, 0.08);
+  transform: translateY(-2px);
+}
+
+.relatedMeta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.relatedCardTitle {
+  font-size: 0.95rem;
+  line-height: 1.35;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.relatedCardDesc {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
 .footer {
   display: flex;
   align-items: center;
@@ -116,6 +171,10 @@
 }
 
 @media (max-width: 600px) {
+  .relatedList {
+    grid-template-columns: 1fr;
+  }
+
   .footer {
     flex-direction: column;
     gap: 16px;

@@ -109,6 +109,41 @@ export default async function BlogPostPage({ params }: Props) {
   const dict = getDictionary(typedLocale);
   const post = await getPostBySlug(typedLocale, slug);
   if (!post) notFound();
+  const allPosts = await getAllPosts(typedLocale);
+
+  const currentTags = post.tags.map((tag) => tag.toLowerCase());
+  const relatedCandidates = allPosts
+    .filter((candidate) => candidate.slug !== post.slug)
+    .map((candidate) => {
+      const sharedTagsCount = candidate.tags.filter((tag) =>
+        currentTags.includes(tag.toLowerCase())
+      ).length;
+
+      return {
+        ...candidate,
+        sharedTagsCount,
+      };
+    })
+    .filter((candidate) => candidate.sharedTagsCount > 0)
+    .sort((a, b) => {
+      if (b.sharedTagsCount !== a.sharedTagsCount) {
+        return b.sharedTagsCount - a.sharedTagsCount;
+      }
+
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    })
+    .slice(0, 3);
+
+  const relatedPosts =
+    relatedCandidates.length > 0
+      ? relatedCandidates
+      : allPosts
+          .filter((candidate) => candidate.slug !== post.slug)
+          .slice(0, 3);
+  const relatedSectionTitle =
+    relatedCandidates.length > 0
+      ? dict.blog.relatedArticles
+      : dict.blog.recentArticles;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -174,6 +209,34 @@ export default async function BlogPostPage({ params }: Props) {
           copyLabel={dict.blog.copyCode}
           copiedLabel={dict.blog.copiedCode}
         />
+
+        {relatedPosts.length > 0 && (
+          <section className={styles.relatedSection}>
+            <h2 className={styles.relatedTitle}>{relatedSectionTitle}</h2>
+            <div className={styles.relatedList}>
+              {relatedPosts.map((relatedPost) => (
+                <Link
+                  key={relatedPost.slug}
+                  href={`/${typedLocale}/blog/${relatedPost.slug}`}
+                  className={styles.relatedCard}
+                >
+                  <div className={styles.relatedMeta}>
+                    <time>{relatedPost.formattedDateShort}</time>
+                    <span>
+                      {relatedPost.readingTime} {dict.common.minRead}
+                    </span>
+                  </div>
+                  <h3 className={styles.relatedCardTitle}>
+                    {relatedPost.title}
+                  </h3>
+                  <p className={styles.relatedCardDesc}>
+                    {relatedPost.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         <hr className={styles.divider} />
 

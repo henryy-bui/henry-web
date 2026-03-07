@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { getDictionary } from "@/i18n/dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/config";
 import { buildLocalizedMetadata } from "@/i18n/seo";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -62,6 +63,7 @@ export default async function LocaleLayout({
       <Navbar locale={locale as Locale} dictionary={dict} />
       <main lang={locale}>{children}</main>
       <Footer locale={locale as Locale} dictionary={dict} />
+      <ScrollToTopButton label={dict.common.scrollToTop} />
     </div>
   );
 }
