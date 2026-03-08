@@ -134,16 +134,14 @@ export default async function BlogPostPage({ params }: Props) {
     })
     .slice(0, 3);
 
-  const relatedPosts =
-    relatedCandidates.length > 0
-      ? relatedCandidates
-      : allPosts
-          .filter((candidate) => candidate.slug !== post.slug)
-          .slice(0, 3);
-  const relatedSectionTitle =
-    relatedCandidates.length > 0
-      ? dict.blog.relatedArticles
-      : dict.blog.recentArticles;
+  const recentPosts = allPosts
+    .filter(
+      (candidate) =>
+        candidate.slug !== post.slug &&
+        !relatedCandidates.some((related) => related.slug === candidate.slug)
+    )
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -210,11 +208,39 @@ export default async function BlogPostPage({ params }: Props) {
           copiedLabel={dict.blog.copiedCode}
         />
 
-        {relatedPosts.length > 0 && (
+        {relatedCandidates.length > 0 && (
           <section className={styles.relatedSection}>
-            <h2 className={styles.relatedTitle}>{relatedSectionTitle}</h2>
+            <h2 className={styles.relatedTitle}>{dict.blog.relatedArticles}</h2>
             <div className={styles.relatedList}>
-              {relatedPosts.map((relatedPost) => (
+              {relatedCandidates.map((relatedPost) => (
+                <Link
+                  key={relatedPost.slug}
+                  href={`/${typedLocale}/blog/${relatedPost.slug}`}
+                  className={styles.relatedCard}
+                >
+                  <div className={styles.relatedMeta}>
+                    <time>{relatedPost.formattedDateShort}</time>
+                    <span>
+                      {relatedPost.readingTime} {dict.common.minRead}
+                    </span>
+                  </div>
+                  <h3 className={styles.relatedCardTitle}>
+                    {relatedPost.title}
+                  </h3>
+                  <p className={styles.relatedCardDesc}>
+                    {relatedPost.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {recentPosts.length > 0 && (
+          <section className={styles.relatedSection}>
+            <h2 className={styles.relatedTitle}>{dict.blog.recentArticles}</h2>
+            <div className={styles.relatedList}>
+              {recentPosts.map((relatedPost) => (
                 <Link
                   key={relatedPost.slug}
                   href={`/${typedLocale}/blog/${relatedPost.slug}`}

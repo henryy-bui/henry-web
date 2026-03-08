@@ -114,7 +114,7 @@ Vị trí của danh từ:
 - Quá khứ đơn: She **_ran_** to the store yesterday.
 - Tương lai đơn: They **_will go_** to the park tomorrow.
 
-Hậu tố phổ biến để tạo động từ bao gồm:
+### 2.1 Hậu tố phổ biến để tạo động từ bao gồm:
 
 ```ts
 -ize, -ise,...
@@ -126,82 +126,25 @@ Hậu tố phổ biến để tạo động từ bao gồm:
 >
 > Ví dụ: "realize" có nghĩa là nhận ra, "organize" có nghĩa là tổ chức.
 
-Vị trí của động từ:
+### 2.2 Tiêu chí chia động từ:
+
+- Chia theo thì: hiện tại, quá khứ, tương lai,...
+- Chia theo chủ ngữ: ngôi thứ nhất, ngôi thứ hai, ngôi thứ ba,...
+- Chia theo quy tắc:
+  - Động từ thường: thêm -ed cho quá khứ đơn và quá khứ phân từ (played, walked,...)
+  - Giới từ + V(ing): look forward to, be interested in,...
+    > Bad weather prevents them from **driving** too fast.
+  - Sau động từ khuyết thiếu: can, should, must,... + V(nguyên thể)
+    > You **must** finish your homework before going out.
+  - Đối với một số động từ nhất định:
+    - Động từ theo sau bởi V(ing): enjoy, avoid, consider, keep, miss, postpone, imagine, deny, risk, practice, have difficily, be/get used to, spend time/money,...
+      > She **enjoys** reading books in her free time.
+    - Động từ theo sau bởi to + V(nguyên thể): agree, want, need, decide, expect, manage, promise, plan, learn, wish, tend, desire...
+      > They **decided** to go on a trip next month.
+
+### 2.3 Vị trí của động từ:
 
 - Thường đứng sau chủ ngữ. Ví dụ: The **_cat_** sleeps.
 - Có thể đứng đầu câu trong câu hỏi. Ví dụ: **_Do_** you like pizza?
 - Có thể đứng sau trợ động từ. Ví dụ: She **_is running_**.
 - Có thể đứng sau liên từ. Ví dụ: I want to go, but I **_can't_**.
-
-## 3. Tính từ
-
-Tính từ là từ dùng để mô tả hoặc bổ nghĩa cho danh từ. Tính từ thường đứng trước danh từ hoặc sau động từ liên kết (linking verb) như "be", "seem", "become". Ví dụ:
-
-Hậu tố phổ biến để tạo tính từ bao gồm:
-
-```ts
--ous, -ful, -less, -al, -able, -ish, -ic, -ive, -ent;
-```
-
-Ý nghĩa của các hậu tố cấu thành tính từ:
-
-> **`-ous`** thường chỉ tính chất hoặc đặc điểm.
->
-> Ví dụ: "dangerous" có nghĩa là nguy hiểm, "famous" có nghĩa là nổi tiếng.
-
-> **`-ful`** thường chỉ đầy đủ hoặc có nhiều đặc điểm, hữu ích.
->
-> Ví dụ: "beautiful" có nghĩa là đẹp, "hopeful" có nghĩa là đầy hy vọng.
-
-> **`-less`** thường chỉ thiếu hoặc không có đặc điểm.
->
-> Ví dụ: "hopeless" có nghĩa là vô vọng, "careless" có nghĩa là bất cẩn.
-
-> **`-al`** thường chỉ liên quan đến hoặc có tính chất của một thứ gì đó.
->
-> Ví dụ: "natural" có nghĩa là tự nhiên, "cultural" có nghĩa là văn hóa.
-
-> **`-able`** thường chỉ khả năng hoặc tính chất có thể làm được.
->
-> Ví dụ: "readable" có nghĩa là có thể đọc được, "comfortable" có nghĩa là thoải mái.
-
-> **`-ish`** thường chỉ tính chất hoặc đặc điểm tương đối.
->
-> Ví dụ: "childish" có nghĩa là trẻ con, "foolish" có nghĩa là ngu ngốc.
-
-> **`-ic`** thường chỉ tính chất hoặc đặc điểm liên quan đến một thứ gì đó.
->
-> Ví dụ: "historic" có nghĩa là có tính lịch sử, "artistic" có nghĩa là có tính nghệ thuật.
-
-> **`-ive / -ent`** thường chỉ tính chất hoặc đặc điểm có xu hướng làm một việc gì đó.
->
-> Ví dụ: "creative" có nghĩa là sáng tạo, "independent" có nghĩa là độc lập.
-
-Vị trí của tính từ:
-
-- Thường đứng trước danh từ. Ví dụ: a **_red_** apple, the **_tall_** building.
-- Có thể đứng sau động từ liên kết. Ví dụ: The sky is **_blue_**,
-  She seems **_happy_**.
-- Có thể đứng sau danh từ như một phần của cụm danh từ. Ví dụ: "the president **_elect_**", "the heir **_apparent_**".
-- Có thể đứng sau giới từ. Ví dụ: "afraid of the **_dark_**", "interested in **_history_**".
-
-Lưu ý:
-
-- Trong một **CÂU** tính từ đứng sau TOBE, trong một **CỤM DANH TỪ** tính từ đứng trước danh từ. Ví dụ: "The movie is **_exciting_**" (sau câu), "an **_exciting_** movie" (trước danh từ).
-
-## 4. Trạng từ
-
-Trạng từ là từ dùng để mô tả hoặc bổ nghĩa cho động từ, tính từ hoặc trạng từ khác.
-
-Thường trạng từ được tạo thành bằng cách thêm hậu tố "-ly" vào tính từ, nhưng cũng có nhiều trạng từ bất quy tắc.
-
-Ví dự:
-
-- **Trạng từ có hậu tố -ly**: quickly, slowly, happily
-- **Trạng từ bất quy tắc**: well, fast, hard
-
-Vị trí của trạng từ:
-
-- Có thể đứng trước hoặc sau động từ chính. Ví dụ: She **_quickly_** ran to the store, He ran **_quickly_**.
-- Có thể đứng trước tính từ hoặc trạng từ khác. Ví dụ: She is **_very_** happy, He runs **_extremely_** fast.
-- Có thể đứng đầu hoặc cuối câu để nhấn mạnh. Ví dụ: **_Unfortunately_**, we missed the bus, We missed the bus **_unfortunately_**.
