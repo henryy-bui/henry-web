@@ -132,9 +132,14 @@ Meaning of common verb-forming suffixes:
 - Conjugation by tense: present, past, future, etc.
 - Conjugation by subject: first person, second person, third person, etc.
 - Conjugation by grammar rules:
+
   - Regular verbs: add `-ed` for simple past and past participle (played, walked, etc.)
   - Preposition + V(ing): look forward to, be interested in, etc.
+
     > Bad weather prevents them from **driving** too fast.
+
+    > I am looking forward to **meeting** you.
+
   - After modal verbs: can, should, must, etc. + base form
     > You **must** finish your homework before going out.
   - With certain verbs:

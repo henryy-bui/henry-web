@@ -131,9 +131,14 @@ Vị trí của danh từ:
 - Chia theo thì: hiện tại, quá khứ, tương lai,...
 - Chia theo chủ ngữ: ngôi thứ nhất, ngôi thứ hai, ngôi thứ ba,...
 - Chia theo quy tắc:
+
   - Động từ thường: thêm -ed cho quá khứ đơn và quá khứ phân từ (played, walked,...)
   - Giới từ + V(ing): look forward to, be interested in,...
+
     > Bad weather prevents them from **driving** too fast.
+
+    > I am looking forward to **meeting** you.
+
   - Sau động từ khuyết thiếu: can, should, must,... + V(nguyên thể)
     > You **must** finish your homework before going out.
   - Đối với một số động từ nhất định:
