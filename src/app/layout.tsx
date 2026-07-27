@@ -1,7 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import "prismjs/themes/prism-tomorrow.css";
+import ThemeScript from "@/components/ThemeScript";
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fbfbfd" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0b" },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://habui.click/"),
@@ -11,8 +18,8 @@ export const metadata: Metadata = {
     shortcut: ["/icon.svg"],
   },
   title: {
-    default: "Henry — Software Engineer",
-    template: "%s | Henry",
+    default: "Ha Bui — Software Engineer",
+    template: "%s | Ha Bui",
   },
   description:
     "Software Engineer specializing in TypeScript, React, and distributed systems. Read my blog and explore my open-source projects.",
@@ -25,14 +32,14 @@ export const metadata: Metadata = {
     "blog",
     "distributed systems",
   ],
-  authors: [{ name: "Henry" }],
-  creator: "Henry",
+  authors: [{ name: "Ha Bui" }],
+  creator: "Ha Bui",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://habui.click/",
-    siteName: "Henry",
-    title: "Henry — Software Engineer",
+    siteName: "Ha Bui",
+    title: "Ha Bui — Software Engineer",
     description:
       "Software Engineer specializing in TypeScript, React, and distributed systems.",
     images: [
@@ -40,16 +47,16 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Henry — Software Engineer Portfolio",
+        alt: "Ha Bui — Software Engineer Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Henry — Software Engineer",
+    title: "Ha Bui — Software Engineer",
     description:
       "Software Engineer specializing in TypeScript, React, and distributed systems.",
-    creator: "@henry",
+    creator: "@Ha Bui",
     images: ["/og-image.png"],
   },
   robots: {
@@ -71,7 +78,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+      </head>
       <body>
         {children}
         <Analytics />

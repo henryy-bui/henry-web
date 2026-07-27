@@ -60,13 +60,13 @@
   background: linear-gradient(
     135deg,
     var(--bg-card) 0%,
-    rgba(99, 102, 241, 0.05) 100%
+    var(--accent-glow) 100%
   );
-  border-color: rgba(99, 102, 241, 0.2);
+  border-color: var(--accent-border);
 }
 
 .wide:hover {
-  border-color: rgba(99, 102, 241, 0.4);
+  border-color: var(--accent-border-strong);
 }
 
 .cardTop {
@@ -98,12 +98,12 @@
 
 .active {
   color: var(--accent-green);
-  background: rgba(34, 211, 165, 0.1);
+  background: var(--green-soft);
 }
 
 .wip {
   color: var(--accent-amber);
-  background: rgba(245, 158, 11, 0.1);
+  background: var(--amber-soft);
 }
 
 .archived {

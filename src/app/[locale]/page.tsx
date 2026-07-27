@@ -21,7 +21,7 @@ import styles from "../page.module.css";
 const TECH_STACK = [
   { name: "TypeScript", icon: "x", color: "#3178c6" },
   { name: "React", icon: "x", color: "#61dafb" },
-  { name: "Next.js", icon: "x", color: "#ffffff" },
+  { name: "Next.js", icon: "x", color: "var(--text-primary)" },
   { name: "Tailwind CSS", icon: "x", color: "#38bdf8" },
   { name: "Framer Motion", icon: "x", color: "#e11d48" },
   { name: "Zustand", icon: "x", color: "#fbd38d" },
@@ -60,8 +60,8 @@ export async function generateMetadata({
     imagePath: `/${typedLocale}/opengraph-image`,
     imageAlt:
       typedLocale === "vi"
-        ? "Henry - Kỹ sư phần mềm, trang cá nhân và blog kỹ thuật"
-        : "Henry - Software Engineer, portfolio and engineering blog",
+        ? "Ha Bui - Kỹ sư phần mềm, trang cá nhân và blog kỹ thuật"
+        : "Ha Bui - Software Engineer, portfolio and engineering blog",
   });
 }
 
@@ -79,14 +79,14 @@ export default async function HomePage({ params }: PageProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Henry",
+    name: "Ha Bui",
     url: getLocalizedUrl(typedLocale, "/"),
     inLanguage: typedLocale,
     jobTitle: dict.metadata.siteTitle,
     sameAs: [
-      "https://github.com/henryy-bui",
+      "https://github.com/HaBuiy-bui",
       "https://www.facebook.com/iamhabv/",
-      "https://www.linkedin.com/in/henryy-bui/",
+      "https://www.linkedin.com/in/HaBuiy-bui/",
     ],
   };
 
@@ -100,56 +100,64 @@ export default async function HomePage({ params }: PageProps) {
       />
       <section className={styles.hero}>
         <div className="container">
-          <div className={styles.heroBadge + " animate-fade-in-up delay-1"}>
-            <span className={styles.dot} />
-            {dict.home.badge}
-          </div>
-          <h1 className={styles.heroTitle + " animate-fade-in-up delay-2"}>
-            {dict.home.titleLine1}
-            <br />
-            <span className={styles.heroGradient}>
-              {dict.home.titleHighlight}
-            </span>
-          </h1>
-          <p className={styles.heroSubtitle + " animate-fade-in-up delay-3"}>
-            {dict.home.subtitle}
-          </p>
-          <div className={styles.heroActions + " animate-fade-in-up delay-4"}>
-            <Link
-              href={`/${typedLocale}/projects`}
-              className={styles.btnPrimary}
-            >
-              {dict.home.ctaProjects} <ArrowRight size={16} />
-            </Link>
-            <Link href={`/${typedLocale}/blog`} className={styles.btnSecondary}>
-              {dict.home.ctaBlog}
-            </Link>
-          </div>
-          <div className={styles.heroSocial + " animate-fade-in-up delay-5"}>
-            <a
-              href="https://github.com/henryy-bui"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-            >
-              <Github size={20} />
-            </a>
-            <a
-              href="https://www.facebook.com/iamhabv/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
-              <Facebook size={20} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/henryy-bui/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={20} />
-            </a>
+          <div className={styles.heroInner}>
+            <div className={styles.heroBadge + " animate-fade-in-up delay-1"}>
+              <span className={styles.dot} />
+              {dict.home.badge}
+            </div>
+            <p className={styles.heroGreeting + " animate-fade-in-up delay-2"}>
+              {dict.home.titleLine1}
+            </p>
+            <h1 className={styles.heroTitle + " animate-fade-in-up delay-2"}>
+              <span className={styles.heroGradient}>
+                {dict.home.titleHighlight}
+              </span>
+            </h1>
+            <p className={styles.heroSubtitle + " animate-fade-in-up delay-3"}>
+              {dict.home.subtitle}
+            </p>
+            <div className={styles.heroActions + " animate-fade-in-up delay-4"}>
+              <Link
+                href={`/${typedLocale}/projects`}
+                className={styles.btnPrimary}
+              >
+                {dict.home.ctaProjects}
+                <ArrowRight size={16} />
+              </Link>
+              <Link
+                href={`/${typedLocale}/blog`}
+                className={styles.btnSecondary}
+              >
+                {dict.home.ctaBlog}
+              </Link>
+              <span className={styles.heroDivider} aria-hidden="true" />
+              <div className={styles.heroSocial}>
+                <a
+                  href="https://github.com/HaBuiy-bui"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                >
+                  <Github size={18} />
+                </a>
+                <a
+                  href="https://www.facebook.com/iamhabv/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                >
+                  <Facebook size={18} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/HaBuiy-bui/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={18} />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

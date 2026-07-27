@@ -30,8 +30,8 @@ export async function generateMetadata({
     imagePath: `/${locale}/opengraph-image`,
     imageAlt:
       locale === "vi"
-        ? "Blog kỹ thuật của Henry về hệ thống, TypeScript và frontend"
-        : "Henry engineering blog on systems, TypeScript, and frontend architecture",
+        ? "Blog kỹ thuật của Ha Bui về hệ thống, TypeScript và frontend"
+        : "Ha Bui engineering blog on systems, TypeScript, and frontend architecture",
   });
 }
 

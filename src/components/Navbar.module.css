@@ -2,10 +2,11 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(10, 10, 11, 0.7);
+  background: var(--nav-bg);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(5px);
 }
 
 .inner {
@@ -15,7 +16,7 @@
   height: 60px;
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 14px;
 }
 
 .logo {
@@ -50,7 +51,9 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-secondary);
-  transition: color var(--transition), background var(--transition);
+  transition:
+    color var(--transition),
+    background var(--transition);
 }
 
 .navLink:hover {
@@ -84,7 +87,9 @@
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
   color: var(--text-primary);
-  transition: border-color var(--transition), background var(--transition),
+  transition:
+    border-color var(--transition),
+    background var(--transition),
     color var(--transition);
 }
 
@@ -109,7 +114,7 @@
   display: none;
   flex-direction: column;
   padding: 16px 24px 20px;
-  background: rgba(10, 10, 11, 0.95);
+  background: var(--nav-bg-solid);
   backdrop-filter: blur(16px);
   border-top: 1px solid var(--border-subtle);
   gap: 4px;
@@ -133,7 +138,9 @@
   font-weight: 500;
   color: var(--text-secondary);
   border-radius: var(--radius-sm);
-  transition: color var(--transition), background var(--transition);
+  transition:
+    color var(--transition),
+    background var(--transition);
 }
 
 .mobileLink:hover,

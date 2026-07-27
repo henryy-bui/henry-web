@@ -17,9 +17,9 @@
   gap: 6px;
   padding: 7px 10px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-muted);
+  background: var(--code-chrome-bg);
+  border: 1px solid var(--code-chrome-border);
+  color: var(--code-comment);
   cursor: pointer;
   transition: all var(--transition);
   opacity: 0;
@@ -33,15 +33,15 @@
 }
 
 .copyButton:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-primary);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: var(--code-chrome-bg-hover);
+  color: var(--code-text);
+  border-color: var(--code-chrome-border);
 }
 
 .copyButton.copied {
   color: var(--accent-green);
-  background: rgba(34, 211, 165, 0.1);
-  border-color: rgba(34, 211, 165, 0.2);
+  background: var(--green-soft);
+  border-color: var(--green-border);
   opacity: 1;
 }
 

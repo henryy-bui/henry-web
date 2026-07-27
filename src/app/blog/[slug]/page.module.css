@@ -63,7 +63,7 @@
   font-weight: 500;
   color: var(--accent);
   background: var(--accent-glow);
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  border: 1px solid var(--accent-border);
   padding: 4px 10px;
   border-radius: 4px;
 }
@@ -100,14 +100,14 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 14px;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--surface-subtle);
   transition: border-color var(--transition), background var(--transition),
     transform var(--transition);
 }
 
 .relatedCard:hover {
-  border-color: rgba(129, 140, 248, 0.45);
-  background: rgba(99, 102, 241, 0.08);
+  border-color: var(--accent-border-strong);
+  background: var(--accent-glow);
   transform: translateY(-2px);
 }
 

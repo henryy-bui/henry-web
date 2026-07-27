@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     locales.map(async (candidateLocale) => ({
       locale: candidateLocale,
       post: await getPostBySlug(candidateLocale, slug),
-    }))
+    })),
   );
 
   const alternatesLanguages = Object.fromEntries(
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       .map((entry) => [
         entry.locale,
         getLocalizedPath(entry.locale, `/blog/${slug}`),
-      ])
+      ]),
   ) as Record<string, string>;
 
   alternatesLanguages["x-default"] = getLocalizedPath("en", `/blog/${slug}`);
@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: post.date,
       modifiedTime: post.date,
       tags: post.tags,
-      authors: ["Henry"],
+      authors: ["Ha Bui"],
       images: [
         {
           url: getLocalizedUrl(typedLocale, `/blog/${slug}/opengraph-image`),
@@ -116,7 +116,7 @@ export default async function BlogPostPage({ params }: Props) {
     .filter((candidate) => candidate.slug !== post.slug)
     .map((candidate) => {
       const sharedTagsCount = candidate.tags.filter((tag) =>
-        currentTags.includes(tag.toLowerCase())
+        currentTags.includes(tag.toLowerCase()),
       ).length;
 
       return {
@@ -138,7 +138,7 @@ export default async function BlogPostPage({ params }: Props) {
     .filter(
       (candidate) =>
         candidate.slug !== post.slug &&
-        !relatedCandidates.some((related) => related.slug === candidate.slug)
+        !relatedCandidates.some((related) => related.slug === candidate.slug),
     )
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 3);
@@ -156,7 +156,7 @@ export default async function BlogPostPage({ params }: Props) {
     author: [
       {
         "@type": "Person",
-        name: "Henry",
+        name: "Ha Bui",
         url: "https://habui.click/",
       },
     ],

@@ -16,6 +16,7 @@ export type SiteDictionary = {
     contact: string;
     toggleMenu: string;
     languageSwitchLabel: string;
+    themeSwitchLabel: string;
   };
   footer: {
     tagline: string;
@@ -93,8 +94,8 @@ export type SiteDictionary = {
 
 const en: SiteDictionary = {
   metadata: {
-    siteTitle: "Henry - Software Engineer",
-    titleTemplate: "%s | Henry",
+    siteTitle: "Ha Bui - Software Engineer",
+    titleTemplate: "%s | Ha Bui",
     siteDescription:
       "Software Engineer specializing in TypeScript, React, and distributed systems. Read my blog and explore my open-source projects.",
     ogDescription:
@@ -109,6 +110,7 @@ const en: SiteDictionary = {
     contact: "Contact",
     toggleMenu: "Toggle menu",
     languageSwitchLabel: "Switch language",
+    themeSwitchLabel: "Switch theme",
   },
   footer: {
     tagline: "Building reliable systems and sharing what I learn.",
@@ -131,7 +133,7 @@ const en: SiteDictionary = {
   home: {
     badge: "Available for senior roles",
     titleLine1: "Hi everyone!",
-    titleHighlight: "I'm Henry, Front-end Engineer",
+    titleHighlight: "I'm Ha Bui, Front-end Engineer",
     subtitle:
       "Frontend Engineer specializing in React, Next.js, and complex web applications. I bridge the gap between design and solid engineering to create polished, high-performance web experiences.",
     ctaProjects: "View my work",
@@ -212,8 +214,8 @@ const en: SiteDictionary = {
 
 const vi: SiteDictionary = {
   metadata: {
-    siteTitle: "Henry - Kỹ sư phần mềm",
-    titleTemplate: "%s | Henry",
+    siteTitle: "Ha Bui - Kỹ sư phần mềm",
+    titleTemplate: "%s | Ha Bui",
     siteDescription:
       "Kỹ sư phần mềm tập trung vào TypeScript, React và hệ thống phân tán. Đây là nơi mình chia sẻ góc nhìn kỹ thuật và các dự án mã nguồn mở.",
     ogDescription:
@@ -228,6 +230,7 @@ const vi: SiteDictionary = {
     contact: "Liên hệ",
     toggleMenu: "Mở/đóng menu",
     languageSwitchLabel: "Chuyển ngôn ngữ",
+    themeSwitchLabel: "Đổi giao diện sáng/tối",
   },
   footer: {
     tagline: "Xây hệ thống đáng tin cậy và chia sẻ những gì mình học được.",
@@ -250,7 +253,7 @@ const vi: SiteDictionary = {
   home: {
     badge: "Sẵn sàng cho vai trò Senior",
     titleLine1: "Xin chào mọi người!",
-    titleHighlight: "Mình là Henry, Kỹ sư Front-end",
+    titleHighlight: "Mình là Ha Bui, Kỹ sư Front-end",
     subtitle:
       "Frontend Engineer chuyên React, Next.js và các ứng dụng web phức tạp. Mình tập trung biến thiết kế thành sản phẩm chạy mượt, sạch và bền trong production.",
     ctaProjects: "Xem dự án",

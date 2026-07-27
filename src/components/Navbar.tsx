@@ -11,6 +11,7 @@ import {
   type Locale,
 } from "@/i18n/config";
 import type { SiteDictionary } from "@/i18n/dictionary";
+import ThemeToggle from "./ThemeToggle";
 import styles from "./Navbar.module.css";
 
 type NavbarProps = {
@@ -48,6 +49,9 @@ export default function Navbar({ locale, dictionary }: NavbarProps) {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const isSwitchingLocaleRef = useRef(false);
+  const pendingRouteRef = useRef<{ target: string; settle: () => void } | null>(
+    null,
+  );
   const nextLocale = getOtherLocale(locale);
   const switchPath = toSwitchedLocalePath(pathname, nextLocale);
   const currentLocaleLabel = getLocaleDisplayName(locale, locale);
@@ -65,7 +69,35 @@ export default function Navbar({ locale, dictionary }: NavbarProps) {
     // Route changed: clear fallback class and unlock switch control.
     document.documentElement.classList.remove("locale-switching");
     isSwitchingLocaleRef.current = false;
+
+    // This effect runs after React commits the new locale's markup but before
+    // the browser paints — the exact moment a view transition should snapshot
+    // the "new" state.
+    const pending = pendingRouteRef.current;
+    if (pending && pathname === pending.target) {
+      pendingRouteRef.current = null;
+      pending.settle();
+    }
   }, [pathname]);
+
+  // Resolves once the target route has rendered, so startViewTransition captures
+  // the translated content instead of the outgoing page. Capped, because the
+  // browser suppresses rendering while the update callback is pending.
+  const waitForRoute = (target: string) =>
+    new Promise<void>((resolve) => {
+      const timeoutId = window.setTimeout(() => {
+        pendingRouteRef.current = null;
+        resolve();
+      }, 450);
+
+      pendingRouteRef.current = {
+        target,
+        settle: () => {
+          window.clearTimeout(timeoutId);
+          resolve();
+        },
+      };
+    });
 
   const navigateWithLocaleAnimation = () => {
     if (isSwitchingLocaleRef.current) return;
@@ -75,21 +107,26 @@ export default function Navbar({ locale, dictionary }: NavbarProps) {
 
     const html = document.documentElement;
     const docWithTransition = document as Document & {
-      startViewTransition?: (updateCallback: () => void) => {
-        finished: Promise<void>;
-      };
+      startViewTransition?: (
+        updateCallback: () => void | Promise<void>,
+      ) => { finished: Promise<void> };
     };
 
     router.prefetch(switchPath);
 
     if (docWithTransition.startViewTransition) {
-      const transition = docWithTransition.startViewTransition(() => {
+      const transition = docWithTransition.startViewTransition(async () => {
         router.push(switchPath);
+        await waitForRoute(switchPath);
       });
 
-      transition.finished.finally(() => {
+      const unlock = () => {
         isSwitchingLocaleRef.current = false;
-      });
+        pendingRouteRef.current = null;
+      };
+
+      // `finished` rejects when a transition is skipped (e.g. tab hidden).
+      transition.finished.then(unlock, unlock);
       return;
     }
 
@@ -135,6 +172,8 @@ export default function Navbar({ locale, dictionary }: NavbarProps) {
           <span className={styles.switchArrow}>/</span>
           <span>{nextLocaleLabel}</span>
         </Link>
+
+        <ThemeToggle label={dictionary.nav.themeSwitchLabel} />
 
         <a href="mailto:buiha.dev@gmail.com" className={styles.cta}>
           {dictionary.nav.contact}
