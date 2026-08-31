@@ -18,9 +18,9 @@ const enProjects: Project[] = [
     slug: "motion-spectre",
     title: "Motion Spectre",
     description:
-      "A high-performance animation library for React targeting 120fps fluid transitions.",
+      "An imperative animation orchestrator for React, built on the Web Animations API.",
     longDescription:
-      "Built an imperative animation orchestrator for React from scratch utilizing Web Animations API and requestAnimationFrame. Achieved zero layout thrashing and sub-millisecond JS execution per frame.",
+      "Animations run outside the React render path: the orchestrator drives them through WAAPI and requestAnimationFrame, and only touches composited properties, so a running animation does not trigger layout. Built mainly to understand where the cost in existing animation libraries actually comes from.",
     tech: ["TypeScript", "React", "WAAPI", "Framer Motion"],
     github: "https://github.com",
     demo: "https://example.com",
@@ -32,9 +32,9 @@ const enProjects: Project[] = [
     slug: "type-safe-router",
     title: "tsRouter",
     description:
-      "Fully type-safe routing library for React with zero-overhead runtime cost.",
+      "A type-safe router for React with no code generation step.",
     longDescription:
-      "Type-level router for React applications. Route params, search params, and navigation are fully type-safe without any code generation. Achieved 100% tree-shaking and near-zero bundle overhead.",
+      "Route params, search params, and navigation are typed from a single route definition using template literal types, so the types cannot drift from the routes. What ships at runtime is a small matcher; the rest is erased at build time.",
     tech: ["TypeScript", "React", "Vite", "ESBuild"],
     github: "https://github.com",
     demo: "https://example.com",
@@ -46,9 +46,9 @@ const enProjects: Project[] = [
     slug: "canvas-flow",
     title: "CanvasFlow",
     description:
-      "A fully web-based infinite canvas tool for spatial reasoning and diagramming.",
+      "An infinite canvas for diagramming, rendered with WebGL.",
     longDescription:
-      "Engineered an infinite canvas utilizing WebGL and custom render loops for extreme performance. Features smooth zooming, hardware-accelerated panning, and interactive DOM overlays.",
+      "Nodes render in WebGL through a custom render loop, while text and inputs stay as DOM overlays positioned from the same transform. Zoom and pan run on the GPU, which keeps the canvas responsive as the node count grows.",
     tech: ["TypeScript", "WebGL", "React", "Zustand"],
     github: "https://github.com",
     demo: "https://example.com",
@@ -60,9 +60,9 @@ const enProjects: Project[] = [
     slug: "cli-toolkit",
     title: "devkit-cli",
     description:
-      "A batteries-included CLI toolkit for modern web development workflows.",
+      "A CLI for the setup work at the start of a project.",
     longDescription:
-      "Opinionated CLI for scaffolding projects, managing secrets, running local infra, and standardizing PR workflows across a team.",
+      "Scaffolds projects, manages local secrets, brings up local infra with Docker, and standardizes PR templates. Opinionated on purpose: it encodes one team's conventions rather than trying to fit every team.",
     tech: ["Node.js", "TypeScript", "Commander.js", "Docker"],
     github: "https://github.com",
     featured: false,
@@ -73,9 +73,9 @@ const enProjects: Project[] = [
     slug: "realtime-collab",
     title: "Collab-Editor",
     description:
-      "Real-time collaborative text editor using CRDTs and WebSockets.",
+      "A collaborative text editor built on CRDTs and WebSockets.",
     longDescription:
-      "Conflict-free replicated data type (CRDT) based text editor supporting real-time collaboration. Handles offline edits, conflict resolution, and cursor syncing for up to 50 concurrent users.",
+      "Text is stored as a CRDT, so edits made offline merge back without a central lock, and cursors sync across clients. Archived: the merge logic held up, but the presence layer needed more attention than a side project could give it.",
     tech: ["TypeScript", "CRDT", "WebSockets", "React", "Node.js"],
     github: "https://github.com",
     featured: false,
@@ -85,9 +85,9 @@ const enProjects: Project[] = [
   {
     slug: "zero-runtime-css",
     title: "StyleExtract",
-    description: "A zero-runtime CSS-in-JS extractor built natively for Vite.",
+    description: "A Vite plugin that extracts CSS-in-JS at build time.",
     longDescription:
-      "A Vite plugin that statically analyzes CSS-in-JS syntax during the build step and extracts it into optimized, atomic CSS files. Reduces client-side JS bundle by completely removing the styling runtime.",
+      "Statically analyzes CSS-in-JS syntax during the build and emits atomic CSS files, so the styling runtime never reaches the client. Archived once the ecosystem settled on similar tools with more maintainers behind them.",
     tech: ["TypeScript", "Vite", "AST", "PostCSS"],
     github: "https://github.com",
     featured: false,
@@ -101,9 +101,9 @@ const viProjects: Project[] = [
     slug: "motion-spectre",
     title: "Motion Spectre",
     description:
-      "Thư viện animation hiệu năng cao cho React, hướng đến chuyển động mượt ở ngưỡng 120fps.",
+      "Bộ điều phối animation kiểu imperative cho React, dựng trên Web Animations API.",
     longDescription:
-      "Tự xây bộ điều phối animation kiểu imperative cho React với Web Animations API và requestAnimationFrame. Mục tiêu là triệt tiêu layout thrashing và giữ thời gian JS mỗi frame dưới 1ms.",
+      "Animation chạy ngoài luồng render của React: bộ điều phối đẩy chúng qua WAAPI và requestAnimationFrame, chỉ đụng vào các thuộc tính được composite nên animation đang chạy không kéo theo layout. Mình làm chủ yếu để hiểu chi phí trong các thư viện animation hiện có đến từ đâu.",
     tech: ["TypeScript", "React", "WAAPI", "Framer Motion"],
     github: "https://github.com",
     demo: "https://example.com",
@@ -115,9 +115,9 @@ const viProjects: Project[] = [
     slug: "type-safe-router",
     title: "tsRouter",
     description:
-      "Thư viện định tuyến type-safe cho React với chi phí runtime gần như bằng 0.",
+      "Router type-safe cho React, không cần bước code generation.",
     longDescription:
-      "Router type-level cho ứng dụng React. Route params, search params và navigation đều được kiểm tra kiểu đầy đủ mà không cần code generation. Hỗ trợ tree-shaking tốt và gần như không tăng overhead bundle.",
+      "Route params, search params và navigation đều lấy kiểu từ một định nghĩa route duy nhất bằng template literal types, nên kiểu không thể lệch khỏi route. Thứ thật sự chạy ở runtime chỉ là một matcher nhỏ, phần còn lại bị xóa lúc build.",
     tech: ["TypeScript", "React", "Vite", "ESBuild"],
     github: "https://github.com",
     demo: "https://example.com",
@@ -129,9 +129,9 @@ const viProjects: Project[] = [
     slug: "canvas-flow",
     title: "CanvasFlow",
     description:
-      "Công cụ infinite canvas chạy trên web phục vụ tư duy không gian và vẽ sơ đồ.",
+      "Infinite canvas để vẽ sơ đồ, render bằng WebGL.",
     longDescription:
-      "Xây dựng infinite canvas với WebGL và vòng lặp render tùy chỉnh để tối ưu hiệu năng. Hỗ trợ zoom mượt, pan tăng tốc phần cứng và lớp DOM overlay tương tác.",
+      "Node được render bằng WebGL qua một vòng lặp render tự viết, còn text và input vẫn là DOM overlay đặt theo cùng một transform. Zoom và pan chạy trên GPU nên canvas vẫn mượt khi số lượng node tăng lên.",
     tech: ["TypeScript", "WebGL", "React", "Zustand"],
     github: "https://github.com",
     demo: "https://example.com",
@@ -142,9 +142,9 @@ const viProjects: Project[] = [
   {
     slug: "cli-toolkit",
     title: "devkit-cli",
-    description: "CLI toolkit đầy đủ cho quy trình phát triển web hiện đại.",
+    description: "CLI lo phần dựng khung lúc mới bắt đầu dự án.",
     longDescription:
-      "CLI theo hướng opinionated để scaffold dự án, quản lý secrets, chạy hạ tầng local và chuẩn hóa workflow PR trong team.",
+      "Scaffold dự án, quản lý secrets ở local, dựng hạ tầng local bằng Docker và chuẩn hóa template PR. Opinionated là chủ ý: nó gói quy ước của một team cụ thể, không cố vừa với mọi team.",
     tech: ["Node.js", "TypeScript", "Commander.js", "Docker"],
     github: "https://github.com",
     featured: false,
@@ -155,9 +155,9 @@ const viProjects: Project[] = [
     slug: "realtime-collab",
     title: "Collab-Editor",
     description:
-      "Trình soạn thảo cộng tác thời gian thực dựa trên CRDT và WebSockets.",
+      "Trình soạn thảo cộng tác dựng trên CRDT và WebSockets.",
     longDescription:
-      "Trình soạn thảo dựa trên CRDT, hỗ trợ cộng tác thời gian thực. Xử lý chỉnh sửa offline, tự hòa giải xung đột và đồng bộ con trỏ cho tối đa 50 người dùng đồng thời.",
+      "Văn bản được lưu dưới dạng CRDT nên các chỉnh sửa lúc offline merge lại được mà không cần khóa tập trung, con trỏ cũng đồng bộ giữa các client. Đã lưu trữ: phần merge chạy ổn, nhưng lớp presence cần nhiều thời gian hơn mức một dự án phụ có thể dành ra.",
     tech: ["TypeScript", "CRDT", "WebSockets", "React", "Node.js"],
     github: "https://github.com",
     featured: false,
@@ -168,9 +168,9 @@ const viProjects: Project[] = [
     slug: "zero-runtime-css",
     title: "StyleExtract",
     description:
-      "Bộ trích xuất CSS-in-JS zero-runtime, xây dựng native cho Vite.",
+      "Plugin Vite trích xuất CSS-in-JS ngay lúc build.",
     longDescription:
-      "Plugin Vite phân tích tĩnh cú pháp CSS-in-JS khi build và trích xuất thành các file CSS atomic tối ưu. Nhờ loại bỏ hoàn toàn styling runtime, JS bundle phía client giảm đáng kể.",
+      "Phân tích tĩnh cú pháp CSS-in-JS khi build rồi xuất ra các file CSS atomic, nhờ vậy styling runtime không bao giờ tới client. Đã lưu trữ khi hệ sinh thái đã có những công cụ tương tự với đội ngũ duy trì đông hơn.",
     tech: ["TypeScript", "Vite", "AST", "PostCSS"],
     github: "https://github.com",
     featured: false,

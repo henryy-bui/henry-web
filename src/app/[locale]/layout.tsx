@@ -32,12 +32,12 @@ export async function generateMetadata({
       path: "/",
       title: dict.metadata.siteTitle,
       description: dict.metadata.ogDescription,
-      keywords: ["software engineer", "react", "next.js", "typescript"],
+      keywords: ["front-end engineer", "react", "next.js", "typescript"],
       imagePath: `/${locale}/opengraph-image`,
       imageAlt:
         locale === "vi"
-          ? "Hà Bùi - Kỹ sư phần mềm, chuyên TypeScript, React và hệ thống phân tán"
-          : "Ha Bui - Software Engineer specializing in TypeScript, React, and distributed systems",
+          ? "Hà Bùi - Kỹ sư front-end, làm việc với React, TypeScript và Next.js"
+          : "Ha Bui - Front-end engineer working in React, TypeScript, and Next.js",
     }),
     title: {
       default: dict.metadata.siteTitle,

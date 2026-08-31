@@ -66,6 +66,7 @@ export type SiteDictionary = {
     copiedCode: string;
     relatedArticles: string;
     recentArticles: string;
+    narrowerLayout: string;
   };
   projects: {
     metadataTitle: string;
@@ -94,12 +95,12 @@ export type SiteDictionary = {
 
 const en: SiteDictionary = {
   metadata: {
-    siteTitle: "Ha Bui - Software Engineer",
+    siteTitle: "Ha Bui - Front-end Engineer",
     titleTemplate: "%s | Ha Bui",
     siteDescription:
-      "Software Engineer specializing in TypeScript, React, and distributed systems. Read my blog and explore my open-source projects.",
+      "Front-end engineer working in React, TypeScript, and Next.js. Projects I have built, and notes on the problems behind them.",
     ogDescription:
-      "Software Engineer specializing in TypeScript, React, and distributed systems.",
+      "Front-end engineer working in React, TypeScript, and Next.js.",
   },
   nav: {
     logo: "habui.click",
@@ -113,7 +114,8 @@ const en: SiteDictionary = {
     themeSwitchLabel: "Switch theme",
   },
   footer: {
-    tagline: "Building reliable systems and sharing what I learn.",
+    tagline:
+      "Front-end engineer in Hanoi. Notes on the work, mostly React and TypeScript.",
     navigate: "Navigate",
     connect: "Connect",
     email: "Email",
@@ -131,30 +133,30 @@ const en: SiteDictionary = {
     },
   },
   home: {
-    badge: "Available for senior roles",
-    titleLine1: "Hi everyone!",
-    titleHighlight: "I'm Ha Bui, Front-end Engineer",
+    badge: "Open to new work",
+    titleLine1: "Hello.",
+    titleHighlight: "I'm Ha Bui, a front-end engineer",
     subtitle:
-      "Frontend Engineer specializing in React, Next.js, and complex web applications. I bridge the gap between design and solid engineering to create polished, high-performance web experiences.",
+      "I build web applications with React, TypeScript, and Next.js. Day to day that means component libraries, data-fetching and state layers, and the performance and accessibility work that follows a release.",
     ctaProjects: "View my work",
     ctaBlog: "Read blog",
     techLabel: "Technologies I work with",
     focusTitle: "What I focus on",
     focusAreas: [
       {
-        title: "Interactive Experiences",
+        title: "Component libraries",
         description:
-          "Crafting fluid animations, micro-interactions, and engaging user interfaces that feel alive.",
+          "Shared UI kept as a versioned package: typed props, keyboard and screen-reader support, and Storybook docs so another team can adopt it without a handover.",
       },
       {
-        title: "Design Systems",
+        title: "State and data flow",
         description:
-          "Building scalable, accessible, and highly reusable component libraries for growing teams.",
+          "Server state in TanStack Query, validation at the boundary with Zod, local state kept small. Most UI bugs turn out to be state bugs, so this is where the time goes.",
       },
       {
-        title: "Web Performance",
+        title: "Performance and accessibility",
         description:
-          "Optimizing Core Web Vitals, minimizing bundle sizes, and ensuring 60fps rendering.",
+          "Measure first with bundle analysis, the React Profiler, and Lighthouse. Then code-splitting, narrowing re-renders, and fixing what an a11y audit turns up.",
       },
     ],
     featuredTitle: "Featured Projects",
@@ -165,9 +167,9 @@ const en: SiteDictionary = {
   blog: {
     metadataTitle: "Blog",
     metadataDescription:
-      "Collected thoughts on systems design, TypeScript, and engineering culture.",
+      "Notes on React, TypeScript, and how the browser actually runs them.",
     title: "Writing",
-    subtitle: "{count} articles on systems, TypeScript, and engineering craft.",
+    subtitle: "{count} posts on React, TypeScript, and the browser.",
     searchPlaceholder: "Search articles...",
     searchAria: "Search articles",
     allTag: "All",
@@ -182,11 +184,12 @@ const en: SiteDictionary = {
     copiedCode: "Copied",
     relatedArticles: "Related articles",
     recentArticles: "Recent articles",
+    narrowerLayout: "Narrower",
   },
   projects: {
     metadataTitle: "Projects",
     metadataDescription:
-      "Open-source tools and systems I've built. From distributed caches to type-safe libraries.",
+      "Tools and libraries I have built, and the reasoning behind each one.",
     title: "Projects",
     subtitle:
       "Things I've built. Mostly open-source. Some in production, some experiments.",
@@ -198,28 +201,27 @@ const en: SiteDictionary = {
   experience: {
     metadataTitle: "Experience",
     metadataDescription:
-      "My professional journey and technical expertise. Explore my career timeline and key achievements in front-end engineering and UI/UX architecture.",
+      "Where I have worked, what I built there, and the stack I used.",
     title: "Experience",
     subtitle:
-      "4+ years building high-performance, scalable web applications with a focus on React and modern front-end architectures.",
+      "React front ends, mostly in long-lived product codebases rather than greenfield.",
     current: "Current",
     stats: {
       years: "Years experience",
-      companies: "Major Companies",
-      projects: "Projects Delivered",
-      coverage: "Code Coverage",
+      companies: "Companies",
+      projects: "Projects shipped",
+      coverage: "Test coverage, current team",
     },
   },
 };
 
 const vi: SiteDictionary = {
   metadata: {
-    siteTitle: "Hà Bùi - Kỹ sư phần mềm",
+    siteTitle: "Hà Bùi - Kỹ sư front-end",
     titleTemplate: "%s | Hà Bùi",
     siteDescription:
-      "Kỹ sư phần mềm tập trung vào TypeScript, React và hệ thống phân tán. Đây là nơi mình chia sẻ góc nhìn kỹ thuật và các dự án mã nguồn mở.",
-    ogDescription:
-      "Kỹ sư phần mềm chuyên về TypeScript, React và hệ thống phân tán.",
+      "Kỹ sư front-end làm việc với React, TypeScript và Next.js. Đây là các dự án mình đã làm và ghi chép về những vấn đề đằng sau chúng.",
+    ogDescription: "Kỹ sư front-end làm việc với React, TypeScript và Next.js.",
   },
   nav: {
     logo: "habui.click",
@@ -233,7 +235,8 @@ const vi: SiteDictionary = {
     themeSwitchLabel: "Đổi giao diện sáng/tối",
   },
   footer: {
-    tagline: "Xây hệ thống đáng tin cậy và chia sẻ những gì mình học được.",
+    tagline:
+      "Kỹ sư front-end tại Hà Nội. Ghi chép về công việc, chủ yếu là React và TypeScript.",
     navigate: "Điều hướng",
     connect: "Kết nối",
     email: "Email",
@@ -251,30 +254,30 @@ const vi: SiteDictionary = {
     },
   },
   home: {
-    badge: "Sẵn sàng cho vai trò Senior",
-    titleLine1: "Xin chào mọi người!",
-    titleHighlight: "Mình là Hà Bùi, Kỹ sư Front-end",
+    badge: "Sẵn sàng nhận dự án mới",
+    titleLine1: "Xin chào.",
+    titleHighlight: "Mình là Hà Bùi, kỹ sư front-end",
     subtitle:
-      "Frontend Engineer chuyên React, Next.js và các ứng dụng web phức tạp. Mình tập trung biến thiết kế thành sản phẩm chạy mượt, sạch và bền trong production.",
+      "Mình làm ứng dụng web với React, TypeScript và Next.js. Công việc hằng ngày xoay quanh thư viện component, lớp state và data-fetching, cùng phần tối ưu hiệu năng và a11y sau mỗi lần release.",
     ctaProjects: "Xem dự án",
     ctaBlog: "Đọc blog",
-    techLabel: "Công nghệ tôi sử dụng",
-    focusTitle: "Trọng tâm của tôi",
+    techLabel: "Công nghệ mình dùng",
+    focusTitle: "Mình tập trung vào",
     focusAreas: [
       {
-        title: "Trải nghiệm tương tác",
+        title: "Thư viện component",
         description:
-          "Tạo animation mượt, micro-interaction hợp lý và giao diện có chiều sâu, không rối mắt.",
+          "UI dùng chung được đóng thành package có version: props có kiểu rõ ràng, hỗ trợ bàn phím và screen reader, tài liệu bằng Storybook để team khác dùng được mà không cần bàn giao.",
       },
       {
-        title: "Design System",
+        title: "State và luồng dữ liệu",
         description:
-          "Xây dựng thư viện component nhất quán, dễ mở rộng, đảm bảo a11y và tái sử dụng tốt cho team lớn.",
+          "Server state để TanStack Query lo, validate ở biên bằng Zod, local state giữ càng nhỏ càng tốt. Phần lớn bug giao diện thật ra là bug state, nên đây là chỗ mình dành nhiều thời gian nhất.",
       },
       {
-        title: "Hiệu năng web",
+        title: "Hiệu năng và a11y",
         description:
-          "Tối ưu Core Web Vitals, giảm bundle size và giữ rendering ổn định ở mức 60fps.",
+          "Đo trước đã: phân tích bundle, React Profiler, Lighthouse. Sau đó mới code-splitting, thu hẹp phạm vi re-render và xử lý những lỗi a11y mà bản audit chỉ ra.",
       },
     ],
     featuredTitle: "Dự án nổi bật",
@@ -285,10 +288,9 @@ const vi: SiteDictionary = {
   blog: {
     metadataTitle: "Blog",
     metadataDescription:
-      "Góc nhìn về thiết kế hệ thống, TypeScript và văn hóa kỹ thuật.",
+      "Ghi chép về React, TypeScript và cách trình duyệt thật sự chạy chúng.",
     title: "Bài viết",
-    subtitle:
-      "{count} bài viết về hệ thống, TypeScript và những bài học thực chiến trong nghề.",
+    subtitle: "{count} bài viết về React, TypeScript và trình duyệt.",
     searchPlaceholder: "Tìm bài viết...",
     searchAria: "Tìm bài viết",
     allTag: "Tất cả",
@@ -297,17 +299,18 @@ const vi: SiteDictionary = {
     read: "Đọc",
     backToBlog: "Quay lại blog",
     usefulText: "Thấy hữu ích? Hãy chia sẻ hoặc",
-    onTwitter: "nhắn cho tôi trên Twitter",
+    onTwitter: "nhắn cho mình trên Twitter",
     allArticles: "Tất cả bài viết",
     copyCode: "Sao chép mã",
     copiedCode: "Đã sao chép",
     relatedArticles: "Bài viết liên quan",
     recentArticles: "Bài viết gần đây",
+    narrowerLayout: "Hẹp hơn",
   },
   projects: {
     metadataTitle: "Dự án",
     metadataDescription:
-      "Các công cụ và hệ thống mã nguồn mở mình đã xây dựng, từ cache phân tán đến thư viện type-safe.",
+      "Các công cụ và thư viện mình đã xây, kèm lý do đằng sau từng cái.",
     title: "Dự án",
     subtitle:
       "Những thứ mình đã build. Đa phần là mã nguồn mở; có dự án đang chạy production, cũng có thứ để thử nghiệm ý tưởng mới.",
@@ -319,16 +322,16 @@ const vi: SiteDictionary = {
   experience: {
     metadataTitle: "Kinh nghiệm",
     metadataDescription:
-      "Hành trình làm nghề và những cột mốc kỹ thuật của mình trong frontend engineering và kiến trúc UI/UX.",
+      "Những nơi mình đã làm, đã xây gì ở đó và dùng stack nào.",
     title: "Kinh nghiệm",
     subtitle:
-      "Hơn 4 năm xây dựng ứng dụng web hiệu năng cao, dễ mở rộng, với React và kiến trúc frontend hiện đại.",
+      "Làm front-end với React, chủ yếu trên các codebase sản phẩm chạy lâu dài chứ không phải dự án dựng mới.",
     current: "Hiện tại",
     stats: {
       years: "Năm kinh nghiệm",
-      companies: "Công ty lớn",
+      companies: "Công ty",
       projects: "Dự án đã giao",
-      coverage: "Độ phủ kiểm thử",
+      coverage: "Độ phủ test, team hiện tại",
     },
   },
 };

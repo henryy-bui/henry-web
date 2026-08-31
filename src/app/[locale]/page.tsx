@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import {
   ArrowRight,
   ExternalLink,
-  Zap,
-  MonitorPlay,
+  Gauge,
   Layers,
+  Workflow,
 } from "lucide-react";
 import Github from "@/components/icons/Github";
 import Linkedin from "@/components/icons/Linkedin";
@@ -18,15 +18,21 @@ import { buildLocalizedMetadata, getLocalizedUrl } from "@/i18n/seo";
 import { notFound } from "next/navigation";
 import styles from "../page.module.css";
 
+// Kept in step with src/data/experience.ts — everything here is something
+// used on a real project, grouped core / data / testing / backend-adjacent.
 const TECH_STACK = [
   "TypeScript",
   "React",
   "Next.js",
-  "Tailwind CSS",
-  "Framer Motion",
-  "Zustand",
+  "TanStack Query",
+  "Redux Toolkit",
+  "Zod",
+  "Jest",
+  "React Testing Library",
+  "Storybook",
   "Node.js",
-  "Figma",
+  "NestJS",
+  "Firebase",
 ];
 
 interface PageProps {
@@ -49,9 +55,9 @@ export async function generateMetadata({
     description: dict.metadata.siteDescription,
     keywords:
       typedLocale === "vi"
-        ? ["ky su phan mem", "react", "next.js", "typescript", "blog cong nghe"]
+        ? ["ky su front-end", "react", "next.js", "typescript", "blog cong nghe"]
         : [
-            "software engineer",
+            "front-end engineer",
             "react",
             "next.js",
             "typescript",
@@ -60,8 +66,8 @@ export async function generateMetadata({
     imagePath: `/${typedLocale}/opengraph-image`,
     imageAlt:
       typedLocale === "vi"
-        ? "Hà Bùi - Kỹ sư phần mềm, trang cá nhân và blog kỹ thuật"
-        : "Ha Bui - Software Engineer, portfolio and engineering blog",
+        ? "Hà Bùi - Kỹ sư front-end, trang cá nhân và blog kỹ thuật"
+        : "Ha Bui - Front-end engineer, portfolio and engineering blog",
   });
 }
 
@@ -90,7 +96,7 @@ export default async function HomePage({ params }: PageProps) {
     ],
   };
 
-  const focusIcons = [MonitorPlay, Layers, Zap];
+  const focusIcons = [Layers, Workflow, Gauge];
 
   return (
     <div>
@@ -180,7 +186,7 @@ export default async function HomePage({ params }: PageProps) {
           </div>
           <div className={styles.focusGrid}>
             {dict.home.focusAreas.map(({ title, description }, idx) => {
-              const Icon = focusIcons[idx] ?? Zap;
+              const Icon = focusIcons[idx] ?? Layers;
               return (
                 <div key={title} className={styles.focusCard}>
                   <div className={styles.focusIcon}>

@@ -25,13 +25,13 @@ const enExperiences: Experience[] = [
     endYear: null,
     location: "Ha Noi, Vietnam",
     description:
-      "Leading and mentoring a team of 4 developers, conducting code reviews and technical training sessions to ensure code quality and best practices.",
+      "Front-end lead on a team of four: code review, technical onboarding, and the architecture calls that stay around after a feature ships.",
     achievements: [
-      "Architected a reusable UI component library focusing on Accessibility (a11y), reducing development time by 30% for new features",
-      "Optimized application performance by implementing code-splitting and lazy loading, resulting in a 40% reduction in initial bundle size",
-      "Collaborated with NestJS to handle various features of FCM and Firebase",
-      "Established a robust testing strategy following the Testing Trophy principle, achieving 85% code coverage using Jest and React Testing Library",
-      "Communicated with clients to get solutions and ideas in English",
+      "Built the shared component library the product teams work from, with typed props, keyboard and screen-reader support, and Storybook docs",
+      "Brought the initial bundle down by about 40% with route-level code-splitting and lazy-loading the heaviest screens",
+      "Worked with the NestJS back end on Firebase Cloud Messaging and the surrounding Firebase integration",
+      "Set up the testing strategy along Testing Trophy lines with Jest and React Testing Library, holding around 85% coverage",
+      "Ran requirement and solution discussions with clients in English",
     ],
     tech: [
       "ReactJS",
@@ -54,13 +54,13 @@ const enExperiences: Experience[] = [
     endYear: 2024,
     location: "Ha Noi, Vietnam",
     description:
-      "Collaborated with cross-functional teams to develop and implement innovative front-end solutions for web applications, focusing on usability, performance, and scalability.",
+      "Front-end work across client projects, usually sitting in the same team as back end and design rather than handing work over a wall.",
     achievements: [
-      "Utilized React.js to architect and develop interactive user interfaces, ensuring seamless integration with back-end services",
-      "Implemented state management using Redux Toolkit, enhancing application stability and maintainability",
-      "Leveraged TypeScript to improve code quality and developer productivity, ensuring type safety and scalability",
-      "Established comprehensive test suites using Jest and React Testing Library, ensuring robust code coverage and reliability",
-      "Documented components and workflows using Storybook, facilitating collaboration and code reuse across projects",
+      "Built product interfaces in React against the team's back-end services",
+      "Moved state onto Redux Toolkit, which cut the boilerplate and made the async flows easier to follow",
+      "Introduced TypeScript to the codebase, which caught most prop-shape mistakes before review",
+      "Wrote the Jest and React Testing Library suites, starting with the flows that broke most often",
+      "Documented components in Storybook so designers could review states without running a build",
     ],
     tech: [
       "TypeScript",
@@ -83,13 +83,13 @@ const viExperiences: Experience[] = [
     endYear: null,
     location: "Hà Nội, Việt Nam",
     description:
-      "Dẫn dắt và mentoring nhóm 4 lập trình viên, review code và tổ chức các buổi chia sẻ kỹ thuật để giữ chất lượng chung của team.",
+      "Phụ trách front-end cho team bốn người: review code, onboard kỹ thuật và những quyết định kiến trúc còn ở lại sau khi tính năng đã lên.",
     achievements: [
-      "Thiết kế kiến trúc thư viện UI component tái sử dụng, chú trọng a11y, giúp giảm 30% thời gian phát triển tính năng mới",
-      "Tối ưu hiệu năng bằng code-splitting và lazy loading, giảm 40% kích thước bundle ban đầu",
-      "Phối hợp cùng team backend (NestJS) triển khai các tính năng liên quan đến FCM và Firebase",
-      "Xây dựng chiến lược kiểm thử theo Testing Trophy, đạt 85% độ phủ với Jest và React Testing Library",
-      "Trao đổi trực tiếp với khách hàng bằng tiếng Anh để chốt giải pháp và hướng triển khai",
+      "Xây thư viện component dùng chung cho các team sản phẩm: props có kiểu rõ ràng, hỗ trợ bàn phím và screen reader, tài liệu bằng Storybook",
+      "Giảm khoảng 40% bundle ban đầu bằng code-splitting theo route và lazy-load những màn hình nặng nhất",
+      "Làm việc với back end NestJS cho Firebase Cloud Messaging và phần tích hợp Firebase liên quan",
+      "Dựng chiến lược test theo hướng Testing Trophy với Jest và React Testing Library, giữ độ phủ quanh mức 85%",
+      "Trao đổi yêu cầu và phương án trực tiếp với khách hàng bằng tiếng Anh",
     ],
     tech: [
       "ReactJS",
@@ -112,13 +112,13 @@ const viExperiences: Experience[] = [
     endYear: 2024,
     location: "Hà Nội, Việt Nam",
     description:
-      "Phối hợp cùng các nhóm đa chức năng để xây dựng giải pháp frontend cho ứng dụng web, tập trung vào tính dễ dùng, hiệu năng và khả năng mở rộng.",
+      "Làm front-end cho các dự án khách hàng, thường ngồi chung team với back end và design thay vì bàn giao qua lại.",
     achievements: [
-      "Xây dựng giao diện tương tác bằng React.js, tích hợp mượt với dịch vụ backend",
-      "Triển khai quản lý state với Redux Toolkit, nâng cao độ ổn định và khả năng bảo trì",
-      "Ứng dụng TypeScript để cải thiện chất lượng code và tăng năng suất phát triển",
-      "Xây dựng bộ test với Jest và React Testing Library để tăng độ tin cậy khi release",
-      "Tài liệu hóa component và workflow bằng Storybook, giúp tăng tốc hợp tác và tái sử dụng giữa các dự án",
+      "Dựng giao diện sản phẩm bằng React, làm việc trực tiếp với các service back end của team",
+      "Chuyển state sang Redux Toolkit, giảm boilerplate và làm luồng async dễ theo dõi hơn",
+      "Đưa TypeScript vào codebase, bắt được phần lớn lỗi sai shape của props trước khi review",
+      "Viết bộ test bằng Jest và React Testing Library, bắt đầu từ những luồng hay hỏng nhất",
+      "Tài liệu hóa component bằng Storybook để designer xem được các state mà không cần chạy build",
     ],
     tech: [
       "TypeScript",

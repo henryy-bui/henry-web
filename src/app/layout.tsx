@@ -18,19 +18,18 @@ export const metadata: Metadata = {
     shortcut: ["/icon.svg"],
   },
   title: {
-    default: "Hà Bùi — Software Engineer",
+    default: "Hà Bùi — Front-end Engineer",
     template: "%s | Hà Bùi",
   },
   description:
-    "Software Engineer specializing in TypeScript, React, and distributed systems. Read my blog and explore my open-source projects.",
+    "Front-end engineer working in React, TypeScript, and Next.js. Projects I have built, and notes on the problems behind them.",
   keywords: [
-    "software engineer",
+    "front-end engineer",
     "typescript",
     "react",
     "next.js",
     "portfolio",
     "blog",
-    "distributed systems",
   ],
   authors: [{ name: "Hà Bùi" }],
   creator: "Hà Bùi",
@@ -39,23 +38,23 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://habui.click/",
     siteName: "Hà Bùi",
-    title: "Hà Bùi — Software Engineer",
+    title: "Hà Bùi — Front-end Engineer",
     description:
-      "Software Engineer specializing in TypeScript, React, and distributed systems.",
+      "Front-end engineer working in React, TypeScript, and Next.js.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Hà Bùi — Software Engineer Portfolio",
+        alt: "Hà Bùi — Front-end Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hà Bùi — Software Engineer",
+    title: "Hà Bùi — Front-end Engineer",
     description:
-      "Software Engineer specializing in TypeScript, React, and distributed systems.",
+      "Front-end engineer working in React, TypeScript, and Next.js.",
     creator: "@Hà Bùi",
     images: ["/og-image.png"],
   },

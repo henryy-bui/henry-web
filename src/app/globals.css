@@ -15,6 +15,10 @@
   /* One short duration for the only motion left: color/border state changes. */
   --transition: 140ms ease;
 
+  /* Code block gutter. .code-line cancels it with a negative margin so a
+     highlighted line spans the full block, so the two must stay equal. */
+  --code-pad-x: 1.5rem;
+
   --heading-tracking: -0.02em;
 }
 
@@ -249,6 +253,26 @@ html.locale-switching body {
   padding: 80px 0;
 }
 
+@media (max-width: 640px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .section {
+    padding: 48px 0;
+  }
+
+  :root {
+    --code-pad-x: 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
 /* ===== TYPOGRAPHY ===== */
 h1,
 h2,
@@ -274,18 +298,21 @@ h6 {
 .prose {
   color: var(--text-primary);
   max-width: 70ch;
-  font-size: 1.05rem;
+  font-size: clamp(1rem, 0.97rem + 0.15vw, 1.05rem);
   line-height: 1.8;
+  /* A long URL or an inline identifier would otherwise widen the column and
+     push the whole page sideways on a phone. */
+  overflow-wrap: break-word;
 }
 
 .prose h1 {
-  font-size: 2rem;
+  font-size: clamp(1.625rem, 1.3rem + 1.5vw, 2rem);
   margin: 2.5rem 0 1rem;
   letter-spacing: -0.03em;
 }
 
 .prose h2 {
-  font-size: 1.5rem;
+  font-size: clamp(1.3rem, 1.15rem + 0.7vw, 1.5rem);
   margin: 2.5rem 0 0.75rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border-subtle);
@@ -344,7 +371,7 @@ h6 {
   background: var(--code-bg);
   border: 1px solid var(--code-border);
   border-radius: var(--radius-md);
-  padding: 1.25rem 1.5rem;
+  padding: 1.25rem var(--code-pad-x);
   overflow-x: auto;
   margin: 1.5rem 0;
 }
@@ -372,10 +399,20 @@ h6 {
   margin: 2.5rem 0;
 }
 
+.table-scroll {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  /* Keeps the focus ring visible when the container is scrolled to a cell. */
+  padding-bottom: 2px;
+}
+
 .prose table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1.5rem 0;
+  margin: 0;
+  /* Below this a data table stops being readable, so scroll it rather than
+     crushing the columns. */
+  min-width: 30rem;
 }
 
 .prose th,
@@ -421,7 +458,7 @@ pre[class*="language-"] {
   background: var(--code-bg);
   border: 1px solid var(--code-border);
   border-radius: var(--radius-md);
-  padding: 1.25rem 1.5rem;
+  padding: 1.25rem var(--code-pad-x);
   margin: 1.5rem 0;
   overflow: auto;
 }
@@ -437,8 +474,8 @@ pre[class*="language-"] {
 /* Line treatment from rehype-prism-plus */
 .code-line {
   display: block;
-  margin: 0 -1.5rem;
-  padding: 0 1.5rem;
+  margin: 0 calc(var(--code-pad-x) * -1);
+  padding: 0 var(--code-pad-x);
   border-left: 2px solid transparent;
 }
 

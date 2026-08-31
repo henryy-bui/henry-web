@@ -1,3 +1,23 @@
+/* One measure drives every block on the page — header, body, related, footer.
+   Before this the header was capped at 800px while .prose was capped at 70ch
+   (~590px), so the title and the paragraphs below it were visibly different
+   widths. The toggle swaps this one value. */
+.article {
+  --reading-measure: 42rem;
+}
+
+:global(html[data-reading-width="wide"]) .article {
+  --reading-measure: 100%;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
 .back {
   display: inline-flex;
   align-items: center;
@@ -5,7 +25,6 @@
   font-size: 0.875rem;
   font-weight: 400;
   color: var(--text-muted);
-  margin-bottom: 40px;
   transition: color var(--transition);
 }
 
@@ -14,13 +33,14 @@
 }
 
 .header {
-  max-width: 800px;
+  max-width: var(--reading-measure);
   margin-bottom: 40px;
 }
 
 .postMeta {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 8px 20px;
   align-items: center;
   font-size: 0.8125rem;
   color: var(--text-muted);
@@ -35,7 +55,7 @@
 }
 
 .title {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.625rem, 1.15rem + 2.2vw, 2.5rem);
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.15;
@@ -43,7 +63,7 @@
 }
 
 .description {
-  font-size: 1.125rem;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
   color: var(--text-secondary);
   line-height: 1.65;
   margin-bottom: 20px;
@@ -71,14 +91,21 @@
   border: none;
   border-top: 1px solid var(--border-subtle);
   margin: 40px 0;
+  max-width: var(--reading-measure);
 }
 
 .content {
-  max-width: 800px;
+  max-width: var(--reading-measure);
+}
+
+/* .prose carries its own 70ch cap for any other context; here the wrapper is
+   the single source of width. */
+.content :global(.prose) {
+  max-width: none;
 }
 
 .relatedSection {
-  max-width: 800px;
+  max-width: var(--reading-measure);
   margin-top: 48px;
 }
 
@@ -109,6 +136,7 @@
 .relatedMeta {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--text-muted);
@@ -132,7 +160,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 800px;
+  gap: 16px;
+  max-width: var(--reading-measure);
 }
 
 .footerText {
@@ -165,9 +194,32 @@
   color: var(--text-primary);
 }
 
-@media (max-width: 600px) {
+/* Three related cards never fit below the desktop measure. */
+@media (max-width: 900px) {
+  .relatedList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .topBar {
+    margin-bottom: 28px;
+  }
+
+  .header {
+    margin-bottom: 28px;
+  }
+
+  .divider {
+    margin: 28px 0;
+  }
+
   .relatedList {
     grid-template-columns: 1fr;
+  }
+
+  .relatedSection {
+    margin-top: 36px;
   }
 
   .footer {

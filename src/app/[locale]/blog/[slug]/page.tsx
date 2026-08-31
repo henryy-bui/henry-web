@@ -164,16 +164,20 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <article
-      className={`section ${typedLocale === "vi" ? styles.localeVi : ""}`}
+      className={`section ${styles.article} ${
+        typedLocale === "vi" ? styles.localeVi : ""
+      }`}
     >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="container">
-        <Link href={`/${typedLocale}/blog`} className={styles.back}>
-          <ArrowLeft size={16} /> {dict.blog.backToBlog}
-        </Link>
+        <div className={styles.topBar}>
+          <Link href={`/${typedLocale}/blog`} className={styles.back}>
+            <ArrowLeft size={16} /> {dict.blog.backToBlog}
+          </Link>
+        </div>
 
         <header className={styles.header}>
           <div className={styles.postMeta}>
@@ -202,11 +206,13 @@ export default async function BlogPostPage({ params }: Props) {
 
         <hr className={styles.divider} />
 
-        <BlogContent
-          html={post.content}
-          copyLabel={dict.blog.copyCode}
-          copiedLabel={dict.blog.copiedCode}
-        />
+        <div className={styles.content}>
+          <BlogContent
+            html={post.content}
+            copyLabel={dict.blog.copyCode}
+            copiedLabel={dict.blog.copiedCode}
+          />
+        </div>
 
         {relatedCandidates.length > 0 && (
           <section className={styles.relatedSection}>

@@ -11,6 +11,47 @@ import { defaultLocale, type Locale } from "@/i18n/config";
 
 const POSTS_DIR = path.join(process.cwd(), "src/content/blog");
 
+type HastNode = {
+  type: string;
+  tagName?: string;
+  properties?: Record<string, unknown>;
+  children?: HastNode[];
+};
+
+/**
+ * Wraps every table in a horizontally scrollable container.
+ *
+ * A markdown table wider than the reading column has nowhere to go: the body
+ * sets overflow-x: hidden, so on a phone the overflowing columns are silently
+ * clipped rather than reachable. Doing this here (server side) instead of in
+ * an effect keeps the wrapper in the initial HTML, so there is no layout shift
+ * on hydration.
+ */
+function rehypeScrollableTables() {
+  return (tree: HastNode) => {
+    const walk = (node: HastNode) => {
+      if (!node.children) return;
+
+      node.children = node.children.map((child) => {
+        walk(child);
+
+        if (child.type === "element" && child.tagName === "table") {
+          return {
+            type: "element",
+            tagName: "div",
+            properties: { className: ["table-scroll"] },
+            children: [child],
+          };
+        }
+
+        return child;
+      });
+    };
+
+    walk(tree);
+  };
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -130,6 +171,7 @@ export async function getPostBySlug(
     .use(remarkGfm)
     .use(remarkRehype)
     .use(rehypePrism)
+    .use(rehypeScrollableTables)
     .use(rehypeStringify)
     .process(content);
 

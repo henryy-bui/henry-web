@@ -41,6 +41,8 @@ export default async function ExperiencePage({ params }: PageProps) {
   const typedLocale = locale as Locale;
   const dict = getDictionary(typedLocale);
   const experiences = getExperiences(typedLocale);
+  const old = experiences[0]?.endYear ? experiences[0] : experiences[1];
+  const numberOfYears = old ? new Date().getFullYear() - old.startYear : 0;
 
   return (
     <div className="section">
@@ -108,7 +110,7 @@ export default async function ExperiencePage({ params }: PageProps) {
 
         <div className={styles.stats}>
           <div className={styles.stat}>
-            <span className={styles.statValue}>4+</span>
+            <span className={styles.statValue}>{numberOfYears}</span>
             <span className={styles.statLabel}>
               {dict.experience.stats.years}
             </span>
