@@ -27,7 +27,7 @@
 }
 
 .logo svg {
-  color: var(--accent);
+  color: var(--text-muted);
 }
 
 .tagline {
@@ -50,7 +50,7 @@
 
 .groupLabel {
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
@@ -75,8 +75,8 @@
 }
 
 .socialBtn {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,14 +85,12 @@
   color: var(--text-muted);
   transition:
     border-color var(--transition),
-    color var(--transition),
-    background var(--transition);
+    color var(--transition);
 }
 
 .socialBtn:hover {
-  border-color: var(--accent);
-  color: var(--accent-hover);
-  background: var(--accent-glow);
+  border-color: var(--text-muted);
+  color: var(--text-primary);
 }
 
 .bottom {

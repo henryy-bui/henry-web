@@ -29,8 +29,8 @@ export async function generateMetadata({
     imagePath: `/${locale}/opengraph-image`,
     imageAlt:
       locale === "vi"
-        ? "Kinh nghiệm làm việc và thành tựu kỹ thuật của Ha Bui trong frontend engineering"
-        : "Ha Bui's professional experience and technical achievements in frontend engineering",
+        ? "Kinh nghiệm làm việc và thành tựu kỹ thuật mình trong frontend engineering"
+        : "My professional experience and technical achievements in frontend engineering",
   });
 }
 

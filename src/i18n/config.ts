@@ -14,13 +14,8 @@ export function getOtherLocale(locale: Locale): Locale {
   return locale === "en" ? "vi" : "en";
 }
 
-export function getLocaleDisplayName(
-  locale: Locale,
-  displayLocale: Locale = locale
-): string {
-  if (displayLocale === "vi") {
-    return locale === "en" ? "🏴󠁧󠁢󠁥󠁮󠁧󠁿 EN" : "🇻🇳 VI";
-  }
-
-  return locale === "en" ? "🏴󠁧󠁢󠁥󠁮󠁧󠁿 EN" : "🇻🇳 VI";
+// Plain codes, no flag emoji — the switcher was the last splash of color in
+// the nav, and the two branches below it rendered the same string anyway.
+export function getLocaleDisplayName(locale: Locale): string {
+  return locale === "en" ? "EN" : "VI";
 }

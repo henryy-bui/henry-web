@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type MouseEvent } from "react";
+import { useEffect } from "react";
 import { Moon, Sun } from "lucide-react";
 import styles from "./ThemeToggle.module.css";
 
@@ -10,12 +10,6 @@ type ThemeToggleProps = {
 };
 
 type Theme = "light" | "dark";
-
-type DocumentWithViewTransition = Document & {
-  startViewTransition?: (updateCallback: () => void) => {
-    finished: Promise<void>;
-  };
-};
 
 const STORAGE_KEY = "theme";
 
@@ -35,17 +29,7 @@ function commitTheme(next: Theme) {
   window.setTimeout(() => root.classList.remove("theme-changing"), 1);
 }
 
-// Circle big enough to cover the viewport from the given origin.
-function coverRadius(x: number, y: number) {
-  return Math.hypot(
-    Math.max(x, window.innerWidth - x),
-    Math.max(y, window.innerHeight - y),
-  );
-}
-
 export default function ThemeToggle({ label, className }: ThemeToggleProps) {
-  const isTransitioningRef = useRef(false);
-
   // No stored preference: keep following the OS while the page is open.
   useEffect(() => {
     const media = window.matchMedia("(prefers-color-scheme: light)");
@@ -56,7 +40,6 @@ export default function ThemeToggle({ label, className }: ThemeToggleProps) {
       } catch {
         return;
       }
-      // Not a click on this page — swap quietly, without the reveal.
       commitTheme(event.matches ? "light" : "dark");
     };
 
@@ -64,7 +47,9 @@ export default function ThemeToggle({ label, className }: ThemeToggleProps) {
     return () => media.removeEventListener("change", onSystemChange);
   }, []);
 
-  const toggleTheme = (event: MouseEvent<HTMLButtonElement>) => {
+  // The theme swaps in one paint. The circular reveal this used to run was
+  // half a second of full-screen motion for a preference toggle.
+  const toggleTheme = () => {
     const root = document.documentElement;
     const next: Theme =
       root.getAttribute("data-theme") === "light" ? "dark" : "light";
@@ -75,44 +60,7 @@ export default function ThemeToggle({ label, className }: ThemeToggleProps) {
       // Storage unavailable (private mode) — the theme still applies for this page.
     }
 
-    const doc = document as DocumentWithViewTransition;
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (
-      !doc.startViewTransition ||
-      prefersReducedMotion ||
-      isTransitioningRef.current
-    ) {
-      commitTheme(next);
-      return;
-    }
-
-    const rect = event.currentTarget.getBoundingClientRect();
-    const originX = rect.left + rect.width / 2;
-    const originY = rect.top + rect.height / 2;
-
-    root.style.setProperty("--theme-origin-x", `${originX}px`);
-    root.style.setProperty("--theme-origin-y", `${originY}px`);
-    root.style.setProperty(
-      "--theme-origin-r",
-      `${coverRadius(originX, originY)}px`,
-    );
-    root.classList.add("theme-vt");
-    isTransitioningRef.current = true;
-
-    const transition = doc.startViewTransition(() => {
-      commitTheme(next);
-    });
-
-    const cleanup = () => {
-      isTransitioningRef.current = false;
-      root.classList.remove("theme-vt");
-    };
-
-    // `finished` rejects when the transition is skipped (e.g. tab hidden).
-    transition.finished.then(cleanup, cleanup);
+    commitTheme(next);
   };
 
   return (
@@ -125,13 +73,8 @@ export default function ThemeToggle({ label, className }: ThemeToggleProps) {
     >
       {/* Which icon shows is driven by CSS off [data-theme], so there is
           nothing to hydrate and no first-paint mismatch. */}
-      <Sun size={17} className={styles.sun} data-theme-icon aria-hidden="true" />
-      <Moon
-        size={17}
-        className={styles.moon}
-        data-theme-icon
-        aria-hidden="true"
-      />
+      <Sun size={16} className={styles.sun} aria-hidden="true" />
+      <Moon size={16} className={styles.moon} aria-hidden="true" />
     </button>
   );
 }

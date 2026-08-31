@@ -9,6 +9,14 @@ export const size = {
 };
 export const contentType = "image/png";
 
+// One neutral palette, no per-locale hue — the card matches the site's
+// monochrome dark theme.
+const BG = "#0c0c0d";
+const TEXT = "#ededee";
+const MUTED = "#9c9ca2";
+const DIM = "#6a6a70";
+const BORDER = "#262629";
+
 interface Props {
   params: Promise<{ locale: string }>;
 }
@@ -17,16 +25,6 @@ export default async function Image({ params }: Props) {
   const { locale } = await params;
   const typedLocale: Locale = isLocale(locale) ? locale : "en";
   const dict = getDictionary(typedLocale);
-  const isVietnamese = typedLocale === "vi";
-
-  const gradient = isVietnamese
-    ? "linear-gradient(130deg, #0f172a 0%, #052e16 48%, #042f2e 100%)"
-    : "linear-gradient(130deg, #0f172a 0%, #1e1b4b 50%, #1f2937 100%)";
-  const accent = isVietnamese ? "#34d399" : "#a78bfa";
-  const softAccent = isVietnamese
-    ? "rgba(52, 211, 153, 0.16)"
-    : "rgba(167, 139, 250, 0.18)";
-  const localeLabel = isVietnamese ? "🇻🇳 VI" : "🏴󠁧󠁢󠁥󠁮󠁧󠁿 EN";
 
   return new ImageResponse(
     (
@@ -37,46 +35,17 @@ export default async function Image({ params }: Props) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: gradient,
-          color: "#f8fafc",
-          padding: "56px",
+          background: BG,
+          color: TEXT,
+          padding: "64px",
           fontFamily: "Inter, sans-serif",
-          position: "relative",
-          overflow: "hidden",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            right: "-130px",
-            top: "-90px",
-            width: "360px",
-            height: "360px",
-            borderRadius: "999px",
-            background: softAccent,
-            border: `1px solid ${accent}40`,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: "-120px",
-            bottom: "-170px",
-            width: "420px",
-            height: "420px",
-            borderRadius: "999px",
-            background: isVietnamese
-              ? "rgba(20, 184, 166, 0.12)"
-              : "rgba(59, 130, 246, 0.11)",
-            border: "1px solid rgba(255,255,255,0.09)",
-          }}
-        />
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            position: "relative",
           }}
         >
           <div
@@ -84,8 +53,8 @@ export default async function Image({ params }: Props) {
               display: "flex",
               alignItems: "center",
               gap: "12px",
-              fontSize: 30,
-              color: "#93c5fd",
+              fontSize: 28,
+              color: MUTED,
             }}
           >
             <span>{"</>"}</span>
@@ -95,16 +64,14 @@ export default async function Image({ params }: Props) {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "10px",
-              border: "1px solid rgba(148, 163, 184, 0.4)",
+              border: `1px solid ${BORDER}`,
               borderRadius: 999,
-              padding: "8px 16px",
+              padding: "8px 18px",
               fontSize: 22,
-              color: "#cbd5e1",
-              background: "rgba(15, 23, 42, 0.4)",
+              color: MUTED,
             }}
           >
-            {typedLocale.toUpperCase()} · {localeLabel}
+            {typedLocale.toUpperCase()}
           </div>
         </div>
 
@@ -112,14 +79,13 @@ export default async function Image({ params }: Props) {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "18px",
-            position: "relative",
+            gap: "20px",
           }}
         >
           <div
             style={{
               fontSize: 64,
-              fontWeight: 700,
+              fontWeight: 600,
               letterSpacing: "-0.03em",
               lineHeight: 1.1,
               maxWidth: "90%",
@@ -130,7 +96,7 @@ export default async function Image({ params }: Props) {
           <div
             style={{
               fontSize: 29,
-              color: "#cbd5e1",
+              color: MUTED,
               lineHeight: 1.35,
               maxWidth: "88%",
             }}
@@ -145,8 +111,9 @@ export default async function Image({ params }: Props) {
             justifyContent: "space-between",
             alignItems: "center",
             fontSize: 23,
-            color: "#94a3b8",
-            position: "relative",
+            color: DIM,
+            borderTop: `1px solid ${BORDER}`,
+            paddingTop: "26px",
           }}
         >
           <span>TypeScript • React • Next.js</span>

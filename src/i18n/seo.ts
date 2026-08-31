@@ -65,7 +65,7 @@ export function buildLocalizedMetadata({
   keywords,
   type = "website",
   imagePath = "/og-image.png",
-  imageAlt = "Ha Bui - Software Engineer Portfolio",
+  imageAlt = "Hà Bùi - Software Engineer Portfolio",
 }: PageMetadataOptions): Metadata {
   const localeAlternates = getLocaleAlternates(path);
   const imageUrl = toAbsoluteUrl(imagePath);
@@ -101,7 +101,7 @@ export function buildLocalizedMetadata({
       card: "summary_large_image",
       title,
       description,
-      creator: "@Ha Bui",
+      creator: "@Hà Bùi",
       images: [
         {
           url: imageUrl,

@@ -36,7 +36,7 @@ export async function generateMetadata({
       imagePath: `/${locale}/opengraph-image`,
       imageAlt:
         locale === "vi"
-          ? "Ha Bui - Kỹ sư phần mềm, chuyên TypeScript, React và hệ thống phân tán"
+          ? "Hà Bùi - Kỹ sư phần mềm, chuyên TypeScript, React và hệ thống phân tán"
           : "Ha Bui - Software Engineer specializing in TypeScript, React, and distributed systems",
     }),
     title: {

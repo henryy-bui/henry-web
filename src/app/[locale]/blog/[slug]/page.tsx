@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       publishedTime: post.date,
       modifiedTime: post.date,
       tags: post.tags,
-      authors: ["Ha Bui"],
+      authors: ["Hà Bùi"],
       images: [
         {
           url: getLocalizedUrl(typedLocale, `/blog/${slug}/opengraph-image`),
@@ -156,7 +156,7 @@ export default async function BlogPostPage({ params }: Props) {
     author: [
       {
         "@type": "Person",
-        name: "Ha Bui",
+        name: "Hà Bùi",
         url: "https://habui.click/",
       },
     ],

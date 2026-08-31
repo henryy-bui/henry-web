@@ -54,8 +54,8 @@ export default function Navbar({ locale, dictionary }: NavbarProps) {
   );
   const nextLocale = getOtherLocale(locale);
   const switchPath = toSwitchedLocalePath(pathname, nextLocale);
-  const currentLocaleLabel = getLocaleDisplayName(locale, locale);
-  const nextLocaleLabel = getLocaleDisplayName(nextLocale, locale);
+  const currentLocaleLabel = getLocaleDisplayName(locale);
+  const nextLocaleLabel = getLocaleDisplayName(nextLocale);
 
   const isActive = (href: string) =>
     pathname === href ||

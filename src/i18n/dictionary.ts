@@ -214,8 +214,8 @@ const en: SiteDictionary = {
 
 const vi: SiteDictionary = {
   metadata: {
-    siteTitle: "Ha Bui - Kỹ sư phần mềm",
-    titleTemplate: "%s | Ha Bui",
+    siteTitle: "Hà Bùi - Kỹ sư phần mềm",
+    titleTemplate: "%s | Hà Bùi",
     siteDescription:
       "Kỹ sư phần mềm tập trung vào TypeScript, React và hệ thống phân tán. Đây là nơi mình chia sẻ góc nhìn kỹ thuật và các dự án mã nguồn mở.",
     ogDescription:
@@ -253,7 +253,7 @@ const vi: SiteDictionary = {
   home: {
     badge: "Sẵn sàng cho vai trò Senior",
     titleLine1: "Xin chào mọi người!",
-    titleHighlight: "Mình là Ha Bui, Kỹ sư Front-end",
+    titleHighlight: "Mình là Hà Bùi, Kỹ sư Front-end",
     subtitle:
       "Frontend Engineer chuyên React, Next.js và các ứng dụng web phức tạp. Mình tập trung biến thiết kế thành sản phẩm chạy mượt, sạch và bền trong production.",
     ctaProjects: "Xem dự án",

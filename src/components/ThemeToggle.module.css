@@ -1,50 +1,45 @@
 .toggle {
   display: inline-grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-sm);
-  color: var(--text-secondary);
+  color: var(--text-muted);
   background: transparent;
-  transition: color var(--transition), background var(--transition);
+  transition: color var(--transition);
 }
 
 .toggle:hover {
   color: var(--text-primary);
-  background: var(--bg-card);
 }
 
+/* A cross-fade only — no rotation, no scale. */
 .sun,
 .moon {
   grid-area: 1 / 1;
-  transition: opacity var(--transition), transform var(--transition-slow);
+  transition: opacity var(--transition);
 }
 
 /* Show the theme you would switch to. */
 .sun {
   opacity: 1;
-  transform: rotate(0deg) scale(1);
 }
 
 .moon {
   opacity: 0;
-  transform: rotate(-90deg) scale(0.6);
 }
 
 :global(html[data-theme="light"]) .sun {
   opacity: 0;
-  transform: rotate(90deg) scale(0.6);
 }
 
 :global(html[data-theme="light"]) .moon {
   opacity: 1;
-  transform: rotate(0deg) scale(1);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .sun,
   .moon {
-    transition: opacity var(--transition);
-    transform: none !important;
+    transition: none;
   }
 }

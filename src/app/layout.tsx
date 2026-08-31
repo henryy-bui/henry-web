@@ -5,8 +5,8 @@ import ThemeScript from "@/components/ThemeScript";
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fbfbfd" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0b" },
+    { media: "(prefers-color-scheme: light)", color: "#fcfcfd" },
+    { media: "(prefers-color-scheme: dark)", color: "#0c0c0d" },
   ],
 };
 
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     shortcut: ["/icon.svg"],
   },
   title: {
-    default: "Ha Bui — Software Engineer",
-    template: "%s | Ha Bui",
+    default: "Hà Bùi — Software Engineer",
+    template: "%s | Hà Bùi",
   },
   description:
     "Software Engineer specializing in TypeScript, React, and distributed systems. Read my blog and explore my open-source projects.",
@@ -32,14 +32,14 @@ export const metadata: Metadata = {
     "blog",
     "distributed systems",
   ],
-  authors: [{ name: "Ha Bui" }],
-  creator: "Ha Bui",
+  authors: [{ name: "Hà Bùi" }],
+  creator: "Hà Bùi",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://habui.click/",
-    siteName: "Ha Bui",
-    title: "Ha Bui — Software Engineer",
+    siteName: "Hà Bùi",
+    title: "Hà Bùi — Software Engineer",
     description:
       "Software Engineer specializing in TypeScript, React, and distributed systems.",
     images: [
@@ -47,16 +47,16 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Ha Bui — Software Engineer Portfolio",
+        alt: "Hà Bùi — Software Engineer Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ha Bui — Software Engineer",
+    title: "Hà Bùi — Software Engineer",
     description:
       "Software Engineer specializing in TypeScript, React, and distributed systems.",
-    creator: "@Ha Bui",
+    creator: "@Hà Bùi",
     images: ["/og-image.png"],
   },
   robots: {

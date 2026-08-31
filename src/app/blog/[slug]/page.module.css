@@ -3,14 +3,14 @@
   align-items: center;
   gap: 6px;
   font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-secondary);
+  font-weight: 400;
+  color: var(--text-muted);
   margin-bottom: 40px;
   transition: color var(--transition);
 }
 
 .back:hover {
-  color: var(--accent-hover);
+  color: var(--text-primary);
 }
 
 .header {
@@ -35,8 +35,8 @@
 }
 
 .title {
-  font-size: clamp(1.75rem, 4vw, 2.75rem);
-  font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.15;
   margin-bottom: 16px;
@@ -60,17 +60,16 @@
   align-items: center;
   gap: 5px;
   font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--accent);
-  background: var(--accent-glow);
-  border: 1px solid var(--accent-border);
-  padding: 4px 10px;
-  border-radius: 4px;
+  font-weight: 400;
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
 }
 
 .divider {
   border: none;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-subtle);
   margin: 40px 0;
 }
 
@@ -84,8 +83,8 @@
 }
 
 .relatedTitle {
-  font-size: 1.1rem;
-  font-weight: 650;
+  font-size: 1.05rem;
+  font-weight: 600;
   margin-bottom: 14px;
   color: var(--text-primary);
 }
@@ -100,15 +99,11 @@
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 14px;
-  background: var(--surface-subtle);
-  transition: border-color var(--transition), background var(--transition),
-    transform var(--transition);
+  transition: border-color var(--transition);
 }
 
 .relatedCard:hover {
-  border-color: var(--accent-border-strong);
-  background: var(--accent-glow);
-  transform: translateY(-2px);
+  border-color: var(--text-muted);
 }
 
 .relatedMeta {
@@ -146,13 +141,13 @@
 }
 
 .footerText a {
-  color: var(--accent-hover);
-  border-bottom: 1px solid var(--accent-glow);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
   transition: border-color var(--transition);
 }
 
 .footerText a:hover {
-  border-color: var(--accent-hover);
+  border-color: var(--text-primary);
 }
 
 .backLink {
@@ -160,14 +155,14 @@
   align-items: center;
   gap: 6px;
   font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-secondary);
+  font-weight: 400;
+  color: var(--text-muted);
   transition: color var(--transition);
   white-space: nowrap;
 }
 
 .backLink:hover {
-  color: var(--accent-hover);
+  color: var(--text-primary);
 }
 
 @media (max-width: 600px) {

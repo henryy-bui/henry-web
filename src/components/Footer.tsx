@@ -121,7 +121,7 @@ export default function Footer({ locale, dictionary }: FooterProps) {
 
       <div className={styles.bottom}>
         <span>
-          © {year} Ha Bui. {dictionary.footer.copyright}
+          © {year} Hà Bùi. {dictionary.footer.copyright}
         </span>
       </div>
     </footer>

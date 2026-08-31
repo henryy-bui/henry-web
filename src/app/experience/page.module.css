@@ -3,8 +3,8 @@
 }
 
 .title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 600;
   letter-spacing: -0.04em;
   margin-bottom: 12px;
 }
@@ -38,26 +38,25 @@
 }
 
 .dot {
-  width: 14px;
-  height: 14px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: var(--bg-card);
-  border: 2px solid var(--border);
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
   flex-shrink: 0;
-  transition: border-color var(--transition);
-  margin-top: 6px;
+  margin-top: 8px;
   position: relative;
   z-index: 1;
 }
 
+/* Current role: a filled dot rather than a glowing one. */
 .dotCurrent {
-  border-color: var(--accent);
-  background: var(--accent-glow);
-  box-shadow: 0 0 12px var(--accent-glow);
+  background: var(--text-primary);
+  border-color: var(--text-primary);
 }
 
 .line {
-  width: 2px;
+  width: 1px;
   flex: 1;
   background: var(--border-subtle);
   margin: 8px 0;
@@ -88,20 +87,19 @@
   font-size: 0.8125rem;
   color: var(--text-muted);
   margin-bottom: 4px;
-  display: flex;
 }
 
 .role {
-  font-size: 1.3125rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 600;
   letter-spacing: -0.025em;
   margin-bottom: 4px;
 }
 
 .company {
   font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--accent-hover);
+  font-weight: 400;
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -116,13 +114,12 @@
 .currentBadge {
   flex-shrink: 0;
   font-size: 0.6875rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent-green);
-  background: var(--green-soft);
-  border: 1px solid var(--green-border);
-  padding: 4px 10px;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
   border-radius: 100px;
 }
 
@@ -151,10 +148,10 @@
 }
 
 .achievementDot {
-  width: 5px;
-  height: 5px;
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--text-muted);
   flex-shrink: 0;
   margin-top: 8px;
 }
@@ -169,10 +166,9 @@
   font-size: 0.75rem;
   font-family: var(--font-mono);
   color: var(--text-muted);
-  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  padding: 3px 9px;
-  border-radius: 4px;
+  padding: 2px 9px;
+  border-radius: var(--radius-sm);
 }
 
 /* Stats row */
@@ -180,10 +176,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 32px 0 0;
 }
 
 .stat {
@@ -194,13 +188,10 @@
 }
 
 .statValue {
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.875rem;
+  font-weight: 600;
   letter-spacing: -0.03em;
-  background: linear-gradient(135deg, var(--accent-hover), var(--accent-green));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
 }
 
 .statLabel {
@@ -211,6 +202,7 @@
 @media (max-width: 600px) {
   .stats {
     grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
   }
 
   .company {

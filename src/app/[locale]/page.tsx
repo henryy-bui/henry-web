@@ -19,14 +19,14 @@ import { notFound } from "next/navigation";
 import styles from "../page.module.css";
 
 const TECH_STACK = [
-  { name: "TypeScript", icon: "x", color: "#3178c6" },
-  { name: "React", icon: "x", color: "#61dafb" },
-  { name: "Next.js", icon: "x", color: "var(--text-primary)" },
-  { name: "Tailwind CSS", icon: "x", color: "#38bdf8" },
-  { name: "Framer Motion", icon: "x", color: "#e11d48" },
-  { name: "Zustand", icon: "x", color: "#fbd38d" },
-  { name: "Node.js", icon: "x", color: "#339933" },
-  { name: "Figma", icon: "x", color: "#f24e1e" },
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Tailwind CSS",
+  "Framer Motion",
+  "Zustand",
+  "Node.js",
+  "Figma",
 ];
 
 interface PageProps {
@@ -60,7 +60,7 @@ export async function generateMetadata({
     imagePath: `/${typedLocale}/opengraph-image`,
     imageAlt:
       typedLocale === "vi"
-        ? "Ha Bui - Kỹ sư phần mềm, trang cá nhân và blog kỹ thuật"
+        ? "Hà Bùi - Kỹ sư phần mềm, trang cá nhân và blog kỹ thuật"
         : "Ha Bui - Software Engineer, portfolio and engineering blog",
   });
 }
@@ -101,22 +101,20 @@ export default async function HomePage({ params }: PageProps) {
       <section className={styles.hero}>
         <div className="container">
           <div className={styles.heroInner}>
-            <div className={styles.heroBadge + " animate-fade-in-up delay-1"}>
+            <div className={styles.heroBadge}>
               <span className={styles.dot} />
               {dict.home.badge}
             </div>
-            <p className={styles.heroGreeting + " animate-fade-in-up delay-2"}>
+            <p className={styles.heroGreeting}>
               {dict.home.titleLine1}
             </p>
-            <h1 className={styles.heroTitle + " animate-fade-in-up delay-2"}>
-              <span className={styles.heroGradient}>
-                {dict.home.titleHighlight}
-              </span>
+            <h1 className={styles.heroTitle}>
+              {dict.home.titleHighlight}
             </h1>
-            <p className={styles.heroSubtitle + " animate-fade-in-up delay-3"}>
+            <p className={styles.heroSubtitle}>
               {dict.home.subtitle}
             </p>
-            <div className={styles.heroActions + " animate-fade-in-up delay-4"}>
+            <div className={styles.heroActions}>
               <Link
                 href={`/${typedLocale}/projects`}
                 className={styles.btnPrimary}
@@ -167,12 +165,8 @@ export default async function HomePage({ params }: PageProps) {
           <p className={styles.techLabel}>{dict.home.techLabel}</p>
           <div className={styles.techGrid}>
             {TECH_STACK.map((tech) => (
-              <div key={tech.name} className={styles.techPill}>
-                <span
-                  className={styles.techDot}
-                  style={{ background: tech.color }}
-                />
-                {tech.name}
+              <div key={tech} className={styles.techPill}>
+                {tech}
               </div>
             ))}
           </div>
@@ -201,7 +195,7 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className={`${styles.featuredSection} section`}>
+      <section className="section">
         <div className="container">
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>{dict.home.featuredTitle}</h2>
@@ -258,7 +252,7 @@ export default async function HomePage({ params }: PageProps) {
       </section>
 
       {recentPosts.length > 0 && (
-        <section className={`${styles.postsSection} section`}>
+        <section className="section">
           <div className="container">
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>{dict.home.recentTitle}</h2>

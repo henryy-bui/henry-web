@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap");
 
 /* ===== CSS VARIABLES ===== */
 /* Theme-independent design tokens */
@@ -6,95 +6,68 @@
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  /* Minimal radii — edges stay close to square so shape never competes
+     with content. */
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
 
-  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* One short duration for the only motion left: color/border state changes. */
+  --transition: 140ms ease;
 
   --heading-tracking: -0.02em;
 }
 
-/* ===== DARK THEME (default) ===== */
+/* ===== DARK THEME (default) =====
+   There is deliberately no accent token. The palette is a single neutral
+   ramp: emphasis comes from contrast, weight, and space. Semantic states
+   (active / in progress / archived) are luminance steps, and the only
+   "highlight" on the site is an inverted surface — text-primary as a
+   background with bg-primary as the text. */
 :root,
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg-primary: #0a0a0b;
-  --bg-secondary: #111113;
-  --bg-card: #18181b;
-  --bg-card-hover: #1f1f23;
-  --border: #2a2a2e;
-  --border-subtle: #1e1e22;
+  --bg-primary: #0c0c0d;
+  --bg-secondary: #111112;
+  --bg-card: #131314;
+  --border: #262629;
+  --border-subtle: #1c1c1f;
 
-  --text-primary: #f0f0f2;
-  --text-secondary: #8b8b9a;
-  --text-muted: #5a5a6a;
+  --text-primary: #ededee;
+  --text-secondary: #9c9ca2;
+  --text-muted: #6a6a70;
 
-  --accent: #6366f1;
-  --accent-hover: #818cf8;
-  --accent-glow: rgba(99, 102, 241, 0.15);
-  --accent-border: rgba(99, 102, 241, 0.2);
-  --accent-border-strong: rgba(99, 102, 241, 0.4);
-  --accent-green: #22d3a5;
-  --accent-amber: #f59e0b;
-  --accent-rose: #f43f5e;
-
-  --green-soft: rgba(34, 211, 165, 0.1);
-  --green-border: rgba(34, 211, 165, 0.2);
-  --amber-soft: rgba(245, 158, 11, 0.1);
-
-  /* Translucent surfaces (cards over the page glow, nav, related items) */
-  --surface-glass: rgba(24, 24, 27, 0.4);
-  --surface-glass-hover: rgba(31, 31, 35, 0.6);
+  /* Flat surfaces — no glass, no blur, no elevation. */
   --surface-subtle: rgba(255, 255, 255, 0.02);
-  --nav-bg: rgba(10, 10, 11, 0.7);
-  --nav-bg-solid: rgba(10, 10, 11, 0.95);
+  --nav-bg: var(--bg-primary);
+  --nav-bg-solid: var(--bg-primary);
+  --fab-bg: var(--bg-card);
+  --fab-color: var(--text-secondary);
 
-  --body-glow-1: rgba(99, 102, 241, 0.05);
-  --body-glow-2: rgba(34, 211, 165, 0.03);
+  --selection-bg: rgba(255, 255, 255, 0.14);
 
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4), 0 8px 32px rgba(0, 0, 0, 0.3);
-  --shadow-card-hover: 0 12px 40px rgba(0, 0, 0, 0.3);
-  --shadow-accent: 0 0 0 1px var(--accent), 0 0 30px var(--accent-glow);
-  --shadow-accent-btn: 0 6px 24px rgba(99, 102, 241, 0.28);
-
-  --fab-bg: linear-gradient(
-    165deg,
-    rgba(15, 23, 42, 0.7) 0%,
-    rgba(2, 6, 23, 0.82) 100%
-  );
-  --fab-bg-hover: linear-gradient(
-    165deg,
-    rgba(30, 41, 59, 0.76) 0%,
-    rgba(2, 6, 23, 0.88) 100%
-  );
-  --fab-color: #e2e8f0;
-  --fab-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    0 10px 24px rgba(2, 6, 23, 0.38);
-
-  /* Syntax highlighting — Tomorrow Night Eighties */
-  --code-bg: #131317;
-  --code-border: #26262b;
-  --code-inline-bg: #1d1d21;
-  --code-text: #d7d7dd;
-  --code-comment: #8a8a99;
-  --code-punctuation: #b8b8c2;
-  --code-tag: #e2777a;
-  --code-function-name: #6196cc;
-  --code-number: #f08d49;
-  --code-property: #f8c555;
-  --code-keyword: #cc99cd;
-  --code-string: #7ec699;
-  --code-operator: #67cdcc;
-  --code-inserted: #4ade80;
-  --code-deleted: #f87171;
-  --code-line-highlight: rgba(99, 102, 241, 0.12);
-  --code-line-number: #55555f;
-  --code-chrome-bg: rgba(255, 255, 255, 0.06);
-  --code-chrome-bg-hover: rgba(255, 255, 255, 0.12);
+  /* Syntax highlighting — five luminance steps, no hue. Structure reads
+     through contrast; only diff markers carry a trace of color, because
+     added/removed is meaning a gray step cannot express. */
+  --code-bg: #101011;
+  --code-border: #212124;
+  --code-inline-bg: #171719;
+  --code-text: #cbcbd1;
+  --code-comment: #5c5c63;
+  --code-punctuation: #7c7c85;
+  --code-tag: #f0f0f2;
+  --code-function-name: #ededee;
+  --code-number: #a8a8b0;
+  --code-property: #a8a8b0;
+  --code-keyword: #f0f0f2;
+  --code-string: #9d9da6;
+  --code-operator: #7c7c85;
+  --code-inserted: #a6b8a8;
+  --code-deleted: #b8a6a8;
+  --code-line-highlight: rgba(255, 255, 255, 0.05);
+  --code-line-number: #4e4e56;
+  --code-chrome-bg: rgba(255, 255, 255, 0.05);
   --code-chrome-border: rgba(255, 255, 255, 0.12);
 }
 
@@ -102,85 +75,49 @@
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --bg-primary: #fbfbfd;
-  --bg-secondary: #f3f3f7;
+  --bg-primary: #fcfcfd;
+  --bg-secondary: #f4f4f6;
   --bg-card: #ffffff;
-  --bg-card-hover: #f5f5f9;
-  --border: #e1e1e9;
-  --border-subtle: #ececf2;
+  --border: #e3e3e7;
+  --border-subtle: #ededf0;
 
   --text-primary: #17171c;
-  --text-secondary: #55555f;
-  --text-muted: #7b7b88;
+  --text-secondary: #56565f;
+  --text-muted: #82828c;
 
-  --accent: #5457e0;
-  --accent-hover: #4144c9;
-  --accent-glow: rgba(99, 102, 241, 0.1);
-  --accent-border: rgba(99, 102, 241, 0.22);
-  --accent-border-strong: rgba(99, 102, 241, 0.45);
-  --accent-green: #0e9b78;
-  --accent-amber: #b45309;
-  --accent-rose: #e11d48;
-
-  --green-soft: rgba(14, 155, 120, 0.1);
-  --green-border: rgba(14, 155, 120, 0.24);
-  --amber-soft: rgba(180, 83, 9, 0.1);
-
-  --surface-glass: rgba(255, 255, 255, 0.72);
-  --surface-glass-hover: #ffffff;
   --surface-subtle: rgba(23, 23, 28, 0.02);
-  --nav-bg: rgba(251, 251, 253, 0.72);
-  --nav-bg-solid: rgba(251, 251, 253, 0.96);
+  --nav-bg: var(--bg-primary);
+  --nav-bg-solid: var(--bg-primary);
+  --fab-bg: var(--bg-card);
+  --fab-color: var(--text-secondary);
 
-  --body-glow-1: rgba(99, 102, 241, 0.07);
-  --body-glow-2: rgba(14, 155, 120, 0.05);
+  --selection-bg: rgba(23, 23, 28, 0.12);
 
-  --shadow-card: 0 1px 2px rgba(23, 23, 40, 0.05),
-    0 8px 28px rgba(23, 23, 40, 0.06);
-  --shadow-card-hover: 0 12px 36px rgba(23, 23, 40, 0.1);
-  --shadow-accent: 0 0 0 1px var(--accent), 0 0 30px var(--accent-glow);
-  --shadow-accent-btn: 0 6px 20px rgba(84, 87, 224, 0.24);
-
-  --fab-bg: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 0.86) 0%,
-    rgba(240, 240, 248, 0.94) 100%
-  );
-  --fab-bg-hover: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 0.96) 0%,
-    rgba(233, 233, 244, 0.98) 100%
-  );
-  --fab-color: #2c2c38;
-  --fab-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    0 10px 24px rgba(23, 23, 40, 0.14);
-
-  /* Syntax highlighting — every hue re-picked for contrast on a light block */
-  --code-bg: #f6f6fa;
-  --code-border: #e1e1e9;
-  --code-inline-bg: #f0f0f5;
-  --code-text: #26262e;
-  --code-comment: #6b7280;
-  --code-punctuation: #4b5563;
-  --code-tag: #cf222e;
-  --code-function-name: #0550ae;
-  --code-number: #953800;
-  --code-property: #8250df;
-  --code-keyword: #cf222e;
-  --code-string: #0a3069;
-  --code-operator: #0550ae;
-  --code-inserted: #116329;
-  --code-deleted: #82071e;
-  --code-line-highlight: rgba(84, 87, 224, 0.09);
-  --code-line-number: #9ca3af;
-  --code-chrome-bg: rgba(23, 23, 40, 0.05);
-  --code-chrome-bg-hover: rgba(23, 23, 40, 0.1);
-  --code-chrome-border: rgba(23, 23, 40, 0.12);
+  /* Same five steps, inverted for a light block. */
+  --code-bg: #f7f7f9;
+  --code-border: #e3e3e7;
+  --code-inline-bg: #f1f1f4;
+  --code-text: #2b2b33;
+  --code-comment: #8e8e99;
+  --code-punctuation: #6c6c78;
+  --code-tag: #0b0b10;
+  --code-function-name: #17171c;
+  --code-number: #4d4d58;
+  --code-property: #4d4d58;
+  --code-keyword: #0b0b10;
+  --code-string: #5e5e69;
+  --code-operator: #6c6c78;
+  --code-inserted: #3f5a45;
+  --code-deleted: #5f3f45;
+  --code-line-highlight: rgba(23, 23, 28, 0.045);
+  --code-line-number: #b0b0ba;
+  --code-chrome-bg: rgba(23, 23, 28, 0.05);
+  --code-chrome-border: rgba(23, 23, 28, 0.12);
 }
 
 /* Theme swaps must be atomic. Without this, properties that CAN transition
-   (color, background-color) animate while ones that cannot (gradients,
-   -webkit-text-fill-color, box-shadow tokens) snap — text flickers through an
+   (color, background-color) animate while ones that cannot (box-shadow
+   tokens, borders on some engines) snap — text flickers through an
    intermediate color against an already-swapped background. ThemeToggle adds
    this class for exactly one frame. */
 html.theme-changing,
@@ -188,18 +125,6 @@ html.theme-changing *,
 html.theme-changing *::before,
 html.theme-changing *::after {
   transition: none !important;
-}
-
-/* The toggle's own sun/moon crossfade is the one motion we keep — it is
-   isolated, so it cannot fall out of step with the page colors. */
-html.theme-changing [data-theme-icon] {
-  transition: opacity var(--transition), transform var(--transition-slow) !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html.theme-changing [data-theme-icon] {
-    transition: none !important;
-  }
 }
 
 /* ===== RESET ===== */
@@ -218,13 +143,6 @@ html {
 body {
   font-family: var(--font-sans);
   background: var(--bg-primary);
-  background-image: radial-gradient(
-      at 0% 0%,
-      var(--body-glow-1) 0px,
-      transparent 50%
-    ),
-    radial-gradient(at 100% 0%, var(--body-glow-2) 0px, transparent 50%);
-  background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -252,7 +170,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 1px solid var(--text-primary);
   outline-offset: 2px;
 }
 
@@ -265,7 +183,6 @@ button {
 }
 ::-webkit-scrollbar-thumb {
   background: var(--border);
-  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
@@ -273,156 +190,50 @@ button {
 
 /* ===== SELECTION ===== */
 ::selection {
-  background: var(--accent-glow);
-  color: var(--accent-hover);
+  background: var(--selection-bg);
+  color: var(--text-primary);
 }
 
-/* ===== KEYFRAMES ===== */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes pulse-dot {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(0.8);
-  }
-}
-
-/* Sequential, not overlapping: the old copy clears out before the new one
-   arrives. Two near-opaque snapshots on screen at once ghost the text — the
-   locale's whole job is changing that text, so any overlap reads as a flicker.
-   The blur these used to carry also shimmered on a full-page snapshot. */
-@keyframes localeOldView {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-}
-
-@keyframes localeNewView {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes localeFallbackOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0.2;
-    transform: translateY(4px);
-  }
-}
-
-/* The UA default for the snapshot image pair is mix-blend-mode: plus-lighter,
-   which only looks right for its own built-in cross-fade. With custom
-   animations the two snapshots get *summed* while both are visible, so text
-   flashes bright mid-transition. Normal blending + explicit stacking fixes it. */
+/* ===== VIEW TRANSITIONS =====
+   One rule for every full-page transition (locale switch, and any future
+   one): a single short cross-fade. The UA default blends the snapshot pair
+   with plus-lighter, which sums two opaque pages and flashes bright — normal
+   blending plus explicit stacking keeps the fade flat. */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  mix-blend-mode: normal;
-}
-
-::view-transition-old(root) {
-  z-index: 0;
-  animation: localeOldView 150ms cubic-bezier(0.4, 0, 1, 1) both;
-}
-
-::view-transition-new(root) {
-  z-index: 1;
-  animation: localeNewView 220ms cubic-bezier(0, 0, 0.2, 1) 120ms both;
-}
-
-html.locale-switching body {
-  animation: localeFallbackOut 120ms cubic-bezier(0.4, 0, 0.2, 1) both;
-}
-
-/* ===== THEME SWITCH VIEW TRANSITION =====
-   The rules above are the locale switcher's blur/slide and would otherwise
-   apply to every view transition, including this one. `.theme-vt` (set by
-   ThemeToggle for the duration of the transition) outranks them, so the theme
-   swap gets its own treatment: the old theme holds still while the new one is
-   revealed by a circle growing out of the toggle button. */
-html.theme-vt::view-transition-old(root),
-html.theme-vt::view-transition-new(root) {
-  /* Chrome blends the default image pair with plus-lighter, which flashes
-     bright where two opaque page snapshots overlap. */
   mix-blend-mode: normal;
   animation: none;
 }
 
-html.theme-vt::view-transition-old(root) {
+::view-transition-old(root) {
   z-index: 0;
 }
 
-html.theme-vt::view-transition-new(root) {
+::view-transition-new(root) {
   z-index: 1;
-  animation: themeReveal 520ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation: pageFade 160ms ease both;
 }
 
-@keyframes themeReveal {
+@keyframes pageFade {
   from {
-    clip-path: circle(
-      0px at var(--theme-origin-x, 50%) var(--theme-origin-y, 0%)
-    );
+    opacity: 0;
   }
   to {
-    clip-path: circle(
-      var(--theme-origin-r, 150vmax) at var(--theme-origin-x, 50%)
-        var(--theme-origin-y, 0%)
-    );
+    opacity: 1;
   }
+}
+
+/* Fallback path for browsers without view transitions. */
+html.locale-switching body {
+  opacity: 0.4;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root),
-  html.theme-vt::view-transition-new(root),
-  html.locale-switching body {
+  html {
+    scroll-behavior: auto;
+  }
+
+  ::view-transition-new(root) {
     animation: none !important;
   }
 }
@@ -436,40 +247,6 @@ html.theme-vt::view-transition-new(root) {
 
 .section {
   padding: 80px 0;
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease forwards;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.4s ease forwards;
-}
-
-/* Stagger delays */
-.delay-1 {
-  animation-delay: 0.1s;
-  opacity: 0;
-}
-.delay-2 {
-  animation-delay: 0.2s;
-  opacity: 0;
-}
-.delay-3 {
-  animation-delay: 0.3s;
-  opacity: 0;
-}
-.delay-4 {
-  animation-delay: 0.4s;
-  opacity: 0;
-}
-.delay-5 {
-  animation-delay: 0.5s;
-  opacity: 0;
-}
-.delay-6 {
-  animation-delay: 0.6s;
-  opacity: 0;
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -511,7 +288,7 @@ h6 {
   font-size: 1.5rem;
   margin: 2.5rem 0 0.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .prose h3 {
@@ -521,18 +298,19 @@ h6 {
 }
 
 .prose p {
-  /* margin-bottom: 1.5rem; */
   color: var(--text-secondary);
 }
 
+/* Links are marked by an underline, not a color — the one affordance that
+   works identically in both themes without introducing a hue. */
 .prose a {
-  color: var(--accent-hover);
-  border-bottom: 1px solid transparent;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
   transition: border-color var(--transition);
 }
 
 .prose a:hover {
-  border-color: var(--accent-hover);
+  border-color: var(--text-primary);
 }
 
 .prose ul,
@@ -546,23 +324,20 @@ h6 {
 }
 
 .prose blockquote {
-  border-left: 3px solid var(--accent);
+  border-left: 1px solid var(--border);
   margin: 2rem 0;
-  padding: 1rem 1.5rem;
-  background: var(--bg-card);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  color: var(--text-secondary);
-  font-style: italic;
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  color: var(--text-muted);
 }
 
 .prose code {
   font-family: var(--font-mono);
   font-size: 0.875em;
   background: var(--code-inline-bg);
-  color: var(--accent-hover);
+  color: var(--code-text);
   padding: 0.15em 0.4em;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-subtle);
 }
 
 .prose pre {
@@ -587,13 +362,13 @@ h6 {
 
 .prose img {
   border-radius: var(--radius-md);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-subtle);
   margin: 2rem 0;
 }
 
 .prose hr {
   border: none;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-subtle);
   margin: 2.5rem 0;
 }
 
@@ -605,13 +380,13 @@ h6 {
 
 .prose th,
 .prose td {
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-subtle);
   padding: 0.75rem 1rem;
   text-align: left;
 }
 
 .prose th {
-  background: var(--bg-card);
+  background: var(--bg-secondary);
   color: var(--text-primary);
   font-weight: 600;
 }
@@ -622,10 +397,10 @@ h6 {
 
 /* ===== SYNTAX HIGHLIGHTING =====
    Replaces the imported prism-tomorrow theme, which hardcoded a #2d2d2d block
-   and light token colors, so code stayed dark-mode-only. Same Tomorrow palette
-   in dark, a contrast-checked light palette in light — both from tokens, so
-   code blocks swap with the rest of the page. Markup comes from
-   rehype-prism-plus (see src/lib/blog.ts). */
+   and light token colors, so code stayed dark-mode-only. Both palettes now
+   come from tokens and are pure luminance ramps, so code blocks swap with the
+   rest of the page and stay as quiet as the prose around them. Markup comes
+   from rehype-prism-plus (see src/lib/blog.ts). */
 code[class*="language-"],
 pre[class*="language-"] {
   color: var(--code-text);
@@ -653,7 +428,7 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"] {
   background: var(--code-inline-bg);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-subtle);
   padding: 0.15em 0.4em;
   border-radius: var(--radius-sm);
   white-space: normal;
@@ -664,12 +439,12 @@ pre[class*="language-"] {
   display: block;
   margin: 0 -1.5rem;
   padding: 0 1.5rem;
-  border-left: 3px solid transparent;
+  border-left: 2px solid transparent;
 }
 
 .code-line.highlight-line {
   background: var(--code-line-highlight);
-  border-left-color: var(--accent);
+  border-left-color: var(--border);
 }
 
 .line-number::before {

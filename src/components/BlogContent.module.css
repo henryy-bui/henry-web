@@ -21,11 +21,14 @@
   border: 1px solid var(--code-chrome-border);
   color: var(--code-comment);
   cursor: pointer;
-  transition: all var(--transition);
+  transition:
+    opacity var(--transition),
+    color var(--transition),
+    border-color var(--transition);
   opacity: 0;
   z-index: 10;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .codeWrapper:hover .copyButton {
@@ -33,15 +36,13 @@
 }
 
 .copyButton:hover {
-  background: var(--code-chrome-bg-hover);
   color: var(--code-text);
   border-color: var(--code-chrome-border);
 }
 
 .copyButton.copied {
-  color: var(--accent-green);
-  background: var(--green-soft);
-  border-color: var(--green-border);
+  color: var(--text-primary);
+  border-color: var(--border);
   opacity: 1;
 }
 

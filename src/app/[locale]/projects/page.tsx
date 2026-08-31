@@ -31,8 +31,8 @@ export async function generateMetadata({
     imagePath: `/${locale}/opengraph-image`,
     imageAlt:
       locale === "vi"
-        ? "Các dự án nổi bật của Ha Bui, gồm sản phẩm mã nguồn mở và dự án production"
-        : "Featured projects by Ha Bui, including open-source tools and production systems",
+        ? "Các dự án nổi bật của tôi, gồm sản phẩm mã nguồn mở và dự án production"
+        : "Featured projects, including open-source tools and production systems",
   });
 }
 
