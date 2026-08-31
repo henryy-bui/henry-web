@@ -82,94 +82,92 @@ export default async function Image({ params }: Props) {
   } as const;
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        background: BG,
+        color: TEXT,
+        padding: "60px",
+        fontFamily: "Inter, sans-serif",
+      }}
+    >
       <div
         style={{
-          width: "100%",
-          height: "100%",
           display: "flex",
-          flexDirection: "column",
           justifyContent: "space-between",
-          background: BG,
-          color: TEXT,
-          padding: "60px",
-          fontFamily: "Inter, sans-serif",
+          alignItems: "center",
         }}
       >
+        <div style={{ ...chipStyle, fontSize: 24 }}>
+          {typedLocale.toUpperCase()} · {localeLabel}
+        </div>
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
             alignItems: "center",
+            fontSize: 22,
+            color: DIM,
           }}
         >
-          <div style={{ ...chipStyle, fontSize: 24 }}>
-            {typedLocale.toUpperCase()} · {localeLabel}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: 22,
-              color: DIM,
-            }}
-          >
-            habui.click/{typedLocale}/blog/{slug}
-          </div>
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 6,
-              fontSize: titleFontSize,
-              fontWeight: 600,
-              lineHeight: 1.12,
-              letterSpacing: "-0.03em",
-              maxWidth: "95%",
-            }}
-          >
-            {titleLines.map((line, index) => (
-              <div key={`${index}-${line}`} style={{ display: "flex" }}>
-                {line}
-              </div>
-            ))}
-          </div>
-          <div
-            style={{
-              fontSize: 28,
-              lineHeight: 1.35,
-              color: MUTED,
-              maxWidth: "92%",
-            }}
-          >
-            {description}
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            borderTop: `1px solid ${BORDER}`,
-            paddingTop: "26px",
-          }}
-        >
-          <div style={{ display: "flex", gap: 10 }}>
-            <div style={chipStyle}>{theme.label}</div>
-            {tags.map((tag) => (
-              <div key={tag} style={chipStyle}>
-                #{tag}
-              </div>
-            ))}
-          </div>
-          <div style={{ fontSize: 22, color: DIM }}>habui.click</div>
+          habui.tech/{typedLocale}/blog/{slug}
         </div>
       </div>
-    ),
-    size
+
+      <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 6,
+            fontSize: titleFontSize,
+            fontWeight: 600,
+            lineHeight: 1.12,
+            letterSpacing: "-0.03em",
+            maxWidth: "95%",
+          }}
+        >
+          {titleLines.map((line, index) => (
+            <div key={`${index}-${line}`} style={{ display: "flex" }}>
+              {line}
+            </div>
+          ))}
+        </div>
+        <div
+          style={{
+            fontSize: 28,
+            lineHeight: 1.35,
+            color: MUTED,
+            maxWidth: "92%",
+          }}
+        >
+          {description}
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          borderTop: `1px solid ${BORDER}`,
+          paddingTop: "26px",
+        }}
+      >
+        <div style={{ display: "flex", gap: 10 }}>
+          <div style={chipStyle}>{theme.label}</div>
+          {tags.map((tag) => (
+            <div key={tag} style={chipStyle}>
+              #{tag}
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize: 22, color: DIM }}>habui.tech</div>
+      </div>
+    </div>,
+    size,
   );
 }

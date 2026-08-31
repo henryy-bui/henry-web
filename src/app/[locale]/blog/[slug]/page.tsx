@@ -157,7 +157,7 @@ export default async function BlogPostPage({ params }: Props) {
       {
         "@type": "Person",
         name: "Hà Bùi",
-        url: "https://habui.click/",
+        url: "https://habui.tech/",
       },
     ],
   };

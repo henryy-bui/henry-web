@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { defaultLocale, locales, type Locale } from "./config";
 
-export const SITE_URL = "https://habui.click";
+export const SITE_URL = "https://habui.tech";
 
 const OG_LOCALE: Record<Locale, string> = {
   en: "en_US",

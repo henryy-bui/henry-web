@@ -13,7 +13,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    host: "https://habui.click",
-    sitemap: "https://habui.click/sitemap.xml",
+    host: "https://habui.tech",
+    sitemap: "https://habui.tech/sitemap.xml",
   };
 }

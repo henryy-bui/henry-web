@@ -27,100 +27,98 @@ export default async function Image({ params }: Props) {
   const dict = getDictionary(typedLocale);
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        background: BG,
+        color: TEXT,
+        padding: "64px",
+        fontFamily: "Inter, sans-serif",
+      }}
+    >
       <div
         style={{
-          width: "100%",
-          height: "100%",
           display: "flex",
-          flexDirection: "column",
+          alignItems: "center",
           justifyContent: "space-between",
-          background: BG,
-          color: TEXT,
-          padding: "64px",
-          fontFamily: "Inter, sans-serif",
         }}
       >
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
+            gap: "12px",
+            fontSize: 28,
+            color: MUTED,
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              fontSize: 28,
-              color: MUTED,
-            }}
-          >
-            <span>{"</>"}</span>
-            <span>habui.click</span>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              border: `1px solid ${BORDER}`,
-              borderRadius: 999,
-              padding: "8px 18px",
-              fontSize: 22,
-              color: MUTED,
-            }}
-          >
-            {typedLocale.toUpperCase()}
-          </div>
+          <span>{"</>"}</span>
+          <span>habui</span>
         </div>
-
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-          }}
-        >
-          <div
-            style={{
-              fontSize: 64,
-              fontWeight: 600,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.1,
-              maxWidth: "90%",
-            }}
-          >
-            {dict.metadata.siteTitle}
-          </div>
-          <div
-            style={{
-              fontSize: 29,
-              color: MUTED,
-              lineHeight: 1.35,
-              maxWidth: "88%",
-            }}
-          >
-            {dict.metadata.siteDescription}
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
             alignItems: "center",
-            fontSize: 23,
-            color: DIM,
-            borderTop: `1px solid ${BORDER}`,
-            paddingTop: "26px",
+            border: `1px solid ${BORDER}`,
+            borderRadius: 999,
+            padding: "8px 18px",
+            fontSize: 22,
+            color: MUTED,
           }}
         >
-          <span>TypeScript • React • Next.js</span>
-          <span>habui.click/{typedLocale}</span>
+          {typedLocale.toUpperCase()}
         </div>
       </div>
-    ),
-    size
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+        }}
+      >
+        <div
+          style={{
+            fontSize: 64,
+            fontWeight: 600,
+            letterSpacing: "-0.03em",
+            lineHeight: 1.1,
+            maxWidth: "90%",
+          }}
+        >
+          {dict.metadata.siteTitle}
+        </div>
+        <div
+          style={{
+            fontSize: 29,
+            color: MUTED,
+            lineHeight: 1.35,
+            maxWidth: "88%",
+          }}
+        >
+          {dict.metadata.siteDescription}
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          fontSize: 23,
+          color: DIM,
+          borderTop: `1px solid ${BORDER}`,
+          paddingTop: "26px",
+        }}
+      >
+        <span>TypeScript • React • Next.js</span>
+        <span>habui.tech/{typedLocale}</span>
+      </div>
+    </div>,
+    size,
   );
 }

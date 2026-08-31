@@ -3,7 +3,7 @@ import { getAllPosts } from "@/lib/blog";
 import { locales } from "@/i18n/config";
 import { getLocalizedPath } from "@/i18n/seo";
 
-const baseUrl = "https://habui.click";
+const baseUrl = "https://habui.tech";
 
 function getStaticRouteSeo(route: string) {
   switch (route) {
@@ -33,13 +33,13 @@ function getPostPriority(date: string) {
 
 function buildLocaleAlternates(
   path: string,
-  availableLocales: ReadonlyArray<(typeof locales)[number]> = locales
+  availableLocales: ReadonlyArray<(typeof locales)[number]> = locales,
 ) {
   const languages = Object.fromEntries(
     availableLocales.map((locale) => [
       locale,
       `${baseUrl}${getLocalizedPath(locale, path)}`,
-    ])
+    ]),
   );
 
   return {
@@ -57,8 +57,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       locales.map(async (locale) => {
         const posts = await getAllPosts(locale);
         return [locale, posts] as const;
-      })
-    )
+      }),
+    ),
   );
 
   const localeBySlug = new Map<string, Set<(typeof locales)[number]>>();
@@ -82,7 +82,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         alternates: {
           languages: buildLocaleAlternates(route || "/"),
         },
-      }))
+      })),
     );
 
     const posts = postsByLocale.get(locale) ?? [];
@@ -94,10 +94,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         alternates: {
           languages: buildLocaleAlternates(
             `/blog/${post.slug}`,
-            Array.from(localeBySlug.get(post.slug) ?? [locale])
+            Array.from(localeBySlug.get(post.slug) ?? [locale]),
           ),
         },
-      }))
+      })),
     );
   }
 

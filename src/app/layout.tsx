@@ -11,7 +11,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://habui.click/"),
+  metadataBase: new URL("https://habui.tech/"),
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/apple-icon.svg", type: "image/svg+xml" }],
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://habui.click/",
+    url: "https://habui.tech/",
     siteName: "Hà Bùi",
     title: "Hà Bùi — Front-end Engineer",
     description:

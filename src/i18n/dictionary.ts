@@ -103,7 +103,7 @@ const en: SiteDictionary = {
       "Front-end engineer working in React, TypeScript, and Next.js.",
   },
   nav: {
-    logo: "habui.click",
+    logo: "habui",
     home: "Home",
     blog: "Blog",
     projects: "Projects",
@@ -224,7 +224,7 @@ const vi: SiteDictionary = {
     ogDescription: "Kỹ sư front-end làm việc với React, TypeScript và Next.js.",
   },
   nav: {
-    logo: "habui.click",
+    logo: "habui",
     home: "Trang chủ",
     blog: "Blog",
     projects: "Dự án",
