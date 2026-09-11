@@ -11,11 +11,13 @@ export const size = {
 export const contentType = "image/png";
 
 // Same neutral palette as the site-level card.
-const BG = "#0c0c0d";
-const TEXT = "#ededee";
-const MUTED = "#9c9ca2";
-const DIM = "#6a6a70";
-const BORDER = "#262629";
+const BG = "#faf9f5";
+const SURFACE = "#f0eee6";
+const TEXT = "#1f1e1d";
+const MUTED = "#56544d";
+const DIM = "#7a7770";
+const BORDER = "#e2ded2";
+const ACCENT = "#b8543a";
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>;
@@ -76,6 +78,7 @@ export default async function Image({ params }: Props) {
     alignItems: "center",
     fontSize: 22,
     color: MUTED,
+    background: SURFACE,
     border: `1px solid ${BORDER}`,
     borderRadius: 999,
     padding: "8px 16px",
@@ -102,7 +105,14 @@ export default async function Image({ params }: Props) {
           alignItems: "center",
         }}
       >
-        <div style={{ ...chipStyle, fontSize: 24 }}>
+        <div
+          style={{
+            ...chipStyle,
+            fontSize: 24,
+            color: ACCENT,
+            borderColor: "transparent",
+          }}
+        >
           {typedLocale.toUpperCase()} · {localeLabel}
         </div>
         <div
@@ -121,12 +131,21 @@ export default async function Image({ params }: Props) {
         <div
           style={{
             display: "flex",
+            width: 56,
+            height: 4,
+            borderRadius: 999,
+            background: ACCENT,
+          }}
+        />
+        <div
+          style={{
+            display: "flex",
             flexDirection: "column",
             gap: 6,
             fontSize: titleFontSize,
             fontWeight: 600,
             lineHeight: 1.12,
-            letterSpacing: "-0.03em",
+            letterSpacing: "-0.02em",
             maxWidth: "95%",
           }}
         >

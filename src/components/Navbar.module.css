@@ -2,10 +2,20 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  /* Opaque instead of blurred glass: the nav sits on the page, it does not
-     float above it. */
+  /* A thin wash of the page color rather than a hard band: the ivory ground
+     stays visible through the bar as content scrolls under it. */
   background: var(--nav-bg);
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
   border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Blur is a progressive nicety; without support the bar must stay opaque or
+   text scrolls through it. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .header {
+    background: var(--nav-bg-solid);
+  }
 }
 
 .inner {
@@ -36,7 +46,7 @@
 }
 
 .logo svg {
-  color: var(--text-muted);
+  color: var(--accent-mark);
 }
 
 .nav {
@@ -45,20 +55,26 @@
 }
 
 .navLink {
-  padding: 6px 10px;
-  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
   font-size: 0.875rem;
   font-weight: 400;
   color: var(--text-muted);
-  transition: color var(--transition);
+  transition:
+    color var(--transition),
+    background var(--transition);
 }
 
 .navLink:hover {
   color: var(--text-primary);
+  background: var(--surface-subtle);
 }
 
+/* The current section is named by color and a soft tint, not an underline —
+   it has to survive sitting next to the clay CTA without competing with it. */
 .navLink.active {
-  color: var(--text-primary);
+  color: var(--accent);
+  background: var(--accent-soft);
 }
 
 .localeSwitch {
@@ -74,21 +90,22 @@
 }
 
 .switchArrow {
-  color: var(--border);
+  color: var(--text-muted);
 }
 
 .cta {
   font-size: 0.875rem;
-  font-weight: 400;
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  transition: border-color var(--transition);
+  font-weight: 500;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  background: var(--accent-fill);
+  color: var(--accent-on-fill);
+  transition: background var(--transition);
 }
 
 .cta:hover {
-  border-color: var(--text-muted);
+  background: var(--accent-strong);
 }
 
 .menuBtn {
@@ -112,17 +129,24 @@
 }
 
 .mobileLink {
-  padding: 10px 12px;
+  padding: 10px 14px;
   font-size: 0.9375rem;
   font-weight: 400;
   color: var(--text-secondary);
-  border-radius: var(--radius-sm);
-  transition: color var(--transition);
+  border-radius: var(--radius-md);
+  transition:
+    color var(--transition),
+    background var(--transition);
 }
 
-.mobileLink:hover,
-.mobileLink.active {
+.mobileLink:hover {
   color: var(--text-primary);
+  background: var(--surface-subtle);
+}
+
+.mobileLink.active {
+  color: var(--accent);
+  background: var(--accent-soft);
 }
 
 .mobileLocaleSwitch {
@@ -131,12 +155,13 @@
 
 .mobileCta {
   margin-top: 8px;
-  padding: 10px 12px;
+  padding: 11px 12px;
   font-size: 0.9375rem;
-  font-weight: 400;
-  color: var(--text-primary);
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+  font-weight: 500;
+  background: var(--accent-fill);
+  color: var(--accent-on-fill);
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
   text-align: center;
 }
 

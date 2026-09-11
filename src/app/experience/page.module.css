@@ -1,18 +1,20 @@
 .header {
-  margin-bottom: 64px;
+  margin-bottom: 48px;
 }
 
 .title {
-  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.125rem, 5vw, 3rem);
   font-weight: 600;
-  letter-spacing: -0.04em;
+  letter-spacing: var(--heading-tracking);
+  line-height: var(--display-leading);
   margin-bottom: 12px;
 }
 
 .subtitle {
   font-size: 1rem;
   color: var(--text-secondary);
-  max-width: 500px;
+  max-width: 52ch;
   line-height: 1.65;
 }
 
@@ -49,10 +51,12 @@
   z-index: 1;
 }
 
-/* Current role: a filled dot rather than a glowing one. */
+/* Current role: a clay dot — the one place on the timeline that needs to be
+   found at a glance. */
 .dotCurrent {
-  background: var(--text-primary);
-  border-color: var(--text-primary);
+  background: var(--accent-mark);
+  border-color: var(--accent-mark);
+  box-shadow: 0 0 0 4px var(--accent-soft);
 }
 
 .line {
@@ -63,10 +67,14 @@
   min-height: 40px;
 }
 
-/* Right — content */
+/* Right — content. Capped at a reading measure: the container is 1100px
+   wide, and role descriptions and achievements were setting lines across all
+   of it. */
 .content {
   padding-bottom: 56px;
   flex: 1;
+  min-width: 0;
+  max-width: 46rem;
 }
 
 .contentHeader {
@@ -78,21 +86,24 @@
   margin-bottom: 14px;
 }
 
+/* Dates and the "current" badge belong next to each other. Pushed apart by
+   space-between they sat at opposite ends of the column with nothing between
+   them. */
 .period {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 12px;
   font-family: var(--font-mono);
   font-size: 0.8125rem;
   color: var(--text-muted);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .role {
-  font-size: 1.25rem;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
   font-weight: 600;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.015em;
   margin-bottom: 4px;
 }
 
@@ -113,14 +124,16 @@
 
 .currentBadge {
   flex-shrink: 0;
+  font-family: var(--font-sans);
   font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--text-primary);
-  border: 1px solid var(--border);
-  padding: 3px 10px;
-  border-radius: 100px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid transparent;
+  padding: 3px 11px;
+  border-radius: var(--radius-pill);
 }
 
 .description {
@@ -144,14 +157,14 @@
   gap: 10px;
   font-size: 0.9rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .achievementDot {
-  width: 3px;
-  height: 3px;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background: var(--text-muted);
+  background: var(--accent-mark);
   flex-shrink: 0;
   margin-top: 8px;
 }
@@ -165,19 +178,19 @@
 .tech {
   font-size: 0.75rem;
   font-family: var(--font-mono);
-  color: var(--text-muted);
-  border: 1px solid var(--border-subtle);
-  padding: 2px 9px;
-  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
 }
 
 /* Stats row */
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 24px 16px;
   border-top: 1px solid var(--border);
-  padding: 32px 0 0;
+  padding: 36px 0 0;
 }
 
 .stat {
@@ -188,10 +201,11 @@
 }
 
 .statValue {
-  font-size: 1.875rem;
+  font-family: var(--font-display);
+  font-size: 2.125rem;
   font-weight: 600;
-  letter-spacing: -0.03em;
-  color: var(--text-primary);
+  letter-spacing: -0.015em;
+  color: var(--accent);
 }
 
 .statLabel {

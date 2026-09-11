@@ -9,13 +9,15 @@ export const size = {
 };
 export const contentType = "image/png";
 
-// One neutral palette, no per-locale hue — the card matches the site's
-// monochrome dark theme.
-const BG = "#0c0c0d";
-const TEXT = "#ededee";
-const MUTED = "#9c9ca2";
-const DIM = "#6a6a70";
-const BORDER = "#262629";
+// The ivory ground and clay accent of the site, so a shared link previews
+// as the same page it opens.
+const BG = "#faf9f5";
+const SURFACE = "#f0eee6";
+const TEXT = "#1f1e1d";
+const MUTED = "#56544d";
+const DIM = "#7a7770";
+const BORDER = "#e2ded2";
+const ACCENT = "#b8543a";
 
 interface Props {
   params: Promise<{ locale: string }>;
@@ -56,13 +58,14 @@ export default async function Image({ params }: Props) {
             color: MUTED,
           }}
         >
-          <span>{"</>"}</span>
+          <span style={{ color: ACCENT }}>{"</>"}</span>
           <span>habui</span>
         </div>
         <div
           style={{
             display: "flex",
             alignItems: "center",
+            background: SURFACE,
             border: `1px solid ${BORDER}`,
             borderRadius: 999,
             padding: "8px 18px",
@@ -83,9 +86,18 @@ export default async function Image({ params }: Props) {
       >
         <div
           style={{
+            display: "flex",
+            width: 56,
+            height: 4,
+            borderRadius: 999,
+            background: ACCENT,
+          }}
+        />
+        <div
+          style={{
             fontSize: 64,
             fontWeight: 600,
-            letterSpacing: "-0.03em",
+            letterSpacing: "-0.02em",
             lineHeight: 1.1,
             maxWidth: "90%",
           }}

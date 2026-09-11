@@ -1,12 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import {
-  ArrowRight,
-  ExternalLink,
-  Gauge,
-  Layers,
-  Workflow,
-} from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import Github from "@/components/icons/Github";
 import Linkedin from "@/components/icons/Linkedin";
 import Facebook from "@/components/icons/Facebook";
@@ -55,7 +49,13 @@ export async function generateMetadata({
     description: dict.metadata.siteDescription,
     keywords:
       typedLocale === "vi"
-        ? ["ky su front-end", "react", "next.js", "typescript", "blog cong nghe"]
+        ? [
+            "ky su front-end",
+            "react",
+            "next.js",
+            "typescript",
+            "blog cong nghe",
+          ]
         : [
             "front-end engineer",
             "react",
@@ -96,8 +96,6 @@ export default async function HomePage({ params }: PageProps) {
     ],
   };
 
-  const focusIcons = [Layers, Workflow, Gauge];
-
   return (
     <div>
       <script
@@ -111,15 +109,9 @@ export default async function HomePage({ params }: PageProps) {
               <span className={styles.dot} />
               {dict.home.badge}
             </div>
-            <p className={styles.heroGreeting}>
-              {dict.home.titleLine1}
-            </p>
-            <h1 className={styles.heroTitle}>
-              {dict.home.titleHighlight}
-            </h1>
-            <p className={styles.heroSubtitle}>
-              {dict.home.subtitle}
-            </p>
+            {/* <p className={styles.heroGreeting}>{dict.home.titleLine1}</p> */}
+            <h1 className={styles.heroTitle}>{dict.home.titleHighlight}</h1>
+            <p className={styles.heroSubtitle}>{dict.home.subtitle}</p>
             <div className={styles.heroActions}>
               <Link
                 href={`/${typedLocale}/projects`}
@@ -179,86 +171,66 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className={`${styles.focusSection} section`}>
-        <div className="container">
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>{dict.home.focusTitle}</h2>
-          </div>
-          <div className={styles.focusGrid}>
-            {dict.home.focusAreas.map(({ title, description }, idx) => {
-              const Icon = focusIcons[idx] ?? Layers;
-              return (
-                <div key={title} className={styles.focusCard}>
-                  <div className={styles.focusIcon}>
-                    <Icon size={22} />
-                  </div>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>{dict.home.featuredTitle}</h2>
-            <Link href={`/${typedLocale}/projects`} className={styles.seeAll}>
-              {dict.home.seeAll} <ArrowRight size={14} />
-            </Link>
-          </div>
-          <div className={styles.projectGrid}>
-            {featuredProjects.map((project) => (
-              <article key={project.slug} className={styles.projectCard}>
-                <div className={styles.projectMeta}>
-                  <span className={styles.projectYear}>{project.year}</span>
-                  <span
-                    className={`${styles.status} ${styles[project.status]}`}
-                  >
-                    {dict.common.status[project.status]}
-                  </span>
-                </div>
-                <h3 className={styles.projectTitle}>{project.title}</h3>
-                <p className={styles.projectDesc}>{project.description}</p>
-                <div className={styles.projectTech}>
-                  {project.tech.slice(0, 4).map((t) => (
-                    <span key={t} className={styles.techTag}>
-                      {t}
+      {featuredProjects.length > 0 && (
+        <section className="section section-lined">
+          <div className="container">
+            <div className={styles.sectionHeader}>
+              <h2 className={styles.sectionTitle}>{dict.home.featuredTitle}</h2>
+              <Link href={`/${typedLocale}/projects`} className={styles.seeAll}>
+                {dict.home.seeAll} <ArrowRight size={14} />
+              </Link>
+            </div>
+            <div className={styles.projectGrid}>
+              {featuredProjects.map((project) => (
+                <article key={project.slug} className={styles.projectCard}>
+                  <div className={styles.projectMeta}>
+                    <span className={styles.projectYear}>{project.year}</span>
+                    <span
+                      className={`${styles.status} ${styles[project.status]}`}
+                    >
+                      {dict.common.status[project.status]}
                     </span>
-                  ))}
-                </div>
-                <div className={styles.projectLinks}>
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.projectLink}
-                    >
-                      <Github size={14} /> {dict.common.code}
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.projectLink}
-                    >
-                      <ExternalLink size={14} /> {dict.common.demo}
-                    </a>
-                  )}
-                </div>
-              </article>
-            ))}
+                  </div>
+                  <h3 className={styles.projectTitle}>{project.title}</h3>
+                  <p className={styles.projectDesc}>{project.description}</p>
+                  <div className={styles.projectTech}>
+                    {project.tech.slice(0, 4).map((t) => (
+                      <span key={t} className={styles.techTag}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <div className={styles.projectLinks}>
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.projectLink}
+                      >
+                        <Github size={14} /> {dict.common.code}
+                      </a>
+                    )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.projectLink}
+                      >
+                        <ExternalLink size={14} /> {dict.common.demo}
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {recentPosts.length > 0 && (
-        <section className="section">
+        <section className="section section-lined">
           <div className="container">
             <div className={styles.sectionHeader}>
               <h2 className={styles.sectionTitle}>{dict.home.recentTitle}</h2>

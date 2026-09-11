@@ -1,18 +1,20 @@
 .header {
-  margin-bottom: 64px;
+  margin-bottom: 48px;
 }
 
 .title {
-  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.125rem, 5vw, 3rem);
   font-weight: 600;
-  letter-spacing: -0.04em;
+  letter-spacing: var(--heading-tracking);
+  line-height: var(--display-leading);
   margin-bottom: 12px;
 }
 
 .subtitle {
   font-size: 1rem;
   color: var(--text-secondary);
-  max-width: 500px;
+  max-width: 52ch;
   line-height: 1.65;
 }
 
@@ -21,7 +23,9 @@
   margin-bottom: 64px;
 }
 
+/* A label, not display type — it stays in the interface sans. */
 .sectionLabel {
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -38,23 +42,29 @@
 }
 
 .featuredCard {
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
   padding: 32px;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: border-color var(--transition);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
 .featuredCard:hover {
-  border-color: var(--text-muted);
+  border-color: var(--accent-line);
+  box-shadow: var(--shadow-raised);
 }
 
-/* The lead card is set apart by its span and a faint surface, not a gradient. */
+/* The lead card is set apart by its span and the oat surface, not a gradient. */
 .wide {
   grid-column: 1 / -1;
-  background: var(--surface-subtle);
+  background: var(--bg-secondary);
+  border-color: transparent;
 }
 
 .cardTop {
@@ -85,7 +95,7 @@
 }
 
 .active {
-  color: var(--text-primary);
+  color: var(--accent);
 }
 
 .wip {
@@ -102,35 +112,41 @@
 }
 
 .cardAction {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-pill);
   border: 1px solid var(--border);
   color: var(--text-muted);
   transition:
     color var(--transition),
+    background var(--transition),
     border-color var(--transition);
 }
 
 .cardAction:hover {
-  color: var(--text-primary);
-  border-color: var(--text-muted);
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
 }
 
 .cardTitle {
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   font-weight: 600;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.015em;
 }
 
+/* The lead card spans both columns, so without a cap its description sets
+   lines across the full grid. */
 .cardDesc {
   font-size: 0.9375rem;
   color: var(--text-secondary);
   line-height: 1.7;
+  max-width: 62ch;
   flex: 1;
+  text-wrap: pretty;
 }
 
 .techList {
@@ -142,10 +158,11 @@
 .techBadge {
   font-size: 0.75rem;
   font-family: var(--font-mono);
-  color: var(--text-muted);
+  color: var(--text-secondary);
+  background: var(--surface-subtle);
   border: 1px solid var(--border-subtle);
-  padding: 2px 8px;
-  border-radius: var(--radius-sm);
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
 }
 
 /* Others */
@@ -157,16 +174,21 @@
 
 .otherCard {
   padding: 20px 22px;
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: border-color var(--transition);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
 .otherCard:hover {
-  border-color: var(--text-muted);
+  border-color: var(--accent-line);
+  box-shadow: var(--shadow-raised);
 }
 
 .otherHeader {
@@ -177,6 +199,7 @@
 }
 
 .otherTitle {
+  font-family: var(--font-sans);
   font-size: 0.9375rem;
   font-weight: 600;
 }
@@ -225,5 +248,90 @@
   .featuredGrid,
   .otherGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Empty state — shown while there is nothing public to list. Dashed border
+   reads as "reserved space" rather than a card that failed to load. */
+.empty {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  padding: 72px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+}
+
+.emptyMark {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-mark);
+  margin-bottom: 6px;
+  animation: emptyPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes emptyPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .emptyMark {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+.emptyTitle {
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: var(--heading-tracking);
+  color: var(--text-primary);
+}
+
+.emptyBody {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 440px;
+}
+
+.emptyCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent);
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  transition:
+    color var(--transition),
+    background var(--transition),
+    border-color var(--transition);
+}
+
+.emptyCta:hover {
+  color: var(--accent-on-fill);
+  background: var(--accent-fill);
+  border-color: transparent;
+}
+
+@media (max-width: 600px) {
+  .empty {
+    padding: 56px 20px;
   }
 }

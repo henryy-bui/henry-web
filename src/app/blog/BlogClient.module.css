@@ -2,14 +2,17 @@
   margin-bottom: 40px;
 }
 
+/* A search field does not need 1100px. Capping it keeps the caret near the
+   icon and leaves the tag row as the wide element in this block. */
 .searchWrapper {
   position: relative;
-  margin-bottom: 16px;
+  max-width: 26rem;
+  margin-bottom: 18px;
 }
 
 .searchIcon {
   position: absolute;
-  left: 14px;
+  left: 16px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-muted);
@@ -18,19 +21,22 @@
 
 .searchInput {
   width: 100%;
-  background: transparent;
+  background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 11px 16px 11px 42px;
+  border-radius: var(--radius-pill);
+  padding: 12px 18px 12px 44px;
   font-size: 0.9375rem;
   font-family: var(--font-sans);
   color: var(--text-primary);
-  transition: border-color var(--transition);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
   outline: none;
 }
 
 .searchInput:focus {
-  border-color: var(--text-muted);
+  border-color: var(--accent-line);
+  box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
 .searchInput::placeholder {
@@ -46,27 +52,29 @@
 .tagBtn {
   font-size: 0.8125rem;
   font-weight: 400;
-  padding: 4px 13px;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: var(--text-muted);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
   cursor: pointer;
   transition:
     border-color var(--transition),
+    background var(--transition),
     color var(--transition);
 }
 
 .tagBtn:hover {
-  border-color: var(--text-muted);
+  background: var(--accent-soft);
   color: var(--text-primary);
 }
 
-/* Selected state is an inversion, not a color. */
+/* Selected state is the clay fill — the same emphasis the primary button
+   uses, so "this filter is on" reads the same as "this is the action". */
 .tagActive {
-  border-color: var(--text-primary) !important;
-  background: var(--text-primary) !important;
-  color: var(--bg-primary) !important;
+  border-color: transparent !important;
+  background: var(--accent-fill) !important;
+  color: var(--accent-on-fill) !important;
 }
 
 /* Post Grid */
@@ -77,17 +85,22 @@
 }
 
 .postCard {
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
   padding: 26px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: border-color var(--transition);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
 .postCard:hover {
-  border-color: var(--text-muted);
+  border-color: var(--accent-line);
+  box-shadow: var(--shadow-raised);
 }
 
 .cardMeta {
@@ -106,11 +119,16 @@
 }
 
 .postTitle {
-  font-size: 1.125rem;
+  font-size: 1.1875rem;
   font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.35;
+  letter-spacing: -0.012em;
+  line-height: 1.3;
   color: var(--text-primary);
+  transition: color var(--transition);
+}
+
+.postCard:hover .postTitle {
+  color: var(--accent);
 }
 
 .postExcerpt {
@@ -139,10 +157,10 @@
   gap: 4px;
   font-size: 0.6875rem;
   font-weight: 400;
-  color: var(--text-muted);
-  border: 1px solid var(--border-subtle);
-  padding: 2px 8px;
-  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
 }
 
 .readMore {
@@ -157,20 +175,20 @@
 }
 
 .postCard:hover .readMore {
-  color: var(--text-primary);
+  color: var(--accent);
 }
 
 /* Empty State */
 .empty {
   text-align: center;
-  padding: 80px 0;
+  padding: 72px 0;
   color: var(--text-muted);
 }
 
 .clearBtn {
   margin-top: 12px;
   font-size: 0.875rem;
-  color: var(--text-primary);
+  color: var(--accent);
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 3px;

@@ -40,8 +40,6 @@ export type SiteDictionary = {
     ctaProjects: string;
     ctaBlog: string;
     techLabel: string;
-    focusTitle: string;
-    focusAreas: Array<{ title: string; description: string }>;
     featuredTitle: string;
     seeAll: string;
     recentTitle: string;
@@ -77,6 +75,9 @@ export type SiteDictionary = {
     otherWork: string;
     ariaGithub: string;
     ariaDemo: string;
+    emptyTitle: string;
+    emptyBody: string;
+    emptyCta: string;
   };
   experience: {
     metadataTitle: string;
@@ -133,7 +134,7 @@ const en: SiteDictionary = {
     },
   },
   home: {
-    badge: "Open to new work",
+    badge: "Hello Everyone",
     titleLine1: "Hello.",
     titleHighlight: "I'm Ha Bui, a front-end engineer",
     subtitle:
@@ -141,24 +142,6 @@ const en: SiteDictionary = {
     ctaProjects: "View my work",
     ctaBlog: "Read blog",
     techLabel: "Technologies I work with",
-    focusTitle: "What I focus on",
-    focusAreas: [
-      {
-        title: "Component libraries",
-        description:
-          "Shared UI kept as a versioned package: typed props, keyboard and screen-reader support, and Storybook docs so another team can adopt it without a handover.",
-      },
-      {
-        title: "State and data flow",
-        description:
-          "Server state in TanStack Query, validation at the boundary with Zod, local state kept small. Most UI bugs turn out to be state bugs, so this is where the time goes.",
-      },
-      {
-        title: "Performance and accessibility",
-        description:
-          "Measure first with bundle analysis, the React Profiler, and Lighthouse. Then code-splitting, narrowing re-renders, and fixing what an a11y audit turns up.",
-      },
-    ],
     featuredTitle: "Featured Projects",
     seeAll: "See all",
     recentTitle: "Recent Writing",
@@ -197,6 +180,10 @@ const en: SiteDictionary = {
     otherWork: "Other work",
     ariaGithub: "GitHub",
     ariaDemo: "Demo",
+    emptyTitle: "No projects yet",
+    emptyBody:
+      "There are no projects to show here at the moment. I am working on a few, and they will be added to this page once they are ready.",
+    emptyCta: "Read the blog",
   },
   experience: {
     metadataTitle: "Experience",
@@ -254,7 +241,7 @@ const vi: SiteDictionary = {
     },
   },
   home: {
-    badge: "Sẵn sàng nhận dự án mới",
+    badge: "Xin chào mọi người",
     titleLine1: "Xin chào.",
     titleHighlight: "Mình là Hà Bùi, kỹ sư front-end",
     subtitle:
@@ -262,24 +249,6 @@ const vi: SiteDictionary = {
     ctaProjects: "Xem dự án",
     ctaBlog: "Đọc blog",
     techLabel: "Công nghệ mình dùng",
-    focusTitle: "Mình tập trung vào",
-    focusAreas: [
-      {
-        title: "Thư viện component",
-        description:
-          "UI dùng chung được đóng thành package có version: props có kiểu rõ ràng, hỗ trợ bàn phím và screen reader, tài liệu bằng Storybook để team khác dùng được mà không cần bàn giao.",
-      },
-      {
-        title: "State và luồng dữ liệu",
-        description:
-          "Server state để TanStack Query lo, validate ở biên bằng Zod, local state giữ càng nhỏ càng tốt. Phần lớn bug giao diện thật ra là bug state, nên đây là chỗ mình dành nhiều thời gian nhất.",
-      },
-      {
-        title: "Hiệu năng và a11y",
-        description:
-          "Đo trước đã: phân tích bundle, React Profiler, Lighthouse. Sau đó mới code-splitting, thu hẹp phạm vi re-render và xử lý những lỗi a11y mà bản audit chỉ ra.",
-      },
-    ],
     featuredTitle: "Dự án nổi bật",
     seeAll: "Xem tất cả",
     recentTitle: "Bài viết mới",
@@ -318,6 +287,10 @@ const vi: SiteDictionary = {
     otherWork: "Dự án khác",
     ariaGithub: "GitHub",
     ariaDemo: "Demo",
+    emptyTitle: "Chưa có dự án nào",
+    emptyBody:
+      "Hiện tại chưa có dự án nào để hiển thị ở đây. Mình đang thực hiện một vài dự án và sẽ cập nhật lên trang này khi chúng hoàn thiện.",
+    emptyCta: "Đọc blog",
   },
   experience: {
     metadataTitle: "Kinh nghiệm",

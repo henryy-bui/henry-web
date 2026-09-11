@@ -1,10 +1,12 @@
 .hero {
-  padding: 112px 0 84px;
+  /* Taller at the top than the rhythm, shorter at the bottom: the hero opens
+     the page, and the tech strip below reads as part of the same block. */
+  padding: calc(var(--section-y) + 32px) 0 calc(var(--section-y) - 24px);
   position: relative;
 }
 
 .heroInner {
-  max-width: 830px;
+  max-width: 46rem;
 }
 
 .heroBadge {
@@ -15,18 +17,19 @@
   font-weight: 500;
   letter-spacing: 0.01em;
   color: var(--text-secondary);
-  border: 1px solid var(--border);
+  background: var(--accent-soft);
+  border: 1px solid transparent;
   padding: 5px 13px 5px 11px;
-  border-radius: 100px;
+  border-radius: var(--radius-pill);
   margin-bottom: 22px;
 }
 
 /* A static marker, not a pulse — availability is stated by the text next to it. */
 .dot {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--text-primary);
+  background: var(--accent-mark);
   display: inline-block;
 }
 
@@ -39,10 +42,11 @@
 }
 
 .heroTitle {
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5.2vw, 3.75rem);
   font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 1.1;
+  letter-spacing: -0.022em;
+  line-height: var(--display-leading);
   margin-bottom: 20px;
   color: var(--text-primary);
   text-wrap: balance;
@@ -51,9 +55,9 @@
 .heroSubtitle {
   font-size: 1.0625rem;
   color: var(--text-secondary);
-  max-width: 54ch;
+  max-width: 52ch;
   line-height: 1.75;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
   text-wrap: pretty;
 }
 
@@ -70,24 +74,26 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 42px;
-  padding: 0 20px;
+  height: 44px;
+  padding: 0 22px;
   font-weight: 500;
   font-size: 0.9375rem;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-pill);
   border: 1px solid transparent;
 }
 
-/* The single inverted surface on the page — that inversion is the emphasis,
-   so it needs no color of its own. */
+/* Clay fill — the one saturated surface on the page, reserved for the single
+   action the page is actually asking for. */
 .btnPrimary {
-  background: var(--text-primary);
-  color: var(--bg-primary);
-  transition: opacity var(--transition);
+  background: var(--accent-fill);
+  color: var(--accent-on-fill);
+  transition:
+    background var(--transition),
+    transform var(--transition);
 }
 
 .btnPrimary:hover {
-  opacity: 0.85;
+  background: var(--accent-strong);
 }
 
 .btnSecondary {
@@ -101,7 +107,8 @@
 
 .btnSecondary:hover {
   color: var(--text-primary);
-  border-color: var(--text-muted);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
 }
 
 .heroDivider {
@@ -123,19 +130,29 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-pill);
   color: var(--text-muted);
-  transition: color var(--transition);
+  transition:
+    color var(--transition),
+    background var(--transition);
 }
 
 .heroSocial a:hover {
-  color: var(--text-primary);
+  color: var(--accent);
+  background: var(--accent-soft);
 }
 
-/* Tech Section */
+/* Tech Section — a strip, not a section: the label sits in its own column
+   beside the pills so the row stays one band of content. */
 .techSection {
-  padding: 32px 0 48px;
-  border-top: 1px solid var(--border-subtle);
+  padding-bottom: var(--section-y);
+}
+
+.techSection :global(.container) {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: 20px 28px;
+  align-items: baseline;
 }
 
 .techLabel {
@@ -144,7 +161,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 16px;
+  line-height: 1.9;
 }
 
 .techGrid {
@@ -159,31 +176,36 @@
   font-size: 0.8125rem;
   font-weight: 400;
   color: var(--text-secondary);
-  border: 1px solid var(--border);
-  padding: 5px 12px;
-  border-radius: 100px;
+  background: var(--bg-secondary);
+  border: 1px solid transparent;
+  padding: 5px 13px;
+  border-radius: var(--radius-pill);
   transition:
     border-color var(--transition),
-    color var(--transition);
+    color var(--transition),
+    background var(--transition);
 }
 
 .techPill:hover {
-  border-color: var(--text-muted);
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
   color: var(--text-primary);
 }
 
 /* Section common */
 .sectionHeader {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 40px;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .sectionTitle {
-  font-size: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.625rem;
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.015em;
 }
 
 .seeAll {
@@ -197,48 +219,7 @@
 }
 
 .seeAll:hover {
-  color: var(--text-primary);
-}
-
-/* Focus Section */
-.focusSection {
-  border-top: 1px solid var(--border-subtle);
-}
-
-.focusGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.focusCard {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 28px;
-  transition: border-color var(--transition);
-}
-
-.focusCard:hover {
-  border-color: var(--text-muted);
-}
-
-.focusIcon {
-  display: flex;
-  align-items: center;
-  color: var(--text-muted);
-  margin-bottom: 16px;
-}
-
-.focusCard h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.focusCard p {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  line-height: 1.65;
+  color: var(--accent);
 }
 
 /* Projects */
@@ -249,17 +230,22 @@
 }
 
 .projectCard {
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
   padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: border-color var(--transition);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
 .projectCard:hover {
-  border-color: var(--text-muted);
+  border-color: var(--accent-line);
+  box-shadow: var(--shadow-raised);
 }
 
 .projectMeta {
@@ -274,8 +260,8 @@
   font-family: var(--font-mono);
 }
 
-/* Status is carried by weight and luminance — the label already says which
-   state it is, so a hue would only repeat it. */
+/* Status: the live state takes the accent, the quieter ones step down the
+   neutral ramp. */
 .status {
   font-size: 0.6875rem;
   font-weight: 500;
@@ -285,7 +271,7 @@
 }
 
 .active {
-  color: var(--text-primary);
+  color: var(--accent);
 }
 
 .wip {
@@ -297,7 +283,7 @@
 }
 
 .projectTitle {
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -317,10 +303,10 @@
 
 .techTag {
   font-size: 0.75rem;
-  color: var(--text-muted);
-  border: 1px solid var(--border-subtle);
-  padding: 2px 8px;
-  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
   font-family: var(--font-mono);
 }
 
@@ -340,7 +326,7 @@
 }
 
 .projectLink:hover {
-  color: var(--text-primary);
+  color: var(--accent);
 }
 
 /* Posts */
@@ -349,9 +335,15 @@
   flex-direction: column;
 }
 
+/* Each entry is a two-column row: the date rail keeps the dates aligned down
+   the page, and the text column stops at a reading measure instead of running
+   the full 1100px. */
 .postItem {
-  display: block;
-  padding: 24px 0;
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  column-gap: 28px;
+  align-items: start;
+  padding: 26px 0;
   border-top: 1px solid var(--border-subtle);
 }
 
@@ -360,35 +352,42 @@
 }
 
 .postMeta {
+  grid-column: 1;
+  grid-row: 1 / span 3;
   display: flex;
-  gap: 16px;
-  align-items: center;
+  flex-direction: column;
+  gap: 4px;
   font-size: 0.8125rem;
   color: var(--text-muted);
-  margin-bottom: 8px;
   font-family: var(--font-mono);
+  padding-top: 3px;
+}
+
+.postTitle,
+.postExcerpt,
+.postTags {
+  grid-column: 2;
 }
 
 .postTitle {
-  font-size: 1.125rem;
+  font-size: 1.1875rem;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.012em;
   margin-bottom: 8px;
   transition: color var(--transition);
 }
 
 .postItem:hover .postTitle {
-  color: var(--text-primary);
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 1px;
+  color: var(--accent);
 }
 
 .postExcerpt {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.7;
+  max-width: 68ch;
   margin-bottom: 12px;
+  text-wrap: pretty;
 }
 
 .postTags {
@@ -398,27 +397,52 @@
 
 .tag {
   font-size: 0.75rem;
-  color: var(--text-muted);
-  border: 1px solid var(--border-subtle);
-  padding: 2px 8px;
-  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
 }
 
 @media (max-width: 900px) {
-  .focusGrid,
   .projectGrid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
+/* Below this the rail costs more width than the alignment is worth. */
+@media (max-width: 720px) {
+  .techSection :global(.container),
+  .postItem {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .techSection :global(.container) {
+    gap: 14px;
+  }
+
+  .postMeta {
+    grid-column: 1;
+    grid-row: auto;
+    flex-direction: row;
+    gap: 16px;
+    padding-top: 0;
+    margin-bottom: 8px;
+  }
+
+  .postTitle,
+  .postExcerpt,
+  .postTags {
+    grid-column: 1;
+  }
+}
+
 @media (max-width: 600px) {
-  .focusGrid,
   .projectGrid {
     grid-template-columns: 1fr;
   }
 
   .hero {
-    padding: 72px 0 56px;
+    padding: calc(var(--section-y) + 16px) 0 var(--section-y);
   }
 
   .heroTitle {

@@ -1,122 +1,161 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&display=swap");
 
 /* ===== CSS VARIABLES ===== */
 /* Theme-independent design tokens */
 :root {
+  /* Inter stands in for Styrene (UI, labels, body); Source Serif carries the
+     display voice. Headings serif / interface sans is the split the whole
+     palette is built around. */
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: "Source Serif 4", Iowan Old Style, Georgia, serif;
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
-  /* Minimal radii — edges stay close to square so shape never competes
-     with content. */
-  --radius-sm: 3px;
-  --radius-md: 4px;
-  --radius-lg: 6px;
+  /* The display face, indirected through a token so a locale can swap it.
+     Everything that sets display type reads this, never --font-serif. */
+  --font-display: var(--font-serif);
 
-  /* One short duration for the only motion left: color/border state changes. */
-  --transition: 140ms ease;
+  /* Soft, generous corners — surfaces read as paper cards, not boxes. */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 100px;
+
+  --transition: 160ms cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Code block gutter. .code-line cancels it with a negative margin so a
      highlighted line spans the full block, so the two must stay equal. */
   --code-pad-x: 1.5rem;
 
-  --heading-tracking: -0.02em;
+  /* One vertical rhythm for the whole site: every band of content is spaced
+     by this, so sections never stack two different paddings against each
+     other. */
+  --section-y: 80px;
+
+  --heading-tracking: -0.018em;
+  /* Leading for headings (--heading-leading) and for the large page/hero
+     titles that set their own (--display-leading). Both are tokens so the
+     Vietnamese block can open them up in one place. */
+  --heading-leading: 1.2;
+  --display-leading: 1.1;
 }
 
 /* ===== DARK THEME (default) =====
-   There is deliberately no accent token. The palette is a single neutral
-   ramp: emphasis comes from contrast, weight, and space. Semantic states
-   (active / in progress / archived) are luminance steps, and the only
-   "highlight" on the site is an inverted surface — text-primary as a
-   background with bg-primary as the text. */
+   A warm charcoal ground rather than a neutral black: every gray in the ramp
+   carries a trace of the same clay hue as the accent, so the page reads as
+   paper in low light instead of as an unlit screen. */
 :root,
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg-primary: #0c0c0d;
-  --bg-secondary: #111112;
-  --bg-card: #131314;
-  --border: #262629;
-  --border-subtle: #1c1c1f;
+  --bg-primary: #1f1e1d;
+  --bg-secondary: #262624;
+  --bg-card: #262624;
+  --border: #3e3b36;
+  --border-subtle: #2e2b28;
 
-  --text-primary: #ededee;
-  --text-secondary: #9c9ca2;
-  --text-muted: #6a6a70;
+  --text-primary: #f5f4ee;
+  --text-secondary: #c3c0b6;
+  --text-muted: #918e84;
 
-  /* Flat surfaces — no glass, no blur, no elevation. */
-  --surface-subtle: rgba(255, 255, 255, 0.02);
-  --nav-bg: var(--bg-primary);
+  /* Clay — one accent, used for emphasis, state, and the primary action.
+     --accent is the text-safe step; --accent-mark is for dots and icons. */
+  --accent: #e08a6b;
+  --accent-strong: #efa88c;
+  --accent-mark: #d97757;
+  --accent-fill: #d97757;
+  --accent-on-fill: #23201e;
+  --accent-soft: rgba(217, 119, 87, 0.16);
+  --accent-line: rgba(217, 119, 87, 0.38);
+
+  --surface-subtle: rgba(245, 244, 238, 0.03);
+  --nav-bg: rgba(31, 30, 29, 0.86);
   --nav-bg-solid: var(--bg-primary);
   --fab-bg: var(--bg-card);
   --fab-color: var(--text-secondary);
 
-  --selection-bg: rgba(255, 255, 255, 0.14);
+  --shadow-card: none;
+  --shadow-raised: 0 1px 3px rgba(0, 0, 0, 0.4);
 
-  /* Syntax highlighting — five luminance steps, no hue. Structure reads
-     through contrast; only diff markers carry a trace of color, because
-     added/removed is meaning a gray step cannot express. */
-  --code-bg: #101011;
-  --code-border: #212124;
-  --code-inline-bg: #171719;
-  --code-text: #cbcbd1;
-  --code-comment: #5c5c63;
-  --code-punctuation: #7c7c85;
-  --code-tag: #f0f0f2;
-  --code-function-name: #ededee;
-  --code-number: #a8a8b0;
-  --code-property: #a8a8b0;
-  --code-keyword: #f0f0f2;
-  --code-string: #9d9da6;
-  --code-operator: #7c7c85;
-  --code-inserted: #a6b8a8;
-  --code-deleted: #b8a6a8;
-  --code-line-highlight: rgba(255, 255, 255, 0.05);
-  --code-line-number: #4e4e56;
-  --code-chrome-bg: rgba(255, 255, 255, 0.05);
-  --code-chrome-border: rgba(255, 255, 255, 0.12);
+  --selection-bg: rgba(217, 119, 87, 0.3);
+
+  /* Syntax highlighting — warm neutrals with clay for keywords and a muted
+     sage for strings. Enough hue to parse structure, not enough to shout. */
+  --code-bg: #1a1918;
+  --code-border: #322f2b;
+  --code-inline-bg: #2a2724;
+  --code-text: #ddd9cf;
+  --code-comment: #7e7a70;
+  --code-punctuation: #9a958a;
+  --code-tag: #e08a6b;
+  --code-function-name: #f0eee6;
+  --code-number: #d4a27f;
+  --code-property: #d4a27f;
+  --code-keyword: #e08a6b;
+  --code-string: #a3ac93;
+  --code-operator: #9a958a;
+  --code-inserted: #9fbc9c;
+  --code-deleted: #d68b84;
+  --code-line-highlight: rgba(217, 119, 87, 0.1);
+  --code-line-number: #5e5a53;
+  --code-chrome-bg: rgba(245, 244, 238, 0.06);
+  --code-chrome-border: rgba(245, 244, 238, 0.14);
 }
 
-/* ===== LIGHT THEME ===== */
+/* ===== LIGHT THEME =====
+   The ivory ground is the point: #faf9f5 paper, oat surfaces, warm hairlines.
+   The accent darkens here so link and button text still clears AA on cream. */
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --bg-primary: #fcfcfd;
-  --bg-secondary: #f4f4f6;
+  --bg-primary: #faf9f5;
+  --bg-secondary: #f0eee6;
   --bg-card: #ffffff;
-  --border: #e3e3e7;
-  --border-subtle: #ededf0;
+  --border: #e2ded2;
+  --border-subtle: #ebe7db;
 
-  --text-primary: #17171c;
-  --text-secondary: #56565f;
-  --text-muted: #82828c;
+  --text-primary: #1f1e1d;
+  --text-secondary: #56544d;
+  --text-muted: #7a7770;
 
-  --surface-subtle: rgba(23, 23, 28, 0.02);
-  --nav-bg: var(--bg-primary);
+  --accent: #b8543a;
+  --accent-strong: #9c4327;
+  --accent-mark: #c96442;
+  --accent-fill: #b8543a;
+  --accent-on-fill: #fffaf6;
+  --accent-soft: rgba(201, 100, 66, 0.09);
+  --accent-line: rgba(184, 84, 58, 0.32);
+
+  --surface-subtle: rgba(31, 30, 29, 0.025);
+  --nav-bg: rgba(250, 249, 245, 0.86);
   --nav-bg-solid: var(--bg-primary);
   --fab-bg: var(--bg-card);
   --fab-color: var(--text-secondary);
 
-  --selection-bg: rgba(23, 23, 28, 0.12);
+  --shadow-card: 0 1px 2px rgba(31, 30, 29, 0.04);
+  --shadow-raised: 0 2px 6px rgba(31, 30, 29, 0.07);
 
-  /* Same five steps, inverted for a light block. */
-  --code-bg: #f7f7f9;
-  --code-border: #e3e3e7;
-  --code-inline-bg: #f1f1f4;
-  --code-text: #2b2b33;
-  --code-comment: #8e8e99;
-  --code-punctuation: #6c6c78;
-  --code-tag: #0b0b10;
-  --code-function-name: #17171c;
-  --code-number: #4d4d58;
-  --code-property: #4d4d58;
-  --code-keyword: #0b0b10;
-  --code-string: #5e5e69;
-  --code-operator: #6c6c78;
+  --selection-bg: rgba(201, 100, 66, 0.18);
+
+  /* Same reading, inverted for a light block. */
+  --code-bg: #f5f3ec;
+  --code-border: #e6e1d4;
+  --code-inline-bg: #f0ede3;
+  --code-text: #2f2d28;
+  --code-comment: #8b8880;
+  --code-punctuation: #6d6a62;
+  --code-tag: #a8482e;
+  --code-function-name: #1f1e1d;
+  --code-number: #8a5a2b;
+  --code-property: #8a5a2b;
+  --code-keyword: #a8482e;
+  --code-string: #5c6b4a;
+  --code-operator: #6d6a62;
   --code-inserted: #3f5a45;
-  --code-deleted: #5f3f45;
-  --code-line-highlight: rgba(23, 23, 28, 0.045);
-  --code-line-number: #b0b0ba;
-  --code-chrome-bg: rgba(23, 23, 28, 0.05);
-  --code-chrome-border: rgba(23, 23, 28, 0.12);
+  --code-deleted: #8a3f3a;
+  --code-line-highlight: rgba(201, 100, 66, 0.08);
+  --code-line-number: #b3afa3;
+  --code-chrome-bg: rgba(31, 30, 29, 0.045);
+  --code-chrome-border: rgba(31, 30, 29, 0.1);
 }
 
 /* Theme swaps must be atomic. Without this, properties that CAN transition
@@ -174,8 +213,9 @@ button {
 }
 
 :focus-visible {
-  outline: 1px solid var(--text-primary);
+  outline: 2px solid var(--accent-mark);
   outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 /* ===== SCROLLBAR ===== */
@@ -187,6 +227,7 @@ button {
 }
 ::-webkit-scrollbar-thumb {
   background: var(--border);
+  border-radius: var(--radius-pill);
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
@@ -250,7 +291,13 @@ html.locale-switching body {
 }
 
 .section {
-  padding: 80px 0;
+  padding: var(--section-y) 0;
+}
+
+/* A hairline between bands. Sections carry their own rule rather than the
+   page drawing dividers, so a hidden section takes its divider with it. */
+.section-lined {
+  border-top: 1px solid var(--border-subtle);
 }
 
 @media (max-width: 640px) {
@@ -258,11 +305,8 @@ html.locale-switching body {
     padding: 0 20px;
   }
 
-  .section {
-    padding: 48px 0;
-  }
-
   :root {
+    --section-y: 56px;
     --code-pad-x: 1rem;
   }
 }
@@ -274,20 +318,34 @@ html.locale-switching body {
 }
 
 /* ===== TYPOGRAPHY ===== */
+/* Display type is the serif; everything interface-side stays sans. The pair
+   is what gives the page its voice, so headings opt in by default and the few
+   label-style headings opt back out locally. */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  line-height: 1.2;
+  font-family: var(--font-display);
+  line-height: var(--heading-leading);
   font-weight: 600;
   letter-spacing: var(--heading-tracking);
   text-wrap: balance;
 }
 
+/* Vietnamese sets the display face back to the sans.
+   Source Serif's stacked diacritics (ế, ộ, ữ) sit high and thin against its
+   heavy stems, and at display sizes with tight tracking the tone marks crowd
+   the line above. Inter draws them at a consistent weight and leaves room, so
+   Vietnamese headings read as cleanly as the English ones — the warm palette
+   carries the identity in both. */
 .locale-vi {
-  --heading-tracking: -0.015em;
+  --font-display: var(--font-sans);
+  --heading-tracking: -0.022em;
+  /* Two-part marks (ế, ộ, ữ) need room above the cap line. */
+  --heading-leading: 1.32;
+  --display-leading: 1.2;
 }
 
 .locale-vi .prose {
@@ -321,23 +379,26 @@ h6 {
 .prose h3 {
   font-size: 1.2rem;
   margin: 2rem 0 0.5rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 
 .prose p {
   color: var(--text-secondary);
 }
 
-/* Links are marked by an underline, not a color — the one affordance that
-   works identically in both themes without introducing a hue. */
+/* Links carry the accent plus an underline — hue and shape together, so the
+   affordance survives both themes and a monochrome print. */
 .prose a {
-  color: var(--text-primary);
-  border-bottom: 1px solid var(--border);
-  transition: border-color var(--transition);
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent-line);
+  transition:
+    color var(--transition),
+    border-color var(--transition);
 }
 
 .prose a:hover {
-  border-color: var(--text-primary);
+  color: var(--accent-strong);
+  border-color: var(--accent-strong);
 }
 
 .prose ul,
@@ -351,14 +412,19 @@ h6 {
 }
 
 .prose blockquote {
-  border-left: 1px solid var(--border);
+  border-left: 2px solid var(--accent-line);
+  background: var(--surface-subtle);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
   margin: 2rem 0;
-  padding: 0.25rem 0 0.25rem 1.5rem;
-  color: var(--text-muted);
+  padding: 0.75rem 1.25rem 0.75rem 1.5rem;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 1.05em;
 }
 
 .prose code {
   font-family: var(--font-mono);
+  font-weight: 400;
   font-size: 0.875em;
   background: var(--code-inline-bg);
   color: var(--code-text);

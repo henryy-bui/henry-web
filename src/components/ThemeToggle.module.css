@@ -3,14 +3,17 @@
   place-items: center;
   width: 32px;
   height: 32px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-pill);
   color: var(--text-muted);
   background: transparent;
-  transition: color var(--transition);
+  transition:
+    color var(--transition),
+    background var(--transition);
 }
 
 .toggle:hover {
-  color: var(--text-primary);
+  color: var(--accent);
+  background: var(--accent-soft);
 }
 
 /* A cross-fade only — no rotation, no scale. */

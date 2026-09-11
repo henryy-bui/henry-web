@@ -5,8 +5,8 @@ import ThemeScript from "@/components/ThemeScript";
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fcfcfd" },
-    { media: "(prefers-color-scheme: dark)", color: "#0c0c0d" },
+    { media: "(prefers-color-scheme: light)", color: "#faf9f5" },
+    { media: "(prefers-color-scheme: dark)", color: "#1f1e1d" },
   ],
 };
 
@@ -79,6 +79,14 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
+        {/* The three families come in through one @import in globals.css;
+            opening the connections early keeps that from serializing. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
         <ThemeScript />
       </head>
       <body>

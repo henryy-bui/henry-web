@@ -5,13 +5,14 @@
   z-index: 120;
   width: 40px;
   height: 40px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-pill);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--border);
   background: var(--fab-bg);
   color: var(--fab-color);
+  box-shadow: var(--shadow-raised);
   cursor: pointer;
   /* Opacity alone — the button appears, it does not travel or bounce. */
   opacity: 0;
@@ -28,8 +29,8 @@
 }
 
 .button:hover {
-  color: var(--text-primary);
-  border-color: var(--text-muted);
+  color: var(--accent);
+  border-color: var(--accent-line);
 }
 
 @media (max-width: 768px) {
