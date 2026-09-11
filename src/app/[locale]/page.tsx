@@ -90,9 +90,9 @@ export default async function HomePage({ params }: PageProps) {
     inLanguage: typedLocale,
     jobTitle: dict.metadata.siteTitle,
     sameAs: [
-      "https://github.com/HaBuiy-bui",
+      "https://github.com/henryy-bui",
       "https://www.facebook.com/iamhabv/",
-      "https://www.linkedin.com/in/HaBuiy-bui/",
+      "https://www.linkedin.com/in/henryy-bui/",
     ],
   };
 
@@ -129,7 +129,7 @@ export default async function HomePage({ params }: PageProps) {
               <span className={styles.heroDivider} aria-hidden="true" />
               <div className={styles.heroSocial}>
                 <a
-                  href="https://github.com/HaBuiy-bui"
+                  href="https://github.com/henryy-bui"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub"
@@ -145,7 +145,7 @@ export default async function HomePage({ params }: PageProps) {
                   <Facebook size={18} />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/HaBuiy-bui/"
+                  href="https://www.linkedin.com/in/henryy-bui/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
